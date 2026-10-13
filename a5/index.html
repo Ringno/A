@@ -136,13 +136,14 @@ var API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/";
 var RAW="https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/"+BRANCH+"/";
 var EXTS=/\.(png|jpe?g|webp|gif|avif)$/i;
 var fallback=Array.from({length:142},function(_,n){return{path:"리네/"+String(n+1).padStart(3,"0")+".png"};});
-var all=fallback.map(normalize),visible=[],activeFolder="all",selected=-1,loading=false,synced=false;
+var all=[],visible=[],activeFolder="all",selected=-1,loading=false,synced=false;
 var $=function(id){return document.getElementById(id);};
 var ranges=[
 [1,1,"무표정"],[2,2,"기쁨"],[3,3,"부끄러움"],[4,4,"짜증·화남"],[5,5,"불안"],[6,6,"고민"],[7,7,"슬픔"],[8,8,"의심"],[9,9,"귀찮음"],[10,10,"미안함"],[11,11,"설렘"],[12,12,"장난"],[13,13,"삐짐·질투"],[14,14,"졸림"],[15,15,"턱잡힘"],[16,16,"상대방 턱잡기"],[17,17,"손잡기"],[18,18,"포옹"],[19,19,"볼쓰다듬기"],[20,20,"머리쓰다듬당함"],[21,21,"상대방 머리쓰다듬기"],[22,22,"백허그"],[23,24,"일반키스"],[25,25,"식사"],[26,26,"요리"],[27,27,"임신"],[28,28,"목욕"],
 [29,30,"자기위로"],[31,32,"사정참기"],[33,33,"보지벌리기"],[34,34,"엉덩이내밀기"],[35,35,"누드사정참기"],[36,36,"누드보지벌리기"],[37,37,"누드엉덩이내밀기"],[38,41,"정상위"],[42,44,"측위"],[45,48,"기승위"],[49,49,"스패킹"],[50,50,"좌위"],[51,51,"들박"],[52,53,"후배위"],[54,56,"입위"],[57,58,"들박"],[59,61,"파이즈리"],[62,65,"입으로"],[66,67,"가슴빨기"],[68,69,"핸드잡"],[70,70,"키스"],[71,71,"가슴만지기"],[72,72,"키스"],[73,73,"가슴만지기"],[74,75,"핑거링"],
 [76,81,"정상위"],[82,84,"측위"],[85,85,"기승위"],[86,86,"스패킹"],[87,87,"좌위"],[88,89,"후배위"],[90,92,"입위"],[93,93,"들박"],[94,96,"파이즈리"],[97,100,"입으로"],[101,102,"가슴빨기"],[103,105,"핸드잡"],[106,107,"키스"],[108,109,"가슴만지기"],[110,112,"핑거링"],[113,113,"임신정상위"],[114,114,"임신기승위"],[115,115,"임신후배위"],[116,116,"임신입위"],
 [117,120,"정상위"],[121,121,"측위"],[122,123,"기승위"],[124,124,"스패킹"],[125,125,"좌위"],[126,127,"후배위"],[128,131,"입위"],[132,132,"들박"],[133,134,"파이즈리"],[135,136,"입으로"],[137,137,"가슴빨기"],[138,138,"핸드잡"],[139,140,"가슴만지기"],[141,142,"핑거링"]];
+all=fallback.map(normalize);
 function labelFor(folder,number){if(folder.split("/")[0]!=="리네"||!Number.isFinite(number))return "";for(var i=0;i<ranges.length;i++){var r=ranges[i];if(number>=r[0]&&number<=r[1])return r[2];}return "";}
 function normalize(f){var path=f.path;var parts=path.split("/");var name=parts.pop();var folder=parts.join("/")||"최상위";var mat=name.match(/^(\d+)/);var number=mat?Number(mat[1]):NaN;return{path:path,name:name,folder:folder,number:number,label:labelFor(folder,number),url:RAW+[ROOT].concat(path.split("/")).map(encodeURIComponent).join("/")};}
 function folderTotals(){var m=new Map();all.forEach(function(x){m.set(x.folder,(m.get(x.folder)||0)+1);});return m;}
