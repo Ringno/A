@@ -146,7 +146,7 @@ function normalize(f){var path=f.path;var parts=path.split("/");var name=parts.p
 function sectionFor(folder,number){if(folder.split("/")[0]!=="리네"||!Number.isFinite(number))return "기타 이미지";for(var i=0;i<sections.length;i++){var x=sections[i];if(number>=x.min&&number<=x.max)return x.key;}return "기타 이미지";}
 function sectionTitle(key){var x=sections.find(function(s){return s.key===key;});return x?x.title:key;}
 function folderTotals(){var m=new Map();all.forEach(function(x){m.set(x.folder,(m.get(x.folder)||0)+1);});return m;}
-function groupTitle(folder){return folder.replace(/\\//g," / ");}
+function groupTitle(folder){return folder.replace(/\//g," / ");}
 function make(tag,className,textValue){var el=document.createElement(tag);if(className)el.className=className;if(textValue!==undefined)el.textContent=textValue;return el;}
 function updateFolders(){
  var counts=folderTotals();$("total").textContent=all.length.toLocaleString("ko-KR");$("folders-count").textContent=counts.size;$("mapped-count").textContent=all.filter(function(x){return !!x.label;}).length;
