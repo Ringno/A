@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="1인 코스프레샾의 5가지 코스프레 모드, 530장 전체 이미지 갤러리. 번호와 장면명으로 검색하고 크게 볼 수 있습니다.">
+<title>1인 코스프레샾 | 전체 이미지 갤러리</title>
+<style>
+  :root{--bg:#101015;--panel:#191920;--panel2:#202028;--line:#34343e;--text:#f3f1f4;--muted:#a9a6b0;--accent:#ffa3d2;--accent-dark:#3e1933;--radius:18px}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.5}
+  a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .page{max-width:1380px;margin:0 auto;padding:0 clamp(16px,3.5vw,52px) 80px}
+  header{padding:48px 0 26px;border-bottom:1px solid var(--line)}
+  .eyebrow{letter-spacing:.19em;font-size:12px;font-weight:800;color:var(--accent);margin-bottom:12px}
+  .title-row{display:flex;align-items:end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  h1{font-size:clamp(30px,4.5vw,60px);font-weight:780;letter-spacing:-.055em;margin:0;line-height:1.13}h1 span{color:var(--accent)}
+  .intro{margin:15px 0 0;color:var(--muted);font-size:15px;max-width:690px}
+  .total{min-width:140px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:12px 22px;text-align:center}.total strong{display:block;font-size:32px;font-variant-numeric:tabular-nums;line-height:1.2}.total span{font-size:12px;color:var(--muted)}
+  .toolbar{position:sticky;top:0;z-index:10;background:rgba(16,16,21,.94);backdrop-filter:blur(18px);padding:18px 0 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .tabs{display:flex;gap:7px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#202028;color:#cecad3;border-radius:100px;padding:9px 15px;font-size:13px;font-weight:700;transition:background .15s,border-color .15s}.tab:hover{border-color:#ad7689}.tab.active{border-color:var(--accent);color:#26151c;background:var(--accent)}.tab em{font-size:11px;opacity:.8;font-style:normal;margin-left:4px}
+  .search{display:flex;gap:8px;align-items:center;background:var(--panel2);border:1px solid var(--line);padding:0 13px;border-radius:12px;color:var(--muted);min-width:215px}.search input{border:0;outline:none;background:transparent;color:white;padding:11px 0;width:100%;font-size:13px}.search input::placeholder{color:#9995a0}
+  .section{margin-top:34px;scroll-margin-top:95px}.section-head{display:flex;align-items:baseline;gap:10px;padding:0 2px 15px}.section-head h2{font-size:21px;letter-spacing:-.035em;margin:0}.section-head small{color:var(--muted);font-size:13px}.section-head .line{height:1px;background:var(--line);flex:1;margin-left:10px;align-self:center}
+  .grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+  .tile{display:block;position:relative;text-align:left;color:var(--text);border-radius:var(--radius);padding:0;border:1px solid #303039;background:var(--panel);overflow:hidden;transition:transform .17s,border-color .17s,box-shadow .17s;min-width:0}.tile:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 13px 35px rgba(0,0,0,.23)}
+  .thumb{aspect-ratio:3/4;background:linear-gradient(145deg,#2a2732,#17171d);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}.tile:hover img{transform:scale(1.045)}
+  .thumb .num{position:absolute;top:9px;left:9px;border-radius:7px;background:rgba(12,12,18,.78);border:1px solid rgba(255,255,255,.12);color:white;padding:3px 7px;font-size:11px;font-weight:750;font-variant-numeric:tabular-nums;backdrop-filter:blur(5px)}
+  .imgfallback{padding:10px;text-align:center;color:#c5b8bf;font-size:12px}.tile-foot{padding:11px 11px 12px}.tile-foot .desc{font-size:12px;font-weight:680;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tile-foot .meta{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+  .empty{display:none;margin:60px auto;text-align:center;color:var(--muted)}.empty strong{display:block;color:white;font-size:19px;margin-bottom:7px}
+  footer{margin-top:54px;border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  dialog{border:0;margin:auto;padding:0;max-width:none;max-height:none;width:100vw;height:100dvh;background:rgba(8,8,12,.97);color:white}dialog::backdrop{background:rgba(0,0,0,.88)}.viewer{height:100%;display:flex;flex-direction:column}
+  .viewer-top{padding:12px clamp(14px,3vw,28px);display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #343039;min-height:68px}.viewer-title{font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.viewer-subtitle{color:#b2abb5;font-size:12px}.viewer-buttons{display:flex;align-items:center;gap:8px}.action{background:#272630;color:white;border:1px solid #484450;border-radius:10px;padding:10px 13px;font-weight:650;font-size:12px;white-space:nowrap}.action:hover{background:#39333d}.action.close{background:#49303c;border-color:#714556}
+  .viewer-main{display:flex;align-items:center;justify-content:center;flex:1;min-height:0;position:relative;padding:12px 60px}.viewer-main img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;box-shadow:0 10px 55px #0005}.navbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:1;border:1px solid #6661;border-radius:50%;width:43px;height:43px;color:white;background:#303039a8;font-size:27px}.navbtn:hover{background:#5a4853}.navbtn.prev{left:12px}.navbtn.next{right:12px}.viewer-bottom{border-top:1px solid #343039;padding:10px 15px;color:#a9a2ab;text-align:center;font-size:12px}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);background:#ffd0e6;color:#351b2b;border-radius:12px;font-size:13px;font-weight:730;padding:12px 17px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:90}.toast.show{opacity:1;transform:translate(-50%,0)}
+  @media(max-width:1150px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}@media(max-width:940px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media(max-width:660px){header{padding-top:31px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.tile{border-radius:12px}.tile-foot{padding:8px}.tile-foot .desc{font-size:11px}.toolbar{align-items:stretch}.search{width:100%}.viewer-top{padding:9px 12px}.viewer-buttons{gap:5px}.action{padding:9px}.viewer-main{padding:8px 36px}.navbtn{width:30px;height:38px;border-radius:10px}.navbtn.prev{left:3px}.navbtn.next{right:3px}}
+  @media(max-width:420px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.total{min-width:100px;padding:11px}.total strong{font-size:26px}.viewer-top{flex-wrap:wrap}.viewer-subtitle{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <div class="eyebrow">RINGNO · PRIVATE COSPLAY GALLERY</div>
+  <div class="title-row"><div><h1>1인 <span>코스프레샾</span></h1><p class="intro">바니걸 · 치파오 · 경찰 · 간호사 · 누드 — 5가지 모드, 530장 전체 미리보기. 네가 지정한 장면명으로 검색하고 이미지를 크게 확인하세요.</p></div><div class="total"><strong id="totalCount">530</strong><span>등록된 이미지</span></div></div>
+</header>
+<nav class="toolbar" aria-label="갤러리 탐색">
+ <div id="tabs" class="tabs" role="group" aria-label="폴더별 보기"></div>
+ <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="번호 / 파일명 / 장면 검색 (예: 016, 문자, 스탠딩키스)" aria-label="이미지 검색" autocomplete="off"></label>
+</nav>
+<main id="gallery"></main>
+<p class="empty" id="empty"><strong>검색 결과가 없습니다.</strong>다른 번호나 장면명으로 검색해 보세요.</p>
+<footer><span>Ringno/A/a7의 공개 이미지를 표시합니다. · 파일 목록은 페이지를 열 때 GitHub와 동기화됩니다.</span><span id="status">파일 목록 확인됨 · 530장</span></footer>
+</div>
+<dialog id="lightbox" aria-label="이미지 확대 보기">
+ <div class="viewer">
+  <div class="viewer-top">
+   <div style="min-width:0"><div class="viewer-title" id="viewerTitle"></div><div class="viewer-subtitle" id="viewerIndex"></div></div>
+   <div class="viewer-buttons"><a id="originalLink" class="action" href="#" target="_blank" rel="noopener noreferrer">원본 열기 ↗</a><button id="copyBtn" class="action" type="button">주소 복사</button><button id="closeBtn" class="action close" type="button" aria-label="닫기">✕</button></div>
+  </div>
+  <div class="viewer-main"><button id="prevBtn" class="navbtn prev" type="button" aria-label="이전 이미지">‹</button><img id="viewerImage" src="" alt="선택된 이미지"><button id="nextBtn" class="navbtn next" type="button" aria-label="다음 이미지">›</button></div>
+  <div class="viewer-bottom">좌우 방향키 또는 버튼으로 이동 · ESC로 닫기</div>
+ </div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+// This is a standalone HTML file. Images are loaded from the public GitHub repository.
+const ROOT = 'https://raw.githubusercontent.com/Ringno/A/refs/heads/main/a7/';
+const API = 'https://api.github.com/repos/Ringno/A/contents/a7/';
+const categories = [
+  {key:'바니걸', name:'바니걸', emoji:'🐰', fallbackCount:106},
+  {key:'치파오', name:'치파오', emoji:'🌹', fallbackCount:106},
+  {key:'경찰', name:'경찰', emoji:'👮', fallbackCount:106},
+  {key:'간호사', name:'간호사', emoji:'💗', fallbackCount:106},
+  {key:'누드', name:'누드', emoji:'✨', fallbackCount:106}
+];
+const shared = ["기쁨","부끄러움","짜증,화남","불안","고민","슬픔","의심","귀찮음","미안함","설렘","장난","삐짐,질투","졸림","식사","전화","문자","취함","술마심","셀카찍기","여자턱잡기","남자턱잡기","손잡기","포옹","볼쓰다듬기","남자머리쓰다듬기","여자머리쓰다듬기","백허그","스탠딩키스","앉아서키스","정상위","정상위(사정후)","카우걸","카우걸(사정후)","리버스카우걸","리버스카우걸(사정후)","후배위","후배위(사정후)","후배위(파일드라이버)","69(사정후)","들박(앞_절정)","후면들박(뒤_사정후)","후면입위","후면입위(사정후)","측위","측위(사정후)","좌위","좌위(사정후)","후면좌위","후면좌위(사정후)","펠라(사정)","딥스로트","딥스로트(사정)","커닐링구스","페이스시팅","핸드잡(사정)","파이즈리(사정)","풋잡(사정)","발핥기","겨드랑이섹스(사정)","엉덩이만지기","스팽킹","가슴만지기","가슴빨기","핑거링","애널핑거링","관계중전화(뒤)","관계중전화(옆)","겨드랑이핥기","자위","바이브","로터","딜도","애널플러그","애널플러그(사정)","시바리","시바리(사정)","호그타이","호그타이(사정)","공중매달기","공중매달기(사정)","볼개그","볼개그(사정)","목줄","목줄(사정)","유두클램프","유두클램프(사정)","아헤가오(사정)","하트눈(사정)","애원","애원(사정)","젖분비","젖분비(사정)","분수","부카게","개목줄","개목줄(사정)","검은안대","검은안대(사정)","안대자위","목줄당김","스프레더바","스프레더바(사정)","비트개그","비트개그(사정)","보지벌리기","엉덩이내밀기"];
+const names = Object.fromEntries(categories.map(c=>[c.key,shared]));
+const folderNames = {};
+for(const c of categories) folderNames[c.key]=Array.from({length:c.fallbackCount},(_,i)=>String(i+1).padStart(3,'0')+'.png');
+let selected='전체', term='', visible=[], selectedIndex=0;
+const $=id=>document.getElementById(id);
+const urlOf=x=>ROOT+encodeURIComponent(x.folder)+'/'+encodeURIComponent(x.file);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function allItems(){return categories.flatMap(c=>folderNames[c.key].map(file=>{
+ const number=parseInt(file.slice(0,3),10), name=(names[c.key]||[])[number-1]||file.replace(/^\d{3}[_-]?/,'').replace(/\.(png|webp|jpe?g)$/i,'')||'매핑 미등록';
+ return {folder:c.key,file,num:String(number).padStart(3,'0'),name};
+}));}
+function renderTabs(){const counts=Object.fromEntries(categories.map(c=>[c.key,folderNames[c.key].length]));
+ $('tabs').innerHTML=[{key:'전체',name:'전체',count:Object.values(counts).reduce((a,b)=>a+b,0)},...categories.map(c=>({key:c.key,name:c.name,count:counts[c.key]}))].map(c=>`<button class="tab ${c.key===selected?'active':''}" type="button" data-filter="${esc(c.key)}" aria-pressed="${c.key===selected}">${esc(c.name)} <em>${c.count}</em></button>`).join('');
+ $('tabs').querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.filter;render();}));
+ $('totalCount').textContent=Object.values(counts).reduce((a,b)=>a+b,0);
+}
+function render(){renderTabs();let items=allItems().filter(x=>(selected==='전체'||x.folder===selected));const q=term.trim().toLowerCase();
+ if(q)items=items.filter(x=>`${x.folder} ${x.num} ${x.file} ${x.name}`.toLowerCase().includes(q));visible=items;
+ const groups=categories.filter(c=>selected==='전체'||selected===c.key);
+ $('gallery').innerHTML=groups.map(c=>{const ii=items.filter(x=>x.folder===c.key);if(!ii.length)return '';return `<section class="section" id="section-${esc(c.key)}"><div class="section-head"><h2>${esc(c.emoji)} ${esc(c.name)}</h2><small>${ii.length}장</small><div class="line"></div></div><div class="grid">${ii.map(x=>{
+ const n=items.indexOf(x);const src=urlOf(x);return `<button type="button" class="tile" data-idx="${n}" aria-label="${esc(x.folder)} ${esc(x.num)} ${esc(x.name)} 크게 보기"><div class="thumb"><img loading="lazy" decoding="async" src="${esc(src)}" alt="${esc(x.folder)} ${esc(x.num)} ${esc(x.name)}" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=&quot;imgfallback&quot;>이미지 로드 실패</span>')"><span class="num">${esc(x.num)}</span></div><div class="tile-foot"><span class="desc" title="${esc(x.name)}">${esc(x.name)}</span><span class="meta">${esc(x.folder)} / ${esc(x.file)}</span></div></button>`;}).join('')}</div></section>`;}).join('');
+ $('empty').style.display=items.length?'none':'block';
+ $('gallery').querySelectorAll('[data-idx]').forEach(btn=>btn.addEventListener('click',()=>openLightbox(+btn.dataset.idx)));
+}
+function openLightbox(i){selectedIndex=i;setViewer();if(!$('lightbox').open)$('lightbox').showModal();}
+function setViewer(){if(!visible.length)return;selectedIndex=(selectedIndex+visible.length)%visible.length;const x=visible[selectedIndex];const src=urlOf(x);
+ $('viewerTitle').textContent=`${x.folder} / ${x.num} — ${x.name}`;
+ $('viewerIndex').textContent=`${selectedIndex+1} / ${visible.length}`;
+ $('viewerImage').src=src;$('viewerImage').alt=`${x.folder} ${x.num} ${x.name}`;
+ $('originalLink').href=src;
+}
+function move(step){selectedIndex+=step;setViewer();}
+let toastTimer;
+function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2200);}
+async function copyURL(){const x=visible[selectedIndex];if(!x)return;const t=urlOf(x);
+ try{await navigator.clipboard.writeText(t);toast('이미지 주소를 복사했어요');}catch(e){const box=document.createElement('textarea');box.value=t;document.body.appendChild(box);box.select();try{document.execCommand('copy');toast('이미지 주소를 복사했어요');}catch(_){toast('원본 열기로 주소를 확인해 주세요');}box.remove();}}
+$('search').addEventListener('input',e=>{term=e.target.value;render();});
+$('closeBtn').addEventListener('click',()=>$('lightbox').close());
+$('prevBtn').addEventListener('click',()=>move(-1));
+$('nextBtn').addEventListener('click',()=>move(1));
+$('copyBtn').addEventListener('click',copyURL);
+$('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))$('lightbox').close();});
+document.addEventListener('keydown',e=>{if(!$('lightbox').open)return;if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}if(e.key==='ArrowRight'){e.preventDefault();move(1)}});
+render();
+// Refresh newly added/removed images from GitHub when possible; use the verified 530-image list as fallback.
+async function syncFolders(){try{const result=await Promise.all(categories.map(async c=>{
+ const response=await fetch(API+encodeURIComponent(c.key)+'?ref=main',{headers:{'Accept':'application/vnd.github+json'}});
+ if(!response.ok)throw Error('API unavailable');
+ const data=await response.json();return {key:c.key,files:data.filter(x=>x.type==='file' && /^\d{3}(?:[_-][^/]*)?\.(?:png|jpe?g|webp)$/i.test(x.name)).map(x=>x.name).sort()};
+ }));
+ const unchanged=result.every(x=>JSON.stringify(x.files)===JSON.stringify(folderNames[x.key]));
+ for(const x of result)folderNames[x.key]=x.files;
+ $('status').textContent='GitHub 최신 이미지 목록과 동기화됨';
+ if(!unchanged)render();
+ }catch(e){$('status').textContent='기본 파일 목록 530장으로 표시 중';}}
+syncFolders();
+</script>
+</body>
+</html>
