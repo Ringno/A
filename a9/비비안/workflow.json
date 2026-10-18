@@ -1,0 +1,120 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "waiIllustriousSDXL_v170.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "체크포인트 로드"
+    }
+  },
+  "2": {
+    "inputs": {
+      "width": 1024,
+      "height": 1344,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "빈 잠재 이미지"
+    }
+  },
+  "3": {
+    "inputs": {
+      "text": "__AUTO_PROMPT__",
+      "clip": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive"
+    }
+  },
+  "4": {
+    "inputs": {
+      "text": "lowres, (worst quality,bad quality,low quality:1.2), worst detail, worst aesthetic, good quality, normal quality, mid, early, old, oldest, error, artistic error, thumbnail, scan artifacts, jpeg artifacts, cropped, unfinished, censored, 3d, monochrome, multiple views,\n\ndeformed face, blurry face, ugly face, bad face, poorly drawn face, distorted, ugly, cross-eyed, lazy eye, strabismus, asymmetrical eyes, mismatched eyes, misaligned eyes, mismatched pupils, different pupil size, malformed pupils, distorted pupils, off-center pupils, sharp teeth, two-tone hair,\n\nbad anatomy, poorly drawn, bad hands, deformed hands, malformed hands, extra fingers, missing fingers, (fused fingers, ugly fingers:1.2), extra arms, extra legs, extra limbs, malformed limbs, wrong feet,\n\nplastic skin, strange skin, waxy skin, mannequin, doll, porcelain, metallic skin, scar, scars, facial scar, cheek scar, scratch, cut, wound, bruise, injury, mark on face, skin blemish, mole, freckles, birthmark, dirty face, cracked skin, wrinkle,\n\nshiny clothing, glossy clothes,\n\nbad anatomy, poorly drawn, bad hands, deformed hands, malformed hands, extra fingers, missing fingers, (fused fingers, ugly fingers:1.2), extra arms, extra legs, extra limbs, malformed limbs, wrong feet,\n\nplastic skin, strange skin, waxy skin, mannequin, doll, porcelain, metallic skin, scar, scars, facial scar, cheek scar, scratch, cut, wound, bruise, injury, mark on face, skin blemish, mole, freckles, birthmark, dirty face, cracked skin, wrinkle,\n\nchild, multiple girls, multiple boys, 2girl, 3girl, 2boy, 3boy, animals, insects, bugs, bodily fluids, background characters, background people, crowd, bystanders, extra people, \n\nwatermark, signature, username, text, logo, emblem, patch, badge, eardrop, bkub, ixy, clothing logo, text on clothes, letters, print, shirt print, graphic t-shirt, printed shirt, symbol, brand logo, typography ",
+      "clip": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative"
+    }
+  },
+  "5": {
+    "inputs": {
+      "seed": 612536933476135,
+      "steps": 30,
+      "cfg": 5,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "4",
+        0
+      ],
+      "latent_image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler 1"
+    }
+  },
+  "6": {
+    "inputs": {
+      "samples": [
+        "5",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE 디코드 1"
+    }
+  },
+  "11": {
+    "inputs": {
+      "filename_prefix": "censored",
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "이미지 저장"
+    }
+  },
+  "27": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP 마지막 레이어 설정"
+    }
+  }
+}
