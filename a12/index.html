@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0e16">
+<meta name="description" content="이능도시—무법구역 | 18명의 NPC 및 공통 배경 이미지 전체 미리보기. 캐릭터별 장면 번호·이름 검색, 확대, 자동 업데이트 갤러리.">
+<title>이능도시 — 무법구역 | 전체 이미지 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0e16;--panel:#131825;--line:#283042;--ink:#eef2fb;--muted:#939db2;--blue:#75a6ff;--pink:#fb78b4;--shadow:0 12px 40px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 72% -8%,#232342 0,transparent 34%),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Malgun Gothic","Segoe UI",sans-serif;line-height:1.5}
+button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.shell{max-width:1920px;min-height:100vh;margin:auto;display:grid;grid-template-columns:260px minmax(0,1fr)}
+.aside{border-right:1px solid var(--line);background:linear-gradient(180deg,rgba(20,25,40,.96),rgba(14,18,28,.95));padding:30px 15px;position:sticky;top:0;height:100vh;overflow:auto;scrollbar-width:thin}
+.logo{margin:5px 12px 0;font-size:24px;font-weight:900;letter-spacing:-1px;line-height:1.15}.logo strong{color:var(--blue)}.logo em{color:var(--pink);font-style:normal}.small{font-size:12px;color:var(--muted)}
+.brand-caption{margin:10px 12px 22px;letter-spacing:1.4px;font-size:10px;font-weight:750;color:#8298b8}
+.side-header{padding:14px 13px 8px;font-size:11px;color:var(--muted);letter-spacing:1.2px;font-weight:800}
+.side-btn{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;background:transparent;color:#acb6ca;border-radius:10px;padding:9px 11px;text-align:left;min-height:40px;transition:background .15s}.side-btn:hover{background:#222a3b;color:white}.side-btn.active{background:#283455;color:white;border-color:#465c86}.side-btn .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.count{font-size:12px;color:#8f9ab0;font-variant-numeric:tabular-nums}.side-btn.active .count{color:#c6d5ff}.side-bottom{padding:20px 12px 0;font-size:11px;color:var(--muted);line-height:1.8}
+.main{min-width:0;padding:32px clamp(16px,3.2vw,55px) 75px}.hero{display:flex;align-items:flex-end;gap:12px;justify-content:space-between;margin-bottom:23px}
+.eyebrow{font-size:11px;color:var(--blue);letter-spacing:2px;font-weight:850;margin-bottom:9px}.headline{font-size:clamp(27px,4vw,43px);line-height:1.13;letter-spacing:-1.8px;font-weight:900;margin:0}.headline span{background:linear-gradient(100deg,#d2dfff,#fa8ec9);color:transparent;background-clip:text}.intro{color:var(--muted);font-size:13px;margin:13px 0 0}.statbox{border:1px solid var(--line);background:rgba(24,30,47,.7);border-radius:13px;padding:11px 20px;min-width:122px;text-align:right}.statbox b{display:block;font-size:27px;line-height:1.12;letter-spacing:-1px}.statbox small{color:var(--muted);font-size:11px}
+.bar{position:sticky;top:0;z-index:5;margin:0 -8px 22px;padding:12px 8px;display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:rgba(11,14,22,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(68,76,95,.55)}
+.searchwrap{position:relative;flex:1;min-width:230px}.searchwrap .mag{position:absolute;top:50%;left:14px;transform:translateY(-50%);color:#8c96aa;pointer-events:none}.search{width:100%;height:42px;background:#1b2333;border:1px solid #303b50;border-radius:11px;padding:0 14px 0 40px;color:#fff;font-size:13px}.search::placeholder{color:#8c97ab}
+.sel,.refresh{height:42px;border:1px solid #303b50;border-radius:11px;background:#1b2333;color:#ced7eb;padding:0 12px;font-size:13px}.refresh:hover{background:#28344d}.refresh:disabled{opacity:.5;cursor:wait}
+.switches{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 27px}.switch{border:1px solid #303b50;border-radius:99px;background:#141b2a;padding:7px 14px;color:#aab7cf;font-size:12px;font-weight:650}.switch:hover{border-color:#667ba7}.switch.active{color:#ebf3ff;background:#293d65;border-color:#5776ae}
+.statusrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;flex-wrap:wrap}.hint{color:var(--muted);font-size:12px}.live{font-size:12px;color:#92a1bb}.live i{width:7px;height:7px;border-radius:50%;background:#7fd2ae;display:inline-block;margin-right:7px}.live.warn i{background:#ecbb77}
+.section{margin-bottom:42px;scroll-margin-top:110px}.section-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:0 0 13px;margin-bottom:16px;gap:10px}.section-title{display:flex;gap:10px;align-items:center}.section-title h2{font-size:20px;letter-spacing:-.4px;margin:0}.pill{border:1px solid #334260;background:#1d2c45;border-radius:6px;color:#b6c7e9;font-size:11px;padding:3px 7px}.section-ct{color:var(--muted);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}.card{min-width:0;overflow:hidden;padding:0;background:#151c2b;border:1px solid #293347;border-radius:12px;color:var(--ink);text-align:left;box-shadow:0 5px 15px rgba(0,0,0,.10);transition:transform .16s,border-color .16s,box-shadow .16s}.card:hover{transform:translateY(-3px);border-color:#6887ca;box-shadow:var(--shadow)}.frame{position:relative;display:block;aspect-ratio:1/1;background:radial-gradient(circle,#252d41,#121824);overflow:hidden}.frame img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .2s}.card:hover img{transform:scale(1.045)}.frame span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:12px;color:#68758f;z-index:-1}.tag-num{position:absolute;top:8px;left:8px;border:1px solid #42506c;background:rgba(12,16,25,.82);backdrop-filter:blur(6px);color:#edf1ff;font-size:10px;font-weight:750;border-radius:5px;padding:3px 6px}.card-meta{display:block;padding:10px 11px 11px}.card-title{display:block;color:#e1e9fa;font-size:12px;font-weight:730;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-sub{display:block;color:#8996b0;font-size:10px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{border:1px dashed #3d4b66;border-radius:14px;color:#adbad4;padding:60px 15px;text-align:center}.empty strong{display:block;margin-bottom:8px;font-size:18px}
+.footer{text-align:center;border-top:1px solid #222b3c;padding:23px 10px;color:#73819a;font-size:11px}
+.viewer[hidden]{display:none!important}.viewer{position:fixed;z-index:50;inset:0;background:rgba(2,4,8,.95);display:flex;flex-direction:column;backdrop-filter:blur(12px)}.viewer-top{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid #303544}.viewer-title{min-width:0}.viewer-title b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}.viewer-title small{color:#9aa6bf;font-size:11px}.viewer-actions{display:flex;gap:7px;align-items:center}.vbtn{background:#242c3d;color:white;border:1px solid #435069;border-radius:9px;min-height:38px;padding:7px 11px;font-size:12px;text-decoration:none;white-space:nowrap}.vbtn:hover{background:#384864}.vbtn.close{font-weight:850;font-size:18px;padding:5px 13px}
+.viewer-mid{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:9px}.large-img{object-fit:contain;max-width:calc(100vw - 150px);max-height:calc(100vh - 132px);width:auto;height:auto;min-width:0}.arrow{flex:0 0 auto;border:1px solid #435069;border-radius:50%;background:#202838;color:white;width:44px;height:44px;font-size:28px}.arrow:hover{background:#445579}.viewer-foot{color:#8996b1;font-size:11px;text-align:center;padding:10px 10px 14px}
+@media(max-width:1050px){.shell{grid-template-columns:210px minmax(0,1fr)}.cards{grid-template-columns:repeat(auto-fill,minmax(138px,1fr))}}
+@media(max-width:700px){.shell{display:block}.aside{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:15px 12px 11px;overflow:visible}.logo{font-size:21px;margin:0 7px}.brand-caption{margin:5px 7px 10px}.side-header,.side-bottom{display:none}.side-nav{display:flex;gap:5px;overflow-x:auto;padding:4px 3px 6px;scrollbar-width:thin}.side-btn{flex:0 0 auto;width:auto;padding:7px 11px;min-height:34px;font-size:12px}.side-btn .count{margin-left:2px}.main{padding:20px 13px 45px}.hero{align-items:center;margin-bottom:16px}.headline{font-size:27px}.intro{font-size:12px}.statbox{min-width:91px;padding:10px}.statbox b{font-size:23px}.bar{margin:0 -6px 12px;padding:8px 6px}.searchwrap{flex-basis:100%;min-width:0}.sel{flex:1;min-width:140px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card-meta{padding:9px}.section-title h2{font-size:18px}.section{margin-bottom:32px}.switches{margin-bottom:17px}.switch{padding:6px 11px}.viewer-top{padding:10px 12px}.viewer-actions{gap:5px}.vbtn{font-size:11px;min-height:34px;padding:5px 8px}.large-img{max-width:calc(100vw - 82px);max-height:calc(100vh - 150px)}.arrow{width:32px;height:40px;border-radius:9px;font-size:24px}.viewer-mid{gap:3px;padding:5px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+ <aside class="aside" aria-label="이미지 폴더 탐색">
+  <div class="logo"><strong>이능도시</strong><br><em>무법구역</em></div>
+  <div class="brand-caption">HAEWON CITY · IMAGE ARCHIVE</div>
+  <div class="side-header">캐릭터 · 폴더</div>
+  <nav class="side-nav" id="folders" aria-label="폴더 목록"></nav>
+  <div class="side-bottom">GitHub · Ringno/A/a12<br>이미지는 원본 저장소에서 직접 표시됩니다.</div>
+ </aside>
+ <main class="main" id="content">
+  <header class="hero">
+   <div>
+    <div class="eyebrow">OFFICIAL IMAGE ARCHIVE · A12</div>
+    <h1 class="headline">모든 장면을 <span>한곳에.</span></h1>
+    <p class="intro">캐릭터별 이미지 미리보기 · 장면 번호·이름 검색 · 클릭해서 확대</p>
+   </div>
+   <div class="statbox"><b id="stat">891</b><small>전체 이미지</small></div>
+  </header>
+  <div class="bar">
+   <div class="searchwrap"><span class="mag" aria-hidden="true">⌕</span><input class="search" id="search" type="search" placeholder="이름, 번호, 장면명 검색 (예: 홍련 028, 질투)" autocomplete="off" aria-label="이미지 검색"></div>
+   <select class="sel" id="cat" aria-label="장면 분류">
+     <option value="all">모든 장면</option>
+     <option value="emotion">기본 · 감정</option>
+     <option value="life">일상</option>
+     <option value="costume">유혹 · 의상</option>
+     <option value="battle">전투 · 부상</option>
+     <option value="other">기타 장면</option>
+     <option value="adult">성인 상황</option>
+     <option value="background">공통 배경</option>
+   </select>
+   <button class="refresh" id="refresh" type="button" title="GitHub에서 새 파일을 다시 확인합니다">↻ 목록 갱신</button>
+  </div>
+  <div class="switches" role="group" aria-label="이미지 종류">
+   <button class="switch active" data-kind="all" type="button">전체</button>
+   <button class="switch" data-kind="girls" type="button">여성 11명</button>
+   <button class="switch" data-kind="boys" type="button">남성 7명</button>
+   <button class="switch" data-kind="background" type="button">공통 배경</button>
+  </div>
+  <div class="statusrow"><span id="visible" class="hint">이미지 불러오는 중…</span><span id="status" class="live" role="status"><i aria-hidden="true"></i>갤러리 준비 중</span></div>
+  <div id="groups" aria-live="polite"></div>
+  <footer class="footer">이능도시 — 무법구역 · RINGNO / A12 · Github Pages<br>이미지를 누르면 확대되며 ◀ ▶ 키 또는 화면 스와이프로 탐색할 수 있습니다.</footer>
+ </main>
+</div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="이미지 크게 보기" hidden>
+ <div class="viewer-top">
+  <div class="viewer-title"><b id="vtitle"></b><small id="vsub"></small></div>
+  <div class="viewer-actions"><a class="vbtn" id="original" target="_blank" rel="noopener noreferrer">원본 열기 ↗</a><button class="vbtn close" id="close" aria-label="닫기">✕</button></div>
+ </div>
+ <div class="viewer-mid">
+  <button class="arrow" id="prev" aria-label="이전 이미지">‹</button>
+  <img class="large-img" id="big" alt="">
+  <button class="arrow" id="next" aria-label="다음 이미지">›</button>
+ </div>
+ <div class="viewer-foot"><span id="counter"></span> · ← → 이전/다음 · ESC 닫기 · 모바일 스와이프 지원</div>
+</div>
+<script id="initial-manifest" type="application/json">["강태섭/000_기본.png","강태섭/001_짜증,화남.png","강태섭/002_귀찮음.png","강태섭/028_전투.png","강태섭/029_부상.png","공통배경/001.png","공통배경/002.png","공통배경/003.png","공통배경/004.png","공통배경/005.png","공통배경/006.png","공통배경/007.png","공통배경/008.png","공통배경/009.png","공통배경/010.png","곽미란/000_기본.png","곽미란/001_짜증,화남.png","곽미란/002_귀찮음.png","곽미란/003_기쁨.png","곽미란/004_부끄러움.png","곽미란/005_불안.png","곽미란/006_고민.png","곽미란/007_슬픔.png","곽미란/008_의심.png","곽미란/009_미안함.png","곽미란/010_설렘.png","곽미란/011_장난.png","곽미란/012_삐짐,질투.png","곽미란/013_졸림.png","곽미란/014_식사.png","곽미란/015_전화.png","곽미란/016_문자.png","곽미란/017_취함.png","곽미란/018_술마심.png","곽미란/019_셀카찍기.png","곽미란/020_임신.png","곽미란/021_사진찍힘.png","곽미란/022_요리.png","곽미란/023_장보기.png","곽미란/024_유혹.png","곽미란/025_메이드.png","곽미란/026_바니걸.png","곽미란/027_비키니.png","곽미란/028_전투.png","곽미란/029_부상.png","곽미란/030_샤워.png","곽미란/031_보지벌리기.png","곽미란/032_엉덩이내밀기.png","곽미란/033_도게자.png","곽미란/034_자위.png","곽미란/035_정상위.png","곽미란/036_정상위절정.png","곽미란/037_카우걸.png","곽미란/038_카우걸절정.png","곽미란/039_후배위.png","곽미란/040_후배위절정.png","곽미란/041_파일드라이버.png","곽미란/042_들박.png","곽미란/043_들박절정.png","곽미란/044_배면들박.png","곽미란/045_배면들박절정.png","곽미란/046_입위.png","곽미란/047_입위절정.png","곽미란/048_측위.png","곽미란/049_측위절정.png","곽미란/050_좌위.png","곽미란/051_좌위절정.png","곽미란/052_펠라.png","곽미란/053_펠라사정.png","곽미란/054_딥스로트.png","곽미란/055_딥스로트사정.png","곽미란/056_페이스시팅.png","곽미란/057_핸드잡.png","곽미란/058_핸드잡사정.png","곽미란/059_파이즈리.png","곽미란/060_파이즈리사정.png","곽미란/061_풋잡.png","곽미란/062_풋잡사정.png","곽미란/063_엉덩이만지기.png","곽미란/064_림잡.png","곽미란/065_스팽킹.png","곽미란/066_스팽킹.png","곽미란/067_가슴만지기.png","곽미란/068_가슴빨기.png","곽미란/069_핑거링.png","곽미란/070_관계중전화.png","곽미란/071_임신정상위.png","곽미란/072_임신기승위.png","곽미란/073_임신후배위.png","곽미란/074_키스.png","곽미란/075_겨드랑이핥기.png","곽미란/076_아마존.png","노진/000_기본.png","노진/001_짜증,화남.png","노진/002_귀찮음.png","노진/028_전투.png","노진/029_부상.png","망치/000_기본.png","망치/001_짜증,화남.png","망치/002_귀찮음.png","망치/028_전투.png","망치/029_부상.png","명월/000_기본.png","명월/001_짜증,화남.png","명월/002_귀찮음.png","명월/003_기쁨.png","명월/004_부끄러움.png","명월/005_불안.png","명월/006_고민.png","명월/007_슬픔.png","명월/008_의심.png","명월/009_미안함.png","명월/010_설렘.png","명월/011_장난.png","명월/012_삐짐,질투.png","명월/013_졸림.png","명월/014_식사.png","명월/015_전화.png","명월/016_문자.png","명월/017_취함.png","명월/018_술마심.png","명월/019_셀카찍기.png","명월/020_임신.png","명월/021_사진찍힘.png","명월/022_요리.png","명월/023_장보기.png","명월/024_유혹.png","명월/025_메이드.png","명월/026_바니걸.png","명월/027_비키니.png","명월/028_전투.png","명월/029_부상.png","명월/030_샤워.png","명월/031_보지벌리기.png","명월/032_엉덩이내밀기.png","명월/033_도게자.png","명월/034_자위.png","명월/035_정상위.png","명월/036_정상위절정.png","명월/037_카우걸.png","명월/038_카우걸절정.png","명월/039_후배위.png","명월/040_후배위절정.png","명월/041_파일드라이버.png","명월/042_들박.png","명월/043_들박절정.png","명월/044_배면들박.png","명월/045_배면들박절정.png","명월/046_입위.png","명월/047_입위절정.png","명월/048_측위.png","명월/049_측위절정.png","명월/050_좌위.png","명월/051_좌위절정.png","명월/052_펠라.png","명월/053_펠라사정.png","명월/054_딥스로트.png","명월/055_딥스로트사정.png","명월/056_페이스시팅.png","명월/057_핸드잡.png","명월/058_핸드잡사정.png","명월/059_파이즈리.png","명월/060_파이즈리사정.png","명월/061_풋잡.png","명월/062_풋잡사정.png","명월/063_엉덩이만지기.png","명월/064_림잡.png","명월/065_스팽킹.png","명월/066_스팽킹.png","명월/067_가슴만지기.png","명월/068_가슴빨기.png","명월/069_핑거링.png","명월/070_관계중전화.png","명월/071_임신정상위.png","명월/072_임신기승위.png","명월/073_임신후배위.png","명월/074_키스.png","명월/075_겨드랑이핥기.png","명월/076_아마존.png","민경수/000_기본.png","민경수/001_짜증,화남.png","민경수/002_귀찮음.png","민경수/003_기쁨.png","민경수/004_부끄러움.png","민경수/005_불안.png","민경수/006_고민.png","민경수/007_슬픔.png","민경수/008_의심.png","민경수/009_미안함.png","민경수/010_설렘.png","민경수/011_장난.png","민경수/012_삐짐,질투.png","민경수/013_졸림.png","민경수/014_식사.png","민경수/015_전화.png","민경수/016_문자.png","민경수/017_취함.png","민경수/018_술마심.png","민경수/019_셀카찍기.png","민경수/020_임신.png","민경수/021_사진찍힘.png","민경수/022_요리.png","민경수/023_장보기.png","민경수/024_유혹.png","민경수/025_메이드.png","민경수/026_바니걸.png","민경수/027_비키니.png","민경수/028_전투.png","민경수/029_부상.png","민경수/030_샤워.png","민경수/031_보지벌리기.png","민경수/032_엉덩이내밀기.png","민경수/033_도게자.png","민경수/034_자위.png","민경수/035_정상위.png","민경수/036_정상위절정.png","민경수/037_카우걸.png","민경수/038_카우걸절정.png","민경수/039_후배위.png","민경수/040_후배위절정.png","민경수/041_파일드라이버.png","민경수/042_들박.png","민경수/043_들박절정.png","민경수/044_배면들박.png","민경수/045_배면들박절정.png","민경수/046_입위.png","민경수/047_입위절정.png","민경수/048_측위.png","민경수/049_측위절정.png","민경수/050_좌위.png","민경수/051_좌위절정.png","민경수/052_펠라.png","민경수/053_펠라사정.png","민경수/054_딥스로트.png","민경수/055_딥스로트사정.png","민경수/056_페이스시팅.png","민경수/057_핸드잡.png","민경수/058_핸드잡사정.png","민경수/059_파이즈리.png","민경수/060_파이즈리사정.png","민경수/061_풋잡.png","민경수/062_풋잡사정.png","민경수/063_엉덩이만지기.png","민경수/064_림잡.png","민경수/065_스팽킹.png","민경수/066_스팽킹.png","민경수/067_가슴만지기.png","민경수/068_가슴빨기.png","민경수/069_핑거링.png","민경수/070_관계중전화.png","민경수/071_임신정상위.png","민경수/072_임신기승위.png","민경수/073_임신후배위.png","민경수/074_키스.png","민경수/075_겨드랑이핥기.png","민경수/076_아마존.png","배기철/000_기본.png","배기철/001_짜증,화남.png","배기철/002_귀찮음.png","배기철/028_전투.png","배기철/029_부상.png","사공일/000_기본.png","사공일/001_짜증,화남.png","사공일/002_귀찮음.png","사공일/028_전투.png","사공일/029_부상.png","서문호/000_기본.png","서문호/001_짜증,화남.png","서문호/002_귀찮음.png","서문호/028._전투.png","서문호/029_부상.png","연소희/000_기본.png","연소희/001_짜증,화남.png","연소희/002_귀찮음.png","연소희/003_기쁨.png","연소희/004_부끄러움.png","연소희/005_불안.png","연소희/006_고민.png","연소희/007_슬픔.png","연소희/008_의심.png","연소희/009_미안함.png","연소희/010_설렘.png","연소희/011_장난.png","연소희/012_삐짐,질투.png","연소희/013_졸림.png","연소희/014_식사.png","연소희/015_전화.png","연소희/016_문자.png","연소희/017_취함.png","연소희/018_술마심.png","연소희/019_셀카찍기.png","연소희/020_임신.png","연소희/021_사진찍힘.png","연소희/022_요리.png","연소희/023_장보기.png","연소희/024_유혹.png","연소희/025_메이드.png","연소희/026_바니걸.png","연소희/027_비키니.png","연소희/028_전투.png","연소희/029_부상.png","연소희/030_샤워.png","연소희/031_보지벌리기.png","연소희/032_엉덩이내밀기.png","연소희/033_도게자.png","연소희/034_자위.png","연소희/035_정상위.png","연소희/036_정상위절정.png","연소희/037_카우걸.png","연소희/038_카우걸절정.png","연소희/039_후배위.png","연소희/040_후배위절정.png","연소희/041_파일드라이버.png","연소희/042_들박.png","연소희/043_들박절정.png","연소희/044_배면들박.png","연소희/045_배면들박절정.png","연소희/046_입위.png","연소희/047_입위절정.png","연소희/048_측위.png","연소희/049_측위절정.png","연소희/050_좌위.png","연소희/051_좌위절정.png","연소희/052_펠라.png","연소희/053_펠라사정.png","연소희/054_딥스로트.png","연소희/055_딥스로트사정.png","연소희/056_페이스시팅.png","연소희/057_핸드잡.png","연소희/058_핸드잡사정.png","연소희/059_파이즈리.png","연소희/060_파이즈리사정.png","연소희/061_풋잡.png","연소희/062_풋잡사정.png","연소희/063_엉덩이만지기.png","연소희/064_림잡.png","연소희/065_스팽킹.png","연소희/066_스팽킹.png","연소희/067_가슴만지기.png","연소희/068_가슴빨기.png","연소희/069_핑거링.png","연소희/070_관계중전화.png","연소희/071_임신정상위.png","연소희/072_임신기승위.png","연소희/073_임신후배위.png","연소희/074_키스.png","연소희/075_겨드랑이핥기.png","연소희/076_아마존.png","오민재/000_기본.png","오민재/001_짜증,화남.png","오민재/002_귀찮음.png","오민재/003_기쁨.png","오민재/004_부끄러움.png","오민재/005_불안.png","오민재/006_고민.png","오민재/007_슬픔.png","오민재/008_의심.png","오민재/009_미안함.png","오민재/010_설렘.png","오민재/011_장난.png","오민재/012_삐짐,질투.png","오민재/013_졸림.png","오민재/014_식사.png","오민재/015_전화.png","오민재/016_문자.png","오민재/017_취함.png","오민재/018_술마심.png","오민재/019_셀카찍기.png","오민재/020_임신.png","오민재/021_사진찍힘.png","오민재/022_요리.png","오민재/023_장보기.png","오민재/024_유혹.png","오민재/025_메이드.png","오민재/026_바니걸.png","오민재/027_비키니.png","오민재/028_전투.png","오민재/029_부상.png","오민재/030_샤워.png","오민재/031_보지벌리기.png","오민재/032_엉덩이내밀기.png","오민재/033_도게자.png","오민재/034_자위.png","오민재/035_정상위.png","오민재/036_정상위절정.png","오민재/037_카우걸.png","오민재/038_카우걸절정.png","오민재/039_후배위.png","오민재/040_후배위절정.png","오민재/041_파일드라이버.png","오민재/042_들박.png","오민재/043_들박절정.png","오민재/044_배면들박.png","오민재/045_배면들박절정.png","오민재/046_입위.png","오민재/047_입위절정.png","오민재/048_측위.png","오민재/049_측위절정.png","오민재/050_좌위.png","오민재/051_좌위절정.png","오민재/052_펠라.png","오민재/053_펠라사정.png","오민재/054_딥스로트.png","오민재/055_딥스로트사정.png","오민재/056_페이스시팅.png","오민재/057_핸드잡.png","오민재/058_핸드잡사정.png","오민재/059_파이즈리.png","오민재/060_파이즈리사정.png","오민재/061_풋잡.png","오민재/062_풋잡사정.png","오민재/063_엉덩이만지기.png","오민재/064_림잡.png","오민재/065_스팽킹.png","오민재/066_스팽킹.png","오민재/067_가슴만지기.png","오민재/068_가슴빨기.png","오민재/069_핑거링.png","오민재/070_관계중전화.png","오민재/071_임신정상위.png","오민재/072_임신기승위.png","오민재/073_임신후배위.png","오민재/074_키스.png","오민재/075_겨드랑이핥기.png","오민재/076_아마존.png","옥희/000_기본.png","옥희/001_짜증,화남.png","옥희/002_귀찮음.png","옥희/003_기쁨.png","옥희/004_부끄러움.png","옥희/005_불안.png","옥희/006_고민.png","옥희/007_슬픔.png","옥희/008_의심.png","옥희/009_미안함.png","옥희/010_설렘.png","옥희/011_장난.png","옥희/012_삐짐,질투.png","옥희/013_졸림.png","옥희/014_식사.png","옥희/015_전화.png","옥희/016_문자.png","옥희/017_취함.png","옥희/018_술마심.png","옥희/019_셀카찍기.png","옥희/020_임신.png","옥희/021_사진찍힘.png","옥희/022_요리.png","옥희/023_장보기.png","옥희/024_유혹.png","옥희/025_메이드.png","옥희/026_바니걸.png","옥희/027_비키니.png","옥희/028_전투.png","옥희/029_부상.png","옥희/030_샤워.png","옥희/031_보지벌리기.png","옥희/032_엉덩이내밀기.png","옥희/033_도게자.png","옥희/034_자위.png","옥희/035_정상위.png","옥희/036_정상위절정.png","옥희/037_카우걸.png","옥희/038_카우걸절정.png","옥희/039_후배위.png","옥희/040_후배위절정.png","옥희/041_파일드라이버.png","옥희/042_들박.png","옥희/043_들박절정.png","옥희/044_배면들박.png","옥희/045_배면들박절정.png","옥희/046_입위.png","옥희/047_입위절정.png","옥희/048_측위.png","옥희/049_측위절정.png","옥희/050_좌위.png","옥희/051_좌위절정.png","옥희/052_펠라.png","옥희/053_펠라사정.png","옥희/054_딥스로트.png","옥희/055_딥스로트사정.png","옥희/056_페이스시팅.png","옥희/057_핸드잡.png","옥희/058_핸드잡사정.png","옥희/059_파이즈리.png","옥희/060_파이즈리사정.png","옥희/061_풋잡.png","옥희/062_풋잡사정.png","옥희/063_엉덩이만지기.png","옥희/064_림잡.png","옥희/065_스팽킹.png","옥희/066_스팽킹.png","옥희/067_가슴만지기.png","옥희/068_가슴빨기.png","옥희/069_핑거링.png","옥희/070_관계중전화.png","옥희/071_임신정상위.png","옥희/072_임신기승위.png","옥희/073_임신후배위.png","옥희/074_키스.png","옥희/075_겨드랑이핥기.png","옥희/076_아마존.png","유선영/000_기본.png","유선영/001_짜증,화남.png","유선영/002_귀찮음.png","유선영/003_기쁨.png","유선영/004_부끄러움.png","유선영/005_불안.png","유선영/006_고민.png","유선영/007_슬픔.png","유선영/008_의심.png","유선영/009_미안함.png","유선영/010_설렘.png","유선영/011_장난.png","유선영/012_삐짐,질투.png","유선영/013_졸림.png","유선영/014_식사.png","유선영/015_전화.png","유선영/016_문자.png","유선영/017_취함.png","유선영/018_술마심.png","유선영/019_셀카찍기.png","유선영/020_임신.png","유선영/021_사진찍힘.png","유선영/022_요리.png","유선영/023_장보기.png","유선영/024_유혹.png","유선영/025_메이드.png","유선영/026_바니걸.png","유선영/027_비키니.png","유선영/028_전투.png","유선영/029_부상.png","유선영/030_샤워.png","유선영/031_보지벌리기.png","유선영/032_엉덩이내밀기.png","유선영/033_도게자.png","유선영/034_자위.png","유선영/035_정상위.png","유선영/036_정상위절정.png","유선영/037_카우걸.png","유선영/038_카우걸절정.png","유선영/039_후배위.png","유선영/040_후배위절정.png","유선영/041_파일드라이버.png","유선영/042_들박.png","유선영/043_들박절정.png","유선영/044_배면들박.png","유선영/045_배면들박절정.png","유선영/046_입위.png","유선영/047_입위절정.png","유선영/048_측위.png","유선영/049_측위절정.png","유선영/050_좌위.png","유선영/051_좌위절정.png","유선영/052_펠라.png","유선영/053_펠라사정.png","유선영/054_딥스로트.png","유선영/055_딥스로트사정.png","유선영/056_페이스시팅.png","유선영/057_핸드잡.png","유선영/058_핸드잡사정.png","유선영/059_파이즈리.png","유선영/060_파이즈리사정.png","유선영/061_풋잡.png","유선영/062_풋잡사정.png","유선영/063_엉덩이만지기.png","유선영/064_림잡.png","유선영/065_스팽킹.png","유선영/066_스팽킹.png","유선영/067_가슴만지기.png","유선영/068_가슴빨기.png","유선영/069_핑거링.png","유선영/070_관계중전화.png","유선영/071_임신정상위.png","유선영/072_임신기승위.png","유선영/073_임신후배위.png","유선영/074_키스.png","유선영/075_겨드랑이핥기.png","유선영/076_아마존.png","정하윤/000_기본.png","정하윤/001_짜증,화남.png","정하윤/002_귀찮음.png","정하윤/003_기쁨.png","정하윤/004_부끄러움.png","정하윤/005_불안.png","정하윤/006_고민.png","정하윤/007_슬픔.png","정하윤/008_의심.png","정하윤/009_미안함.png","정하윤/010_설렘.png","정하윤/011_장난.png","정하윤/012_삐짐,질투.png","정하윤/013_졸림.png","정하윤/014_식사.png","정하윤/015_전화.png","정하윤/016_문자.png","정하윤/017_취함.png","정하윤/018_술마심.png","정하윤/019_셀카찍기.png","정하윤/020_임신.png","정하윤/021_사진찍힘.png","정하윤/022_요리.png","정하윤/023_장보기.png","정하윤/024_유혹.png","정하윤/025_메이드.png","정하윤/026_바니걸.png","정하윤/027_비키니.png","정하윤/028_전투.png","정하윤/029_부상.png","정하윤/030_샤워.png","정하윤/031_보지벌리기.png","정하윤/032_엉덩이내밀기.png","정하윤/033_도게자.png","정하윤/034_자위.png","정하윤/035_정상위.png","정하윤/036_정상위절정.png","정하윤/037_카우걸.png","정하윤/038_카우걸절정.png","정하윤/039_후배위.png","정하윤/040_후배위절정.png","정하윤/041_파일드라이버.png","정하윤/042_들박.png","정하윤/043_들박절정.png","정하윤/044_배면들박.png","정하윤/045_배면들박절정.png","정하윤/046_입위.png","정하윤/047_입위절정.png","정하윤/048_측위.png","정하윤/049_측위절정.png","정하윤/050_좌위.png","정하윤/051_좌위절정.png","정하윤/052_펠라.png","정하윤/053_펠라사정.png","정하윤/054_딥스로트.png","정하윤/055_딥스로트사정.png","정하윤/056_페이스시팅.png","정하윤/057_핸드잡.png","정하윤/058_핸드잡사정.png","정하윤/059_파이즈리.png","정하윤/060_파이즈리사정.png","정하윤/061_풋잡.png","정하윤/062_풋잡사정.png","정하윤/063_엉덩이만지기.png","정하윤/064_림잡.png","정하윤/065_스팽킹.png","정하윤/066_스팽킹.png","정하윤/067_가슴만지기.png","정하윤/068_가슴빨기.png","정하윤/069_핑거링.png","정하윤/070_관계중전화.png","정하윤/071_임신정상위.png","정하윤/072_임신기승위.png","정하윤/073_임신후배위.png","정하윤/074_키스.png","정하윤/075_겨드랑이핥기.png","정하윤/076_아마존.png","조은채/000_기본.png","조은채/001_짜증,화남.png","조은채/002_귀찮음.png","조은채/003_기쁨.png","조은채/004_부끄러움.png","조은채/005_불안.png","조은채/006_고민.png","조은채/007_슬픔.png","조은채/008_의심.png","조은채/009_미안함.png","조은채/010_설렘.png","조은채/011_장난.png","조은채/012_삐짐,질투.png","조은채/013_졸림.png","조은채/014_식사.png","조은채/015_전화.png","조은채/016_문자.png","조은채/017_취함.png","조은채/018_술마심.png","조은채/019_셀카찍기.png","조은채/020_임신.png","조은채/021_사진찍힘.png","조은채/022_요리.png","조은채/023_장보기.png","조은채/024_유혹.png","조은채/025_메이드.png","조은채/026_바니걸.png","조은채/027_비키니.png","조은채/028_전투.png","조은채/029_부상.png","조은채/030_샤워.png","조은채/031_보지벌리기.png","조은채/032_엉덩이내밀기.png","조은채/033_도게자.png","조은채/034_자위.png","조은채/035_정상위.png","조은채/036_정상위절정.png","조은채/037_카우걸.png","조은채/038_카우걸절정.png","조은채/039_후배위.png","조은채/040_후배위절정.png","조은채/041_파일드라이버.png","조은채/042_들박.png","조은채/043_들박절정.png","조은채/044_배면들박.png","조은채/045_배면들박절정.png","조은채/046_입위.png","조은채/047_입위절정.png","조은채/048_측위.png","조은채/049_측위절정.png","조은채/050_좌위.png","조은채/051_좌위절정.png","조은채/052_펠라.png","조은채/053_펠라사정.png","조은채/054_딥스로트.png","조은채/055_딥스로트사정.png","조은채/056_페이스시팅.png","조은채/057_핸드잡.png","조은채/058_핸드잡사정.png","조은채/059_파이즈리.png","조은채/060_파이즈리사정.png","조은채/061_풋잡.png","조은채/062_풋잡사정.png","조은채/063_엉덩이만지기.png","조은채/064_림잡.png","조은채/065_스팽킹.png","조은채/066_스팽킹.png","조은채/067_가슴만지기.png","조은채/068_가슴빨기.png","조은채/069_핑거링.png","조은채/070_관계중전화.png","조은채/071_임신정상위.png","조은채/072_임신기승위.png","조은채/073_임신후배위.png","조은채/074_키스.png","조은채/075_겨드랑이핥기.png","조은채/076_아마존.png","차도현/000_기본.png","차도현/001_짜증,화남.png","차도현/002_귀찮음.png","차도현/028_전투.png","차도현/029_부상.png","한재이/000_기본.png","한재이/001_짜증,화남.png","한재이/002_귀찮음.png","한재이/003_기쁨.png","한재이/004_부끄러움.png","한재이/005_불안.png","한재이/006_고민.png","한재이/007_슬픔.png","한재이/008_의심.png","한재이/009_미안함.png","한재이/010_설렘.png","한재이/011_장난.png","한재이/012_삐짐,질투.png","한재이/013_졸림.png","한재이/014_식사.png","한재이/015_전화.png","한재이/016_문자.png","한재이/017_취함.png","한재이/018_술마심.png","한재이/019_셀카찍기.png","한재이/020_임신.png","한재이/021_사진찍힘.png","한재이/022_요리.png","한재이/023_장보기.png","한재이/024_유혹.png","한재이/025_메이드.png","한재이/026_바니걸.png","한재이/027_비키니.png","한재이/028_전투.png","한재이/029_부상.png","한재이/030_샤워.png","한재이/031_보지벌리기.png","한재이/032_엉덩이내밀기.png","한재이/033_도게자.png","한재이/034_자위.png","한재이/035_정상위.png","한재이/036_정상위절정.png","한재이/037_카우걸.png","한재이/038_카우걸절정.png","한재이/039_후배위.png","한재이/040_후배위절정.png","한재이/041_파일드라이버.png","한재이/042_들박.png","한재이/043_들박절정.png","한재이/044_배면들박.png","한재이/045_배면들박절정.png","한재이/046_입위.png","한재이/047_입위절정.png","한재이/048_측위.png","한재이/049_측위절정.png","한재이/050_좌위.png","한재이/051_좌위절정.png","한재이/052_펠라.png","한재이/053_펠라사정.png","한재이/054_딥스로트.png","한재이/055_딥스로트사정.png","한재이/056_페이스시팅.png","한재이/057_핸드잡.png","한재이/058_핸드잡사정.png","한재이/059_파이즈리.png","한재이/060_파이즈리사정.png","한재이/061_풋잡.png","한재이/062_풋잡사정.png","한재이/063_엉덩이만지기.png","한재이/064_림잡.png","한재이/065_스팽킹.png","한재이/066_스팽킹.png","한재이/067_가슴만지기.png","한재이/068_가슴빨기.png","한재이/069_핑거링.png","한재이/070_관계중전화.png","한재이/071_임신정상위.png","한재이/072_임신기승위.png","한재이/073_임신후배위.png","한재이/074_키스.png","한재이/075_겨드랑이핥기.png","한재이/076_아마존.png","홍련/000_기본.png","홍련/001_짜증,화남.png","홍련/002_귀찮음.png","홍련/003_기쁨.png","홍련/004_부끄러움.png","홍련/005_불안.png","홍련/006_고민.png","홍련/007_슬픔.png","홍련/008_의심.png","홍련/009_미안함.png","홍련/010_설렘.png","홍련/011_장난.png","홍련/012_삐짐,질투.png","홍련/013_졸림.png","홍련/014_식사.png","홍련/015_전화.png","홍련/017_취함.png","홍련/018_술마심.png","홍련/019_셀카찍기.png","홍련/020_임신.png","홍련/021_사진찍힘.png","홍련/022_요리.png","홍련/023_장보기.png","홍련/024_유혹.png","홍련/025_메이드.png","홍련/026_바니걸.png","홍련/027_비키니.png","홍련/028_전투.png","홍련/029_부상.png","홍련/030_샤워.png","홍련/031_보지벌리기.png","홍련/032_엉덩이내밀기.png","홍련/033_도게자.png","홍련/034_자위.png","홍련/035_정상위.png","홍련/036_정상위절정.png","홍련/037_카우걸.png","홍련/038_카우걸절정.png","홍련/039_후배위.png","홍련/040_후배위절정.png","홍련/041_파일드라이버.png","홍련/042_들박.png","홍련/043_들박절정.png","홍련/044_배면들박.png","홍련/045_배면들박절정.png","홍련/046_입위.png","홍련/047_입위절정.png","홍련/048_측위.png","홍련/049_측위절정.png","홍련/050_좌위.png","홍련/051_좌위절정.png","홍련/052_펠라.png","홍련/053_펠라사정.png","홍련/054_딥스로트.png","홍련/055_딥스로트사정.png","홍련/056_페이스시팅.png","홍련/057_핸드잡.png","홍련/058_핸드잡사정.png","홍련/059_파이즈리.png","홍련/060_파이즈리사정.png","홍련/061_풋잡.png","홍련/062_풋잡사정.png","홍련/063_엉덩이만지기.png","홍련/064_림잡.png","홍련/065_스팽킹.png","홍련/066_스팽킹.png","홍련/067_가슴만지기.png","홍련/068_가슴빨기.png","홍련/069_핑거링.png","홍련/070_관계중전화.png","홍련/071_임신정상위.png","홍련/072_임신기승위.png","홍련/073_임신후배위.png","홍련/074_키스.png","홍련/075_겨드랑이핥기.png","홍련/076_아마존.png"]</script>
+<script>
+"use strict";
+const SOURCE = "https://raw.githubusercontent.com/Ringno/A/main/a12/";
+const OWNERS = ["정하윤","유선영","곽미란","오민재","연소희","한재이","명월","홍련","옥희","민경수","조은채","서문호","차도현","배기철","강태섭","망치","사공일","노진","공통배경"];
+const GIRLS = new Set(["정하윤","유선영","곽미란","오민재","연소희","한재이","명월","홍련","옥희","민경수","조은채"]);
+const BOYS = new Set(["서문호","차도현","배기철","강태섭","망치","사공일","노진"]);
+const initialPaths = JSON.parse(document.getElementById("initial-manifest").textContent);
+const els = {folders:document.getElementById("folders"),groups:document.getElementById("groups"),search:document.getElementById("search"),cat:document.getElementById("cat"),stat:document.getElementById("stat"),visible:document.getElementById("visible"),status:document.getElementById("status"),refresh:document.getElementById("refresh"),kindBtns:Array.from(document.querySelectorAll("[data-kind]")),viewer:document.getElementById("viewer"),big:document.getElementById("big"),vtitle:document.getElementById("vtitle"),vsub:document.getElementById("vsub"),counter:document.getElementById("counter"),original:document.getElementById("original")};
+let manifest=initialPaths, folder="전체", kind="all", category="all", query="", filtered=[], current=0, lastUpdate=0, liveBusy=false;
+function textSafe(s){return String(s==null?"":s)}
+function assetUrl(path){return SOURCE+path.split("/").map(encodeURIComponent).join("/")}
+function parseAsset(path){
+  const slash=path.indexOf("/"), owner=slash<0?"기타":path.slice(0,slash), file=path.slice(slash+1);
+  const first=file.match(/^(\d{3})\.?_(.+)\.(png|jpe?g|webp|gif|avif)$/i);
+  const bg=file.match(/^(\d{3})\.(png|jpe?g|webp|gif|avif)$/i);
+  const num=first?first[1]:bg?bg[1]:"—";
+  const title=first?first[2]:bg?({ "001":"이능관리국 · 중앙행정구","002":"흑련회 · 금융구 본사","003":"구항만 밀수창고","004":"잿빛단 · 구도심 거점","005":"유흥특구 밤거리","006":"유흥특구 클럽","007":"제0격리구역","008":"월영회 · 비밀실험실","009":"해원시 야경 옥상","010":"개인 숙소"})[num]||"공통 배경":file.replace(/\.[^.]+$/,"");
+  const no=Number(num), cat=owner==="공통배경"?"background":num==="—"?"other":no<=13?"emotion":no<=23?"life":no<=27?"costume":no<=29?"battle":no<=34?"other":"adult";
+  const display=owner==="공통배경"?"공통 배경":owner;
+  const k=owner==="공통배경"?"background":GIRLS.has(owner)?"girls":BOYS.has(owner)?"boys":"other";
+  return {path,owner,file,num,title,cat,display,kind:k,order:!/^\d{3}$/.test(num)?9999:no,
+     search:(owner+" "+num+" "+title+" "+file+" "+(cat==="background"?"배경":"")).toLowerCase()};
+}
+let entries=manifest.map(parseAsset);
+const categoryNames={emotion:"기본 · 감정",life:"일상",costume:"유혹 · 의상",battle:"전투 · 부상",other:"기타 장면",adult:"성인 상황",background:"공통 배경"};
+function makeButton(label,cls,onClick){const b=document.createElement("button");b.type="button";b.className=cls;b.textContent=label;b.addEventListener("click",onClick);return b}
+function rebuildFolderMenu(){
+  const frag=document.createDocumentFragment();
+  const counts=new Map(); for(const e of entries) counts.set(e.owner,(counts.get(e.owner)||0)+1);
+  const all=makeButton("모든 폴더","side-btn"+(folder==="전체"?" active":""),()=>{folder="전체";rebuildFolderMenu();render()});
+  all.innerHTML='<span class="nm">▦ 전체 이미지</span>';
+  const ac=document.createElement("span");ac.className="count";ac.textContent=entries.length.toLocaleString("ko-KR");all.appendChild(ac);frag.appendChild(all);
+  for(const f of [...OWNERS,...new Set(entries.map(e=>e.owner).filter(e=>!OWNERS.includes(e)))]){
+    const b=makeButton(f,"side-btn"+(folder===f?" active":""),()=>{folder=f;rebuildFolderMenu();render();document.getElementById("content").scrollIntoView({block:"start",behavior:"smooth"})});
+    const name=document.createElement("span");name.className="nm";name.textContent=(f==="공통배경"?"▧ ":"◈ ")+f;
+    const n=document.createElement("span");n.className="count";n.textContent=String(counts.get(f)||0);
+    b.replaceChildren(name,n);frag.appendChild(b);
+  }
+  els.folders.replaceChildren(frag);els.stat.textContent=entries.length.toLocaleString("ko-KR");
+}
+function card(entry){
+ const b=document.createElement("button");b.type="button";b.className="card";b.setAttribute("aria-label",entry.display+" "+entry.num+" "+entry.title+" 확대");
+ const fr=document.createElement("span");fr.className="frame";
+ const img=document.createElement("img");img.loading="lazy";img.decoding="async";img.alt=entry.display+" - "+entry.title;img.src=assetUrl(entry.path);
+ img.addEventListener("error",()=>{img.style.opacity="0";fr.style.background="repeating-linear-gradient(45deg,#1b2434,#1b2434 12px,#1f293a 12px,#1f293a 24px)"});
+ const fallback=document.createElement("span");fallback.textContent=entry.num+" · "+entry.title; fr.append(img,fallback);
+ const n=document.createElement("span");n.className="tag-num";n.textContent=entry.num;fr.appendChild(n);
+ const meta=document.createElement("span");meta.className="card-meta";
+ const title=document.createElement("span");title.className="card-title";title.textContent=entry.title;
+ const sub=document.createElement("span");sub.className="card-sub";sub.textContent=entry.owner==="공통배경"?"장소 이미지":entry.owner+" · "+(categoryNames[entry.cat]||"장면");
+ meta.append(title,sub);b.append(fr,meta);
+ b.addEventListener("click",()=>show(entry)); return b;
+}
+function render(){
+ const tokens=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+ filtered=entries.filter(e=>(folder==="전체"||e.owner===folder)&&(kind==="all"||e.kind===kind)&&(category==="all"||e.cat===category)&&tokens.every(t=>e.search.includes(t)));
+ els.visible.textContent=filtered.length.toLocaleString("ko-KR")+"장 표시 / 전체 "+entries.length.toLocaleString("ko-KR")+"장";
+ els.groups.replaceChildren();
+ if(filtered.length===0){const div=document.createElement("div");div.className="empty";div.innerHTML="<strong>검색 결과가 없어요</strong>다른 이름, 번호 또는 장면명을 입력해 보세요.";els.groups.appendChild(div);return}
+ const groupMap=new Map();for(const e of filtered){if(!groupMap.has(e.owner))groupMap.set(e.owner,[]);groupMap.get(e.owner).push(e)}
+ const frag=document.createDocumentFragment();
+ for(const f of [...OWNERS,...groupMap.keys()]){
+  if(!groupMap.has(f))continue;
+  const items=groupMap.get(f).slice().sort((a,b)=>a.order-b.order||a.file.localeCompare(b.file,"ko"));
+  const section=document.createElement("section");section.className="section";section.id="sec-"+f;
+  const head=document.createElement("div");head.className="section-head";
+  const groupTitle=document.createElement("div");groupTitle.className="section-title";
+  const h2=document.createElement("h2");h2.textContent=f==="공통배경"?"공통 배경":f;
+  const pill=document.createElement("span");pill.className="pill";pill.textContent=GIRLS.has(f)?"여성":BOYS.has(f)?"남성":"배경";
+  groupTitle.append(h2,pill);
+  const count=document.createElement("span");count.className="section-ct";count.textContent=items.length+"장";head.append(groupTitle,count);
+  const grid=document.createElement("div");grid.className="cards";for(const item of items)grid.appendChild(card(item));
+  section.append(head,grid);frag.appendChild(section);
+ }
+ els.groups.appendChild(frag);
+}
+function show(entry){
+ current=filtered.findIndex(e=>e.path===entry.path);if(current<0)return;
+ els.viewer.hidden=false;document.body.style.overflow="hidden";updateViewer();document.getElementById("close").focus()
+}
+function updateViewer(){
+ const e=filtered[current];if(!e)return;
+ els.big.src=assetUrl(e.path);els.big.alt=e.owner+" "+e.title;
+ els.vtitle.textContent=e.owner+" · "+e.title;els.vsub.textContent=e.file+"  |  "+(categoryNames[e.cat]||"");
+ els.counter.textContent=(current+1).toLocaleString("ko-KR")+" / "+filtered.length.toLocaleString("ko-KR");
+ els.original.href=assetUrl(e.path);
+}
+function advance(d){if(els.viewer.hidden||!filtered.length)return;current=(current+d+filtered.length)%filtered.length;updateViewer()}
+function hideViewer(){els.viewer.hidden=true;document.body.style.overflow="";els.big.removeAttribute("src")}
+document.getElementById("close").addEventListener("click",hideViewer);
+document.getElementById("prev").addEventListener("click",()=>advance(-1));
+document.getElementById("next").addEventListener("click",()=>advance(1));
+els.viewer.addEventListener("click",e=>{if(e.target===els.viewer)hideViewer()});
+document.addEventListener("keydown",e=>{
+ if(!els.viewer.hidden){if(e.key==="Escape")hideViewer();else if(e.key==="ArrowRight")advance(1);else if(e.key==="ArrowLeft")advance(-1);return}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();els.search.focus();els.search.select()}
+});
+let touchX=null;els.viewer.addEventListener("touchstart",e=>{touchX=e.changedTouches[0]?.screenX??null},{passive:true});els.viewer.addEventListener("touchend",e=>{if(touchX===null)return;const dx=(e.changedTouches[0]?.screenX??touchX)-touchX;if(Math.abs(dx)>55)advance(dx<0?1:-1);touchX=null},{passive:true});
+let debounce=null;els.search.addEventListener("input",e=>{clearTimeout(debounce);debounce=setTimeout(()=>{query=e.target.value;render()},130)});
+els.cat.addEventListener("change",e=>{category=e.target.value;render()});
+els.kindBtns.forEach(b=>b.addEventListener("click",()=>{kind=b.dataset.kind;els.kindBtns.forEach(x=>x.classList.toggle("active",x===b));render()}));
+function setStatus(message,warn=false){els.status.textContent=message;els.status.classList.toggle("warn",warn)}
+async function sync(){
+ if(liveBusy)return;liveBusy=true;els.refresh.disabled=true;setStatus("GitHub 최신 목록 확인 중…");
+ try{
+  const base="https://api.github.com/repos/Ringno/A/";
+  const rootRes=await fetch(base+"contents?ref=main",{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
+  if(!rootRes.ok)throw Error("GitHub API "+rootRes.status);
+  const root=await rootRes.json(), a12=root.find(x=>x.name==="a12"&&x.type==="dir");if(!a12)throw Error("a12 folder missing");
+  const treeRes=await fetch(base+"git/trees/"+encodeURIComponent(a12.sha)+"?recursive=1",{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
+  if(!treeRes.ok)throw Error("GitHub tree API "+treeRes.status);
+  const tree=await treeRes.json();if(tree.truncated)throw Error("Tree response truncated");
+  const list=tree.tree.filter(x=>x.type==="blob"&&/\.(png|jpe?g|webp|gif|avif)$/i.test(x.path)).map(x=>x.path);
+  if(!list.length)throw Error("Empty image listing");
+  const old=new Set(manifest), fresh=list.filter(p=>!old.has(p));
+  manifest=list;entries=list.map(parseAsset);lastUpdate=Date.now();
+  rebuildFolderMenu();render();
+  const stamp=new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date());
+  setStatus("GitHub 동기화 완료 · "+stamp+(fresh.length?" · 새 이미지 "+fresh.length+"장":""));
+ }catch(err){
+  setStatus("현재 저장된 목록 표시 중 · 새로고침 재시도 가능",true);
+  console.warn("GitHub image manifest refresh failed, using embedded snapshot:",err);
+ }finally{liveBusy=false;els.refresh.disabled=false}
+}
+els.refresh.addEventListener("click",sync);
+rebuildFolderMenu();render();setStatus("891장 초기 목록 · GitHub 확인 예정");
+sync();setInterval(()=>{if(!document.hidden)sync()},15*60*1000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&Date.now()-lastUpdate>15*60*1000)sync()});
+</script>
+</body></html>
