@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07151a">
+<meta name="description" content="무인도 표류 스토리 — 5명의 생존자와 공통 배경 전체 이미지 315장. 번호와 장면명 검색, 확대 및 자동 갱신.">
+<title>무인도 표류 · 전체 이미지 갤러리 | A13</title>
+<style>
+:root{color-scheme:dark;--bg:#07151a;--panel:#101f26;--panel2:#14272d;--line:#27434b;--ink:#f0f7f4;--muted:#9bb6b9;--sea:#69dbc5;--sun:#ffca89;--shadow:0 20px 70px #0008}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(ellipse at 68% -5%,#144246 0%,transparent 42%),var(--bg);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;line-height:1.55}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.55}button,input,select,a{ -webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
+.shell{max-width:1920px;min-height:100vh;margin:auto;display:grid;grid-template-columns:252px minmax(0,1fr)}
+.sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:#0d1d23;border-right:1px solid var(--line);padding:27px 15px;scrollbar-width:thin}
+.brand{padding:6px 12px 20px}.brand .eyebrow{font-size:10px;letter-spacing:.24em;color:var(--sea);font-weight:800}
+.brand h1{font-size:27px;line-height:1.15;margin:12px 0 6px;letter-spacing:-.04em}.brand h1 span{color:var(--sun)}.brand p{font-size:12px;color:var(--muted);margin:6px 0 0}
+.nav-label{margin:20px 12px 12px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.15em}
+.nav{display:flex;flex-direction:column;gap:5px}
+.nav-btn{background:transparent;color:#c5d6d5;border:1px solid transparent;padding:11px 12px;text-align:left;border-radius:12px;display:flex;align-items:center;gap:8px;justify-content:space-between;width:100%;font-size:13px}
+.nav-btn:hover{background:#173038}.nav-btn.active{background:#173d40;border-color:#2e716c;color:#f4fffb}.nav-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nav-count{background:#20343b;color:#b4d6d3;padding:2px 8px;border-radius:999px;font-size:11px;font-variant-numeric:tabular-nums}
+.side-note{margin:25px 12px 5px;color:#829ea3;font-size:11px;line-height:1.7}
+.main{min-width:0;padding:32px clamp(16px,3.4vw,56px) 80px}
+.hero{border-radius:25px;padding:clamp(24px,3.8vw,48px);background:linear-gradient(115deg,#173d43 0%,#173a3c 43%,#113037 100%);border:1px solid #316061;position:relative;overflow:hidden;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.hero:before{content:"";position:absolute;right:-100px;top:-170px;width:440px;height:440px;border:1px solid #4e8b7d66;border-radius:50%;box-shadow:0 0 0 55px #4e8b7d12,0 0 0 110px #4e8b7d13;pointer-events:none}
+.hero-label{color:var(--sea);font-weight:800;letter-spacing:.22em;font-size:11px;position:relative}
+.hero-title{font-size:clamp(28px,4vw,47px);font-weight:900;letter-spacing:-.055em;line-height:1.2;margin:12px 0}
+.hero-title em{font-style:normal;color:var(--sun)}.hero-intro{color:#bad7d7;font-size:13px;margin:0;position:relative}
+.total{position:relative;flex-shrink:0;text-align:center;padding:18px 24px;background:#09272b88;border:1px solid #49817477;border-radius:20px}
+.total strong{display:block;font-size:clamp(32px,4vw,52px);font-variant-numeric:tabular-nums;letter-spacing:-.05em;line-height:1.15}
+.total small{color:#b2d3ce;font-size:12px}
+.stats{display:flex;align-items:center;gap:9px;margin:18px 0 24px;flex-wrap:wrap}
+.stat{border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:#bed9d8;background:#10252c;font-size:12px}
+.stat strong{color:white}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:13px;background:#102128;border:1px solid var(--line);border-radius:16px;position:sticky;top:8px;z-index:10;box-shadow:0 12px 35px #0004;backdrop-filter:blur(16px)}
+.search-wrap{position:relative;min-width:180px;flex:1 1 280px}.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search{width:100%;padding:12px 13px 12px 41px;border-radius:10px;color:var(--ink);background:#0b1a21;border:1px solid #38545a;outline:none;font-size:13px}
+.search::placeholder{color:#819b9e}.search:focus{border-color:var(--sea)}
+.select{color:var(--ink);background:#0b1a21;border:1px solid #38545a;border-radius:10px;padding:12px 12px;min-width:134px;font-size:13px}
+.refresh{background:#244a49;border:1px solid #48877d;color:#ecfff7;border-radius:10px;padding:12px 16px;font-weight:700;font-size:13px;white-space:nowrap}.refresh:hover{background:#32625a}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0 9px}.filter{border:1px solid var(--line);background:#11272e;color:#b2ceca;border-radius:999px;padding:8px 16px;font-size:12px;font-weight:700}.filter:hover{border-color:#5e9e96}.filter.active{color:#082823;background:var(--sea);border-color:var(--sea)}
+.note-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:7px 1px 19px;color:#a7c0bd;font-size:12px}.status{color:#8cb2b0}.status.bad{color:#ffbdab}
+.section{margin-bottom:36px;scroll-margin-top:122px}.sec-head{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:14px 0 14px}
+.sec-name{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.sec-name h2{font-size:22px;letter-spacing:-.045em;margin:0}.pill{font-size:11px;color:var(--sea);border:1px solid #47716f;padding:3px 9px;border-radius:99px}.sec-count{font-size:12px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(154px,1fr));gap:15px}
+.card{display:block;min-width:0;text-align:left;overflow:hidden;background:#11242a;border:1px solid var(--line);color:var(--ink);border-radius:14px;padding:0;transition:border-color .18s,transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);border-color:var(--sea);box-shadow:0 12px 32px #0007}
+.frame{display:block;aspect-ratio:1 / 1;position:relative;background:linear-gradient(135deg,#19454a,#102d32);overflow:hidden}
+.frame img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}.card:hover .frame img{transform:scale(1.04)}
+.frame.fallback:after{content:"이미지를 불러올 수 없어요";color:#bad7d2;position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
+.num{position:absolute;top:9px;left:9px;color:#ecfffa;background:#0b1d24cb;border:1px solid #ffffff33;padding:3px 9px;border-radius:7px;font-size:12px;font-weight:900;letter-spacing:.06em}
+.card-meta{padding:11px 12px 12px}.card-title{font-size:14px;display:block;font-weight:800;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.card-sub{font-size:11px;display:block;color:var(--muted);white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-top:3px}
+.empty{border:1px dashed #427175;background:#122d31;padding:64px 20px;border-radius:18px;text-align:center;color:#b8d4d0}.empty strong{display:block;color:white;font-size:18px;margin-bottom:7px}
+.footer{margin-top:35px;border-top:1px solid var(--line);padding-top:20px;color:#8bada8;font-size:12px;line-height:1.9}
+.viewer[hidden]{display:none!important}.viewer{position:fixed;inset:0;z-index:300;background:#03090df5;display:flex;flex-direction:column;padding:calc(13px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));backdrop-filter:blur(22px)}
+.viewer-top{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-shrink:0}.viewer-heading{min-width:0;display:flex;flex-direction:column;gap:2px}.viewer-heading strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.viewer-heading small{font-size:11px;color:#a3bdbe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.viewer-actions{display:flex;gap:8px;flex-shrink:0}.viewer-btn{border:1px solid #4a6467;background:#193039;color:var(--ink);border-radius:10px;padding:9px 13px;text-decoration:none;font-weight:700;font-size:12px}.viewer-btn:hover{background:#264950}
+.viewer-mid{min-height:0;flex:1;display:grid;grid-template-columns:60px minmax(0,1fr) 60px;align-items:center;justify-items:center;gap:10px;padding:10px 0}
+.large{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:var(--shadow)}
+.arrow{width:46px;height:60px;border:1px solid #40585d;border-radius:14px;background:#1a363b;color:white;font-size:32px}.arrow:hover{background:#2b5961}
+.viewer-foot{text-align:center;color:#a8bdbd;font-size:12px;flex-shrink:0;padding:6px}
+@media(max-width:1000px){.shell{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding:22px 9px}.main{padding:24px 22px 65px}.cards{grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:12px}}
+@media(max-width:720px){.shell{display:block}.sidebar{height:auto;position:relative;padding:14px 15px 13px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0}.brand h1{font-size:21px;margin:3px 0}.brand p,.side-note,.nav-label{display:none}.nav{display:flex;flex-direction:row;gap:7px;overflow-x:auto;padding:10px 0 0;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav-btn{width:auto;flex-shrink:0;padding:8px 10px;gap:8px;font-size:12px}.nav-name{max-width:130px}.main{padding:16px 13px 50px}.hero{padding:23px 19px;border-radius:19px;align-items:flex-start}.hero-intro{font-size:12px}.total{padding:12px 11px}.total strong{font-size:28px}.total small{font-size:10px}.stats{gap:6px;margin:13px 0 14px}.stat{font-size:11px;padding:5px 9px}.toolbar{top:4px;padding:9px;gap:7px}.search-wrap{flex:1 1 100%;}.search{padding:10px 10px 10px 40px}.select{flex:1 1 110px;padding:10px}.refresh{padding:10px 12px}.filters{margin-top:12px}.filter{padding:7px 12px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sec-name h2{font-size:19px}.card-meta{padding:9px 10px 10px}.card-title{font-size:13px}.card-sub{font-size:10px}.section{margin-bottom:28px;scroll-margin-top:120px}.viewer-mid{grid-template-columns:31px minmax(0,1fr) 31px;gap:4px}.arrow{width:29px;height:52px;border-radius:7px;font-size:24px}.viewer-btn{padding:8px 10px;font-size:11px}}
+@media(max-width:360px){.hero{display:block}.total{display:inline-block;margin-top:17px}.viewer-heading strong{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar" aria-label="폴더별 이미지 분류">
+ <div class="brand"><div class="eyebrow">CASTAWAY · ARCHIVE 13</div><h1>무인도 <span>표류 기록</span></h1><p>5명의 생존자, 하나의 섬</p></div>
+ <div class="nav-label">생존자 · 폴더 목록</div>
+ <nav id="nav" class="nav" aria-label="이미지 폴더"></nav>
+ <p class="side-note">Ringno / A / a13<br>원본 이미지는 GitHub에서 직접 표시됩니다.<br>장면명은 제공된 번호 매핑표를 기준으로 표시됩니다.</p>
+</aside>
+<main class="main" id="main">
+ <header class="hero">
+  <div><div class="hero-label">THE ISLAND · IMAGE GALLERY</div><h2 class="hero-title">섬에 남겨진 <em>315개의 장면.</em></h2><p class="hero-intro">캐릭터별 미리보기 · 장면명 검색 · 확대 보기 · GitHub 자동 갱신</p></div>
+  <div class="total"><strong id="total">315</strong><small>전체 이미지</small></div>
+ </header>
+ <div class="stats"><span class="stat">👥 캐릭터 <strong>5명</strong></span><span class="stat">🖼️ 캐릭터 이미지 <strong id="people-count">310장</strong></span><span class="stat">🏝️ 배경 <strong id="background-count">5장</strong></span><span class="stat">↻ 자동 갱신</span></div>
+ <div class="toolbar">
+  <div class="search-wrap"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="search" class="search" type="search" autocomplete="off" placeholder="이름·번호·장면명 검색 (예: 윤모아 004, 키스, 동굴)" aria-label="이미지 검색"></div>
+  <select class="select" id="category" aria-label="장면 분류"><option value="all">모든 장면</option><option value="basic">기본·감정</option><option value="special">기타 상황</option><option value="adult">성인 장면</option><option value="background">공통 배경</option></select>
+  <button id="refresh" class="refresh" type="button">↻ 목록 갱신</button>
+ </div>
+ <div class="filters" id="filters" role="group" aria-label="이미지 종류">
+  <button type="button" class="filter active" data-kind="all">전체</button>
+  <button type="button" class="filter" data-kind="person">캐릭터 5명</button>
+  <button type="button" class="filter" data-kind="background">공통 배경</button>
+ </div>
+ <div class="note-row"><span id="visible">전체 이미지 불러오는 중…</span><span id="status" class="status" role="status">저장된 목록 표시 중</span></div>
+ <div id="gallery"></div>
+ <footer class="footer">무인도 표류 · A13 이미지 아카이브 · GitHub Pages<br>썸네일을 클릭해 확대하고, 좌우 화살표 또는 모바일 스와이프로 이전·다음 이미지를 볼 수 있습니다. 매핑표와 파일 번호를 자동으로 연결하며 파일명은 변경하지 않습니다.</footer>
+</main>
+</div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="이미지 크게 보기" hidden>
+ <div class="viewer-top"><div class="viewer-heading"><strong id="viewer-title"></strong><small id="viewer-sub"></small></div><div class="viewer-actions"><a id="original" class="viewer-btn" target="_blank" rel="noopener noreferrer">원본 열기 ↗</a><button id="close" class="viewer-btn" type="button" aria-label="닫기">✕</button></div></div>
+ <div class="viewer-mid"><button id="prev" class="arrow" type="button" aria-label="이전 이미지">‹</button><img id="large" class="large" alt=""><button id="next" class="arrow" type="button" aria-label="다음 이미지">›</button></div>
+ <div class="viewer-foot"><span id="counter"></span> · ← → 이동 · ESC 닫기 · 모바일 스와이프</div>
+</div>
+<script type="application/json" id="initial-list">["강유하/001.png","강유하/002.png","강유하/003.png","강유하/004.png","강유하/005.png","강유하/006.png","강유하/007.png","강유하/008.png","강유하/009.png","강유하/010.png","강유하/011.png","강유하/012.png","강유하/013.png","강유하/014.png","강유하/015.png","강유하/016.png","강유하/017.png","강유하/018.png","강유하/019.png","강유하/020.png","강유하/021.png","강유하/022.png","강유하/023.png","강유하/024.png","강유하/025.png","강유하/026.png","강유하/027.png","강유하/028.png","강유하/029.png","강유하/030.png","강유하/031.png","강유하/032.png","강유하/033.png","강유하/034.png","강유하/035.png","강유하/036.png","강유하/037.png","강유하/038.png","강유하/039.png","강유하/040.png","강유하/041.png","강유하/042.png","강유하/043.png","강유하/044.png","강유하/045.png","강유하/046.png","강유하/047.png","강유하/048.png","강유하/049.png","강유하/050.png","강유하/051.png","강유하/052.png","강유하/053.png","강유하/054.png","강유하/055.png","강유하/056.png","강유하/057.png","강유하/058.png","강유하/059.png","강유하/060.png","강유하/061.png","강유하/062.png","공통배경/01.png","공통배경/02.png","공통배경/03.png","공통배경/04.png","공통배경/05.png","라세라/001.png","라세라/002.png","라세라/003.png","라세라/004.png","라세라/005.png","라세라/006.png","라세라/007.png","라세라/008.png","라세라/009.png","라세라/010.png","라세라/011.png","라세라/012.png","라세라/013.png","라세라/014.png","라세라/015.png","라세라/016.png","라세라/017.png","라세라/018.png","라세라/019.png","라세라/020.png","라세라/021.png","라세라/022.png","라세라/023.png","라세라/024.png","라세라/025.png","라세라/026.png","라세라/027.png","라세라/028.png","라세라/029.png","라세라/030.png","라세라/031.png","라세라/032.png","라세라/033.png","라세라/034.png","라세라/035.png","라세라/036.png","라세라/037.png","라세라/038.png","라세라/039.png","라세라/040.png","라세라/041.png","라세라/042.png","라세라/043.png","라세라/044.png","라세라/045.png","라세라/046.png","라세라/047.png","라세라/048.png","라세라/049.png","라세라/050.png","라세라/051.png","라세라/052.png","라세라/053.png","라세라/054.png","라세라/055.png","라세라/056.png","라세라/057.png","라세라/058.png","라세라/059.png","라세라/060.png","라세라/061.png","라세라/062.png","백서린/001.png","백서린/002.png","백서린/003.png","백서린/004.png","백서린/005.png","백서린/006.png","백서린/007.png","백서린/008.png","백서린/009.png","백서린/010.png","백서린/011.png","백서린/012.png","백서린/013.png","백서린/014.png","백서린/015.png","백서린/016.png","백서린/017.png","백서린/018.png","백서린/019.png","백서린/020.png","백서린/021.png","백서린/022.png","백서린/023.png","백서린/024.png","백서린/025.png","백서린/026.png","백서린/027.png","백서린/028.png","백서린/029.png","백서린/030.png","백서린/031.png","백서린/032.png","백서린/033.png","백서린/034.png","백서린/035.png","백서린/036.png","백서린/037.png","백서린/038.png","백서린/039.png","백서린/040.png","백서린/041.png","백서린/042.png","백서린/043.png","백서린/044.png","백서린/045.png","백서린/046.png","백서린/047.png","백서린/048.png","백서린/049.png","백서린/050.png","백서린/051.png","백서린/052.png","백서린/053.png","백서린/054.png","백서린/055.png","백서린/056.png","백서린/057.png","백서린/058.png","백서린/059.png","백서린/060.png","백서린/061.png","백서린/062.png","서나윤/001.png","서나윤/002.png","서나윤/003.png","서나윤/004.png","서나윤/005.png","서나윤/006.png","서나윤/007.png","서나윤/008.png","서나윤/009.png","서나윤/010.png","서나윤/011.png","서나윤/012.png","서나윤/013.png","서나윤/014.png","서나윤/015.png","서나윤/016.png","서나윤/017.png","서나윤/018.png","서나윤/019.png","서나윤/020.png","서나윤/021.png","서나윤/022.png","서나윤/023.png","서나윤/024.png","서나윤/025.png","서나윤/026.png","서나윤/027.png","서나윤/028.png","서나윤/029.png","서나윤/030.png","서나윤/031.png","서나윤/032.png","서나윤/033.png","서나윤/034.png","서나윤/035.png","서나윤/036.png","서나윤/037.png","서나윤/038.png","서나윤/039.png","서나윤/040.png","서나윤/041.png","서나윤/042.png","서나윤/043.png","서나윤/044.png","서나윤/045.png","서나윤/046.png","서나윤/047.png","서나윤/048.png","서나윤/049.png","서나윤/050.png","서나윤/051.png","서나윤/052.png","서나윤/053.png","서나윤/054.png","서나윤/055.png","서나윤/056.png","서나윤/057.png","서나윤/058.png","서나윤/059.png","서나윤/060.png","서나윤/061.png","서나윤/062.png","윤모아/001.png","윤모아/002.png","윤모아/003.png","윤모아/004.png","윤모아/005.png","윤모아/006.png","윤모아/007.png","윤모아/008.png","윤모아/009.png","윤모아/010.png","윤모아/011.png","윤모아/012.png","윤모아/013.png","윤모아/014.png","윤모아/015.png","윤모아/016.png","윤모아/017.png","윤모아/018.png","윤모아/019.png","윤모아/020.png","윤모아/021.png","윤모아/022.png","윤모아/023.png","윤모아/024.png","윤모아/025.png","윤모아/026.png","윤모아/027.png","윤모아/028.png","윤모아/029.png","윤모아/030.png","윤모아/031.png","윤모아/032.png","윤모아/033.png","윤모아/034.png","윤모아/035.png","윤모아/036.png","윤모아/037.png","윤모아/038.png","윤모아/039.png","윤모아/040.png","윤모아/041.png","윤모아/042.png","윤모아/043.png","윤모아/044.png","윤모아/045.png","윤모아/046.png","윤모아/047.png","윤모아/048.png","윤모아/049.png","윤모아/050.png","윤모아/051.png","윤모아/052.png","윤모아/053.png","윤모아/054.png","윤모아/055.png","윤모아/056.png","윤모아/057.png","윤모아/058.png","윤모아/059.png","윤모아/060.png","윤모아/061.png","윤모아/062.png"]</script>
+<script>
+"use strict";
+const BASE="https://raw.githubusercontent.com/Ringno/A/main/a13/";
+const ORDER=["백서린","강유하","윤모아","서나윤","라세라","공통배경"];
+const SCENE_NAMES="기본|짜증,화남|귀찮음|기쁨|부끄러움|불안|고민|슬픔|의심|미안함|설렘|장난|삐짐,질투|졸림|잠자기|임신|유혹|보지벌리기|엉덩이내밀기|도게자|자위|정상위|정상위절정|카우걸|카우걸절정|후배위|후배위절정|파일드라이버|들박|들박절정|배면들박|배면들박절정|입위|입위절정|측위|측위절정|좌위|좌위절정|펠라|펠라사정|딥스로트|딥스로트사정|페이스시팅|핸드잡|핸드잡사정|파이즈리|파이즈리사정|풋잡|풋잡사정|엉덩이만지기|림잡|스팽킹|스팽킹|가슴만지기|가슴빨기|핑거링|임신정상위|임신기승위|임신후배위|키스|겨드랑이핥기|아마존".split("|");
+const BG_NAMES={"01":"해변","02":"동굴","03":"야자수숲","04":"모닥불야영지","05":"비행기잔해"};
+const CATEGORY_LABELS={basic:"기본·감정",special:"기타 상황",adult:"성인 장면",background:"공통 배경",other:"기타"};
+const initial=JSON.parse(document.getElementById("initial-list").textContent);
+const $=id=>document.getElementById(id);
+const ui={nav:$("nav"),gallery:$("gallery"),search:$("search"),category:$("category"),visible:$("visible"),status:$("status"),refresh:$("refresh"),total:$("total"),people:$("people-count"),background:$("background-count"),viewer:$("viewer"),large:$("large"),vtitle:$("viewer-title"),vsub:$("viewer-sub"),counter:$("counter"),original:$("original")};
+let manifest=initial.slice(),entries=[],folder="전체",kind="all",category="all",query="",shown=[],index=0,lastUpdate=0,busy=false,returnFocus=null;
+const folderName=p=>p.slice(0,p.lastIndexOf("/"))||"기타";
+const topFolder=path=>path.split("/")[0];
+function imageUrl(path){return BASE+path.split("/").map(encodeURIComponent).join("/")}
+function classify(n,isBg){
+ if(isBg)return "background";
+ if(n>=1&&n<=15)return "basic";
+ if(n>=16&&n<=21)return "special";
+ if(n>=22&&n<=62)return "adult";
+ return "other";
+}
+function parse(path){
+ const owner=folderName(path),file=path.slice(path.lastIndexOf("/")+1),stem=file.replace(/\.[^.]+$/,"");
+ const match=stem.match(/^(\d{2,3})(?:_(.+))?$/);
+ const no=match?match[1]:"—",n=Number(no),bg=topFolder(path)==="공통배경";
+ const mapped=bg?BG_NAMES[no]:SCENE_NAMES[n-1];
+ const title=mapped||match?.[2]||stem;
+ const cat=no==="—"?"other":classify(n,bg);
+ const display=owner.replaceAll("/"," · ");
+ return {path,owner,file,no,title,cat,bg,display,order:Number.isFinite(n)?n:9999,
+  search:(path+" "+display+" "+no+" "+title+" "+(bg?"배경 ":"")+" "+(cat==="adult"?"성인 ":"")).toLowerCase()};
+}
+function sortEntry(a,b){const ai=ORDER.indexOf(topFolder(a.owner)),bi=ORDER.indexOf(topFolder(b.owner));const aa=ai===-1?999:ai,bb=bi===-1?999:bi;return aa-bb||a.owner.localeCompare(b.owner,"ko")||a.order-b.order||a.file.localeCompare(b.file,"ko")}
+function initialize(){entries=manifest.map(parse).sort(sortEntry)}
+function button(label,className,click){const b=document.createElement("button");b.type="button";b.className=className;b.textContent=label;b.addEventListener("click",click);return b}
+function makeNav(){
+ const counts=new Map();for(const e of entries)counts.set(e.owner,(counts.get(e.owner)||0)+1);
+ const keys=Array.from(counts.keys()).sort((a,b)=>{const aa=ORDER.indexOf(topFolder(a)),bb=ORDER.indexOf(topFolder(b));return (aa<0?999:aa)-(bb<0?999:bb)||a.localeCompare(b,"ko")});
+ const frag=document.createDocumentFragment();
+ for(const name of ["전체",...keys]){
+  const b=button("", "nav-btn"+(folder===name?" active":""),()=>{folder=name;makeNav();render();if(window.innerWidth<721)$("main").scrollIntoView({behavior:"smooth",block:"start"})});
+  const left=document.createElement("span");left.className="nav-name";left.textContent=(name==="전체"?"▦  모든 이미지":topFolder(name)==="공통배경"?"🏝  "+name:"◈  "+name.replaceAll("/"," · "));
+  const ct=document.createElement("span");ct.className="nav-count";ct.textContent=name==="전체"?entries.length:counts.get(name);
+  b.append(left,ct);frag.appendChild(b);
+ }
+ ui.nav.replaceChildren(frag);
+ ui.total.textContent=entries.length.toLocaleString("ko-KR");
+ ui.people.textContent=entries.filter(e=>!e.bg).length.toLocaleString("ko-KR")+"장";
+ ui.background.textContent=entries.filter(e=>e.bg).length.toLocaleString("ko-KR")+"장";
+}
+function createCard(entry){
+ const card=button("","card",()=>show(entry.path));
+ card.setAttribute("aria-label",entry.display+" "+entry.no+" "+entry.title+" 확대 보기");
+ const frame=document.createElement("div");frame.className="frame";
+ const img=document.createElement("img");img.alt=entry.display+" "+entry.title;img.src=imageUrl(entry.path);img.loading="lazy";img.decoding="async";
+ img.addEventListener("error",()=>frame.classList.add("fallback"));
+ const num=document.createElement("span");num.className="num";num.textContent=entry.no;
+ frame.append(img,num);
+ const meta=document.createElement("div");meta.className="card-meta";
+ const t=document.createElement("span");t.className="card-title";t.textContent=entry.title;
+ const s=document.createElement("span");s.className="card-sub";s.textContent=entry.display+" · "+CATEGORY_LABELS[entry.cat];
+ meta.append(t,s);card.append(frame,meta);return card;
+}
+function render(){
+ const tokens=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+ shown=entries.filter(e=>(folder==="전체"||e.owner===folder)&&(kind==="all"||(kind==="person"?!e.bg:e.bg))&&(category==="all"||e.cat===category)&&tokens.every(t=>e.search.includes(t)));
+ ui.visible.textContent=shown.length.toLocaleString("ko-KR")+"장 표시 / 전체 "+entries.length.toLocaleString("ko-KR")+"장";
+ ui.gallery.replaceChildren();
+ if(!shown.length){const e=document.createElement("div");e.className="empty";e.innerHTML="<strong>검색 결과가 없습니다</strong>다른 캐릭터 이름, 이미지 번호 또는 장면명을 입력하세요.";ui.gallery.append(e);return}
+ const groups=new Map();for(const e of shown){if(!groups.has(e.owner))groups.set(e.owner,[]);groups.get(e.owner).push(e)}
+ const frag=document.createDocumentFragment();
+ for(const [owner,items] of groups){
+  const sec=document.createElement("section");sec.className="section";
+  const head=document.createElement("div");head.className="sec-head";
+  const left=document.createElement("div");left.className="sec-name";
+  const h2=document.createElement("h2");h2.textContent=owner.replaceAll("/"," · ");
+  const pill=document.createElement("span");pill.className="pill";pill.textContent=topFolder(owner)==="공통배경"?"배경":"캐릭터";
+  left.append(h2,pill);
+  const count=document.createElement("span");count.className="sec-count";count.textContent=items.length+"장";head.append(left,count);
+  const grid=document.createElement("div");grid.className="cards";for(const item of items)grid.append(createCard(item));sec.append(head,grid);frag.append(sec);
+ }
+ ui.gallery.append(frag);
+}
+function show(path){
+ const at=shown.findIndex(e=>e.path===path);if(at<0)return;
+ returnFocus=document.activeElement;index=at;ui.viewer.hidden=false;document.body.style.overflow="hidden";displayCurrent();$("close").focus();
+}
+function displayCurrent(){
+ const e=shown[index];if(!e)return;
+ ui.large.src=imageUrl(e.path);ui.large.alt=e.display+" "+e.title;
+ ui.vtitle.textContent=e.display+" · "+e.no+" "+e.title;
+ ui.vsub.textContent=e.path+" · "+CATEGORY_LABELS[e.cat];
+ ui.counter.textContent=(index+1).toLocaleString("ko-KR")+" / "+shown.length.toLocaleString("ko-KR");
+ ui.original.href=imageUrl(e.path);
+}
+function move(n){if(ui.viewer.hidden||!shown.length)return;index=(index+n+shown.length)%shown.length;displayCurrent()}
+function closeViewer(){ui.viewer.hidden=true;document.body.style.overflow="";ui.large.removeAttribute("src");if(returnFocus&&returnFocus.isConnected)returnFocus.focus()}
+$("close").addEventListener("click",closeViewer);
+$("prev").addEventListener("click",()=>move(-1));
+$("next").addEventListener("click",()=>move(1));
+ui.viewer.addEventListener("click",e=>{if(e.target===ui.viewer)closeViewer()});
+document.addEventListener("keydown",e=>{
+ if(!ui.viewer.hidden){if(e.key==="Escape")closeViewer();else if(e.key==="ArrowLeft")move(-1);else if(e.key==="ArrowRight")move(1);return}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();ui.search.focus();ui.search.select()}
+});
+let touchStart=null;ui.viewer.addEventListener("touchstart",e=>{touchStart=e.changedTouches[0]?.screenX??null},{passive:true});
+ui.viewer.addEventListener("touchend",e=>{if(touchStart===null)return;const dx=(e.changedTouches[0]?.screenX??touchStart)-touchStart;if(Math.abs(dx)>55)move(dx<0?1:-1);touchStart=null},{passive:true});
+let debounce=null;ui.search.addEventListener("input",e=>{clearTimeout(debounce);debounce=setTimeout(()=>{query=e.target.value;render()},120)});
+ui.category.addEventListener("change",e=>{category=e.target.value;render()});
+Array.from(document.querySelectorAll(".filter")).forEach(btn=>btn.addEventListener("click",()=>{kind=btn.dataset.kind;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===btn));render()}));
+function status(text,bad=false){ui.status.textContent=text;ui.status.classList.toggle("bad",bad)}
+async function sync(){
+ if(busy)return;
+ busy=true;ui.refresh.disabled=true;status("GitHub 최신 파일 목록 확인 중…");
+ try{
+  const host="https://api.github.com/repos/Ringno/A/";
+  const opts={cache:"no-store",headers:{"Accept":"application/vnd.github+json"}};
+  const rootResponse=await fetch(host+"contents?ref=main",opts);
+  if(!rootResponse.ok)throw Error("GitHub API "+rootResponse.status);
+  const root=await rootResponse.json(),dir=root.find(v=>v.name==="a13"&&v.type==="dir");
+  if(!dir)throw Error("a13 directory not found");
+  const response=await fetch(host+"git/trees/"+encodeURIComponent(dir.sha)+"?recursive=1",opts);
+  if(!response.ok)throw Error("GitHub tree "+response.status);
+  const tree=await response.json();if(tree.truncated)throw Error("GitHub tree truncated");
+  const list=tree.tree.filter(v=>v.type==="blob"&&/\.(png|jpe?g|webp|gif|avif)$/i.test(v.path)).map(v=>v.path);
+  if(!list.length)throw Error("No images found");
+  const old=new Set(manifest),fresh=list.filter(p=>!old.has(p));
+  manifest=list;initialize();makeNav();render();lastUpdate=Date.now();
+  const clock=new Intl.DateTimeFormat("ko-KR",{hour:"2-digit",minute:"2-digit"}).format(new Date());
+  status("GitHub 동기화 완료 · "+clock+(fresh.length?" · 새 이미지 "+fresh.length+"장":""));
+ }catch(error){status("저장된 이미지 목록 표시 중 · 갱신 재시도 가능",true);console.warn("Live sync unavailable; displaying complete embedded image listing:",error)}
+ finally{busy=false;ui.refresh.disabled=false}
+}
+ui.refresh.addEventListener("click",sync);
+initialize();makeNav();render();status("315장 저장 목록 · 최신 목록 확인 예정");
+sync();
+setInterval(()=>{if(!document.hidden)sync()},15*60*1000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&Date.now()-lastUpdate>15*60*1000)sync()});
+</script>
+</body>
+</html>
