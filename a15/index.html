@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="히키코모리 갸루여친 윤채린 이미지 갤러리 — 001~095 번호·장면명 검색, 전체 이미지 확대 보기, GitHub 자동 갱신.">
+<title>히키코모리 갸루여친 · 윤채린 이미지 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#100e17;--panel:#1c1925;--card:#231e2d;--line:#3c3348;--text:#f9f3fb;--muted:#b7a9c3;--accent:#ffa8d6;--accent2:#c7aafa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:290px;background:radial-gradient(ellipse 65% 30% at 75% 0%,#352139 0%,transparent 70%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.shell{max-width:1480px;margin:0 auto;padding:0 clamp(14px,3vw,45px) 65px}header{padding:45px 0 30px}
+.kicker{color:var(--accent);letter-spacing:.16em;font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+.hero{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:20px}h1{margin:0;letter-spacing:-.05em;font-weight:800;font-size:clamp(30px,4.6vw,53px);line-height:1.2}h1 em{color:var(--accent);font-style:normal}
+.subtitle{margin:13px 0 0;color:var(--muted);font-size:14px;max-width:650px}
+.total{border:1px solid #71516e;background:#ffacd710;border-radius:17px;padding:12px 25px;min-width:148px;text-align:center}
+.total strong{font-size:38px;line-height:1.15;display:block;font-variant-numeric:tabular-nums}.total small{font-size:12px;color:var(--muted)}
+.summary{display:flex;gap:9px;flex-wrap:wrap;margin-top:23px}.summary span{border:1px solid #4a384f;background:#241c2b;border-radius:99px;padding:5px 12px;font-size:12px;color:#ead5e6}
+.toolbar{position:sticky;top:0;z-index:20;background:#100e17f2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0;backdrop-filter:blur(12px);display:flex;align-items:center;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.folderTabs,.catTabs{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.tab{background:var(--card);border:1px solid var(--line);color:#e3d8ea;border-radius:99px;font-size:12px;font-weight:750;padding:8px 13px}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#21101e}.tab:hover{border-color:var(--accent)}
+.tab b{font-size:11px;font-weight:550;opacity:.75;margin-left:4px}
+.controls{display:flex;align-items:center;gap:8px;flex:1;justify-content:flex-end}
+.search{background:var(--card);display:flex;align-items:center;border-radius:11px;border:1px solid var(--line);min-width:190px;max-width:350px;flex:1;padding:0 12px;color:var(--muted)}
+.search input{border:0;outline:0;background:none;color:var(--text);font-size:14px;width:100%;padding:10px 0}.search input::placeholder{color:#a99caf}
+.ctl{border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--text);padding:10px 12px;white-space:nowrap;font-size:12px}
+.categories{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding:15px 0 6px}.categories>span{font-size:12px;color:var(--muted);font-weight:700}
+.meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px 17px;color:var(--muted);font-size:12px;padding:8px 0 6px}.meta strong{color:var(--text)}#sync{margin-left:auto}
+section{margin-top:30px;scroll-margin-top:155px}.sectionHead{display:flex;align-items:center;gap:12px;margin-bottom:14px}.sectionHead h2{font-size:19px;letter-spacing:-.025em;margin:0}.sectionHead small{color:var(--muted)}.rule{flex:1;background:var(--line);height:1px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}.tile{min-width:0;padding:0;text-align:left;color:var(--text);border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--panel);transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-3px);border-color:var(--accent)}.thumb{aspect-ratio:3/4;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,#46354d,#17141d)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}.tile:hover img{transform:scale(1.04)}
+.num{position:absolute;left:8px;top:8px;color:white;background:#090711bc;border:1px solid #fff3;border-radius:7px;font-size:11px;font-weight:800;padding:3px 8px}
+.detail{padding:10px 11px 12px}.detail strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.detail small{display:block;margin-top:3px;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.error{padding:12px;color:var(--muted);font-size:12px;text-align:center}.empty{padding:50px;margin:34px 0;border:1px dashed var(--line);border-radius:15px;text-align:center;color:var(--muted)}footer{margin-top:50px;border-top:1px solid var(--line);padding-top:22px;font-size:12px;color:var(--muted)}
+dialog{padding:0;border:1px solid #755e78;border-radius:17px;background:#16121d;color:var(--text);width:min(97vw,1100px);max-width:1100px;max-height:95dvh;overflow:hidden;box-shadow:0 24px 100px #000d}
+dialog::backdrop{background:#000e;backdrop-filter:blur(6px)}.viewer{display:flex;flex-direction:column;max-height:95dvh}
+.viewerTop{padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}.viewerTop strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.viewerTop span{margin-left:auto;color:var(--muted);white-space:nowrap;font-size:12px}
+.icon{border:1px solid #59475e;background:var(--card);color:white;border-radius:10px;font-size:21px;padding:6px 12px}
+.stage{min-height:130px;display:flex;align-items:center;gap:7px;padding:8px;background:#09080d}.stage img{display:block;margin:auto;max-width:calc(100% - 105px);width:auto;height:auto;max-height:calc(95dvh - 145px);object-fit:contain}
+.arrow{flex:0 0 40px;height:54px;border-radius:9px;font-size:28px;background:var(--card);color:white;border:1px solid var(--line)}
+.viewerBottom{border-top:1px solid var(--line);padding:10px 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.viewerBottom a{color:var(--accent);text-decoration:none}
+@media(max-width:1150px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:930px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:670px){header{padding-top:30px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.toolbar{position:relative}.controls{min-width:100%;justify-content:stretch}.search{max-width:none}.total{min-width:110px;padding:10px 14px}.total strong{font-size:29px}#sync{margin-left:0}}
+@media(max-width:440px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.detail{padding:8px}.tab{padding:7px 10px}.stage{padding:4px;gap:4px}.arrow{flex-basis:28px;height:46px}.stage img{max-width:calc(100% - 65px)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+<div class="kicker">RINGNO / A / A15 · CHARACTER IMAGE ARCHIVE</div>
+<div class="hero"><div><h1>히키코모리 갸루여친 <em>이미지 갤러리</em></h1><p class="subtitle">윤채린 · 전체 장면 미리보기<br>실제 등록된 파일과 사용자 지정 매핑표를 연결해 번호·상황명·파일명으로 검색할 수 있어요.</p></div><div class="total"><strong id="total">95</strong><small>등록된 이미지</small></div></div>
+<div class="summary" id="summary"><span>윤채린 95장</span><span>감정 10장</span><span>일상·행동 42장</span><span>성인 상황 43장</span></div>
+</header>
+<div class="toolbar"><nav class="folderTabs" id="folders" aria-label="캐릭터 또는 폴더 선택"></nav><div class="controls"><label class="search">⌕ <input id="search" type="search" placeholder="번호 · 장면명 · 파일명 검색" autocomplete="off"></label><button class="ctl" id="refresh" type="button">↻ 새로고침</button></div></div>
+<div class="categories"><span>장면 분류</span><nav id="categories" class="catTabs" aria-label="장면 유형 선택"></nav></div>
+<div class="meta"><span>검색 결과 <strong id="shown">95</strong>장</span><span>클릭 확대 · ← → 이동 · Esc 닫기</span><span id="sync" role="status" aria-live="polite">GitHub 최신 이미지 목록 확인 중…</span></div>
+<main id="gallery"></main><div class="empty" id="empty" hidden>일치하는 이미지가 없어요. 다른 번호나 장면명을 검색해 주세요.</div>
+<footer>Ringno/A/a15 · 페이지 열 때, 다시 활성화할 때, 10분마다 GitHub 최신 이미지 목록을 확인합니다. 새 이미지가 추가되면 자동 반영됩니다. 매핑표에 없는 추가 이미지도 누락하지 않습니다.</footer>
+</div>
+<dialog id="viewer" aria-label="이미지 크게 보기"><div class="viewer">
+<div class="viewerTop"><strong id="viewerTitle"></strong><span id="position"></span><button class="icon" type="button" id="close" aria-label="닫기">×</button></div>
+<div class="stage" id="stage"><button class="arrow" id="prev" aria-label="이전 이미지" type="button">‹</button><img id="large" alt=""><button class="arrow" id="next" aria-label="다음 이미지" type="button">›</button></div>
+<div class="viewerBottom"><span id="fileName"></span><a id="original" href="#" target="_blank" rel="noopener noreferrer">원본 이미지 열기 ↗</a></div>
+</div></dialog>
+<script>
+"use strict";
+const ROOT="a15",OWNER="Ringno",REPO="A";
+const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/";
+const RAW="https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/main/";
+const SPEC="001=기쁨|002=부끄러움|003=짜증화남|004=불안|005=고민|006=슬픔|007=의심|008=귀찮음|009=삐짐질투|010=졸림|011=기상|012=침대에서휴대폰|013=소파에서뒹굴기|014=게임하기|015=게임하다짜증|016=게임하다승리|017=담배물고게임|018=소파에서흡연|019=창가에서흡연|020=라이터찾기|021=재떨이앞멍때리기|022=배달앱보기|023=배달기다리기|024=배달음식받기|025=배달음식먹기|026=야식먹기|027=과자먹기|028=탄산마시기|029=맥주마시기|030=tv보기|031=옷빌려입기|032=화장하기|033=셀카찍기|034=온라인쇼핑|035=택배뜯기|036=옷벗기|037=침대에서낮잠|038=소파에서잠듦|039=샤워준비|040=간단요리|041=요리실패|042=설거지하기|043=청소하다귀찮아함|044=침대위응석|045=귀가기다리기|046=품에안기려는표정|047=장난|048=유혹|049=취함|050=메이드|051=바니걸|052=샤워|053=보지벌리기|054=엉덩이내밀기|055=도게자|056=자위|057=정상위|058=정상위절정|059=카우걸|060=카우걸절정|061=후배위|062=후배위절정|063=파일드라이버|064=들박|065=들박절정|066=배면들박|067=배면들박절정|068=입위|069=입위절정|070=측위|071=측위절정|072=좌위|073=좌위절정|074=펠라|075=펠라사정|076=딥스로트|077=딥스로트사정|078=페이스시팅|079=핸드잡|080=핸드잡사정|081=파이즈리|082=파이즈리사정|083=풋잡|084=풋잡사정|085=엉덩이만지기|086=림잡|087=스팽킹|088=스팽킹|089=가슴만지기|090=가슴빨기|091=핑거링|092=관계중전화|093=키스|094=겨드랑이핥기|095=아마존";
+const EXT=/\.(png|jpg|jpeg|gif|webp|avif)$/i;
+const $=id=>document.getElementById(id);
+const labels=Object.fromEntries(SPEC.split("|").map(s=>s.split(/=(.*)/s).slice(0,2)));
+const pad=n=>String(n).padStart(3,"0");
+function category(item){
+ if(item.folder==="윤채린"){const n=Number(item.num);if(n>=1&&n<=10)return "감정";if(n>=11&&n<=52)return "일상·행동";if(n>=53&&n<=95)return "성인 상황";}
+ return "추가 이미지";
+}
+function makeItem(folder,file){
+ const match=file.match(/^(\d{3})(?:[_-](.+))?\.(?:png|jpe?g|gif|webp|avif)$/i);
+ const num=match?match[1]:"—";
+ const key=folder.split("/").pop();
+ const mapped=key==="윤채린"?labels[num]:null;
+ const title=mapped||(match&&match[2]?match[2]:num==="—"?file.replace(EXT,""):"미등록 장면");
+ const item={folder,file,num,title};item.category=category(item);
+ item.search=(folder+" "+num+" "+file+" "+title+" "+item.category).toLocaleLowerCase("ko");
+ return item;
+}
+function fileURL(item){return RAW+[ROOT,...item.folder.split("/"),item.file].map(encodeURIComponent).join("/");}
+function initialSnapshot(){return Array.from({length:95},(_,i)=>makeItem("윤채린",pad(i+1)+".png"));}
+let data=initialSnapshot(),visible=[],selectedFolder="전체",selectedCategory="전체",query="",index=0,syncing=false;
+const categories=["전체","감정","일상·행동","성인 상황","추가 이미지"];
+function folderNames(){return [...new Set(data.map(x=>x.folder))].sort((a,b)=>a==="윤채린"?-1:b==="윤채린"?1:a.localeCompare(b,"ko"));}
+function itemSort(a,b){if(a.folder!==b.folder)return a.folder.localeCompare(b.folder,"ko");const x=Number(a.num),y=Number(b.num);if(Number.isFinite(x)&&Number.isFinite(y)&&x!==y)return x-y;return a.file.localeCompare(b.file,"ko"));}
+function createTab(label,count,active,callback){
+ const b=document.createElement("button");b.type="button";b.className="tab"+(active?" active":"");b.setAttribute("aria-pressed",String(active));b.textContent=label;
+ const small=document.createElement("b");small.textContent=count+"장";b.appendChild(small);b.addEventListener("click",callback);return b;
+}
+function renderTabs(){
+ const f=$("folders");f.replaceChildren();
+ f.appendChild(createTab("전체 폴더",data.length,selectedFolder==="전체",()=>{selectedFolder="전체";render();}));
+ for(const folder of folderNames())f.appendChild(createTab(folder==="윤채린"?"윤채린":folder,data.filter(x=>x.folder===folder).length,selectedFolder===folder,()=>{selectedFolder=folder;render();}));
+ const c=$("categories");c.replaceChildren();
+ for(const cat of categories){const count=cat==="전체"?data.length:data.filter(x=>x.category===cat).length;if(!count&&cat!=="전체")continue;
+ c.appendChild(createTab(cat==="전체"?"전체 장면":cat,count,selectedCategory===cat,()=>{selectedCategory=cat;render();}));}
+}
+function renderSummary(){
+ const s=$("summary");s.replaceChildren();const pairs=[...folderNames().map(x=>[x,data.filter(i=>i.folder===x).length]),...categories.slice(1).filter(x=>data.some(i=>i.category===x)).map(x=>[x,data.filter(i=>i.category===x).length])];
+ for(const [name,n] of pairs){const pill=document.createElement("span");pill.textContent=name+" "+n+"장";s.appendChild(pill);}
+}
+function render(){
+ data.sort(itemSort);renderTabs();renderSummary();$("total").textContent=data.length.toLocaleString("ko-KR");
+ visible=data.filter(x=>(selectedFolder==="전체"||x.folder===selectedFolder)&&(selectedCategory==="전체"||x.category===selectedCategory)&&(!query||x.search.includes(query)));
+ $("shown").textContent=visible.length.toLocaleString("ko-KR");$("empty").hidden=!!visible.length;
+ const gallery=$("gallery");gallery.replaceChildren();
+ for(const folder of folderNames()){
+ for(const cat of categories.slice(1)){
+  const items=visible.filter(x=>x.folder===folder&&x.category===cat);if(!items.length)continue;
+  const section=document.createElement("section"),head=document.createElement("div"),h=document.createElement("h2"),count=document.createElement("small"),rule=document.createElement("span"),grid=document.createElement("div");
+  head.className="sectionHead";h.textContent=folder+" · "+cat;count.textContent=items.length+"장";rule.className="rule";head.append(h,count,rule);grid.className="grid";
+  for(const item of items){
+   const pos=visible.indexOf(item),button=document.createElement("button"),thumb=document.createElement("div"),img=document.createElement("img"),num=document.createElement("span"),detail=document.createElement("div"),name=document.createElement("strong"),file=document.createElement("small");
+   button.type="button";button.className="tile";button.setAttribute("aria-label",item.folder+" "+item.num+" "+item.title+" 이미지 확대");
+   thumb.className="thumb";img.loading="lazy";img.decoding="async";img.src=fileURL(item);img.alt=item.num+" "+item.title;
+   img.addEventListener("error",()=>{img.remove();const err=document.createElement("span");err.className="error";err.textContent="이미지 로딩 실패";thumb.appendChild(err);});
+   num.className="num";num.textContent=item.num;thumb.append(img,num);
+   detail.className="detail";name.textContent=item.title;name.title=item.title;file.textContent=item.file;file.title=item.file;detail.append(name,file);
+   button.append(thumb,detail);button.addEventListener("click",()=>openViewer(pos));grid.appendChild(button);
+  }section.append(head,grid);gallery.appendChild(section);
+ }}
+}
+function updateViewer(){if(!visible.length)return;index=(index+visible.length)%visible.length;const item=visible[index],url=fileURL(item);
+ $("viewerTitle").textContent=item.folder+" · "+item.num+" — "+item.title;$("position").textContent=(index+1)+" / "+visible.length;
+ $("large").src=url;$("large").alt=item.num+" "+item.title;$("fileName").textContent=item.folder+"/"+item.file;$("original").href=url;
+}
+function openViewer(i){index=i;updateViewer();if(!$("viewer").open)$("viewer").showModal();}
+function move(step){if(!visible.length)return;index+=step;updateViewer();}
+$("search").addEventListener("input",e=>{query=e.target.value.trim().toLocaleLowerCase("ko");render();});
+$("refresh").addEventListener("click",()=>sync(true));$("close").addEventListener("click",()=>$("viewer").close());
+$("prev").addEventListener("click",()=>move(-1));$("next").addEventListener("click",()=>move(1));
+$("viewer").addEventListener("click",e=>{if(e.target===$("viewer"))$("viewer").close();});
+document.addEventListener("keydown",e=>{if(!$("viewer").open)return;if(e.key==="ArrowLeft"){e.preventDefault();move(-1);}else if(e.key==="ArrowRight"){e.preventDefault();move(1);}});
+let touchStart=null;$("stage").addEventListener("touchstart",e=>{touchStart=e.touches.length===1?e.touches[0].clientX:null;},{passive:true});
+$("stage").addEventListener("touchend",e=>{if(touchStart===null||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStart;if(Math.abs(dx)>60)move(dx<0?1:-1);touchStart=null;},{passive:true});
+async function requestFolder(path){
+ const r=await fetch(API+path.split("/").map(encodeURIComponent).join("/")+"?ref=main",{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
+ if(!r.ok)throw Error("GitHub API "+r.status);const entries=await r.json();if(!Array.isArray(entries))throw Error("디렉터리 형식 오류");return entries;
+}
+async function crawl(path,depth){
+ const entries=await requestFolder(path),folder=path.slice(ROOT.length+1);
+ const direct=entries.filter(e=>e.type==="file"&&EXT.test(e.name)).map(e=>makeItem(folder,e.name));
+ if(depth<6){const dirs=entries.filter(e=>e.type==="dir");const nested=await Promise.all(dirs.map(e=>crawl(e.path,depth+1)));for(const group of nested)direct.push(...group);}
+ return direct;
+}
+async function sync(manual){
+ if(syncing)return;syncing=true;$("refresh").disabled=true;$("sync").textContent="GitHub 파일 목록 확인 중…";
+ try{
+  const root=await requestFolder(ROOT);
+  const direct=root.filter(e=>e.type==="file"&&EXT.test(e.name)).map(e=>makeItem("루트",e.name));
+  const subs=await Promise.all(root.filter(e=>e.type==="dir").map(e=>crawl(e.path,1)));
+  const found=[...direct,...subs.flat()];
+  if(!found.length)throw Error("이미지 파일 없음");
+  const prev=data.map(e=>e.folder+"/"+e.file).sort().join("|"),next=found.map(e=>e.folder+"/"+e.file).sort().join("|");
+  data=found;
+  if(selectedFolder!=="전체"&&!folderNames().includes(selectedFolder))selectedFolder="전체";
+  if(selectedCategory!=="전체"&&!data.some(x=>x.category===selectedCategory))selectedCategory="전체";
+  if(manual||prev!==next)render();
+  $("sync").textContent="GitHub 최신 목록 "+found.length+"장 확인 완료";
+ }catch(err){$("sync").textContent="동기화 실패 · 확인된 기본 목록 "+data.length+"장 표시 중";console.warn("a15 gallery sync",err);}
+ finally{syncing=false;$("refresh").disabled=false;}
+}
+render();sync(false);setInterval(()=>{if(!document.hidden)sync(false);},600000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)sync(false);});
+</script>
+</body>
+</html>
