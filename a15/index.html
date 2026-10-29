@@ -95,7 +95,7 @@ function initialSnapshot(){return Array.from({length:95},(_,i)=>makeItem("윤채
 let data=initialSnapshot(),visible=[],selectedFolder="전체",selectedCategory="전체",query="",index=0,syncing=false;
 const categories=["전체","감정","일상·행동","성인 상황","추가 이미지"];
 function folderNames(){return [...new Set(data.map(x=>x.folder))].sort((a,b)=>a==="윤채린"?-1:b==="윤채린"?1:a.localeCompare(b,"ko"));}
-function itemSort(a,b){if(a.folder!==b.folder)return a.folder.localeCompare(b.folder,"ko");const x=Number(a.num),y=Number(b.num);if(Number.isFinite(x)&&Number.isFinite(y)&&x!==y)return x-y;return a.file.localeCompare(b.file,"ko"));}
+function itemSort(a,b){if(a.folder!==b.folder)return a.folder.localeCompare(b.folder,"ko");const x=Number(a.num),y=Number(b.num);if(Number.isFinite(x)&&Number.isFinite(y)&&x!==y)return x-y;return a.file.localeCompare(b.file,"ko");}
 function createTab(label,count,active,callback){
  const b=document.createElement("button");b.type="button";b.className="tab"+(active?" active":"");b.setAttribute("aria-pressed",String(active));b.textContent=label;
  const small=document.createElement("b");small.textContent=count+"장";b.appendChild(small);b.addEventListener("click",callback);return b;
