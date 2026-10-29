@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="히키코모리 갸루여친 윤채린 이미지 갤러리 — 001~095 번호·장면명 검색, 전체 이미지 확대 보기, GitHub 자동 갱신.">
+<meta name="description" content="히키코모리 갸루여친 윤채린 이미지 갤러리 — 001~156 번호·장면명 검색, 전체 이미지 확대 보기, GitHub 자동 갱신.">
 <title>히키코모리 갸루여친 · 윤채린 이미지 갤러리</title>
 <style>
 :root{color-scheme:dark;--bg:#100e17;--panel:#1c1925;--card:#231e2d;--line:#3c3348;--text:#f9f3fb;--muted:#b7a9c3;--accent:#ffa8d6;--accent2:#c7aafa}
@@ -52,12 +52,12 @@ dialog::backdrop{background:#000e;backdrop-filter:blur(6px)}.viewer{display:flex
 <div class="shell">
 <header>
 <div class="kicker">RINGNO / A / A15 · CHARACTER IMAGE ARCHIVE</div>
-<div class="hero"><div><h1>히키코모리 갸루여친 <em>이미지 갤러리</em></h1><p class="subtitle">윤채린 · 전체 장면 미리보기<br>실제 등록된 파일과 사용자 지정 매핑표를 연결해 번호·상황명·파일명으로 검색할 수 있어요.</p></div><div class="total"><strong id="total">95</strong><small>등록된 이미지</small></div></div>
-<div class="summary" id="summary"><span>윤채린 95장</span><span>감정 10장</span><span>일상·행동 42장</span><span>성인 상황 43장</span></div>
+<div class="hero"><div><h1>히키코모리 갸루여친 <em>이미지 갤러리</em></h1><p class="subtitle">윤채린 · 전체 장면 미리보기<br>실제 등록된 파일과 사용자 지정 매핑표를 연결해 번호·상황명·파일명으로 검색할 수 있어요.</p></div><div class="total"><strong id="total">156</strong><small>등록된 이미지</small></div></div>
+<div class="summary" id="summary"><span>윤채린 156장</span><span>감정 10장</span><span>일상·행동 42장</span><span>성인 상황 104장</span></div>
 </header>
 <div class="toolbar"><nav class="folderTabs" id="folders" aria-label="캐릭터 또는 폴더 선택"></nav><div class="controls"><label class="search">⌕ <input id="search" type="search" placeholder="번호 · 장면명 · 파일명 검색" autocomplete="off"></label><button class="ctl" id="refresh" type="button">↻ 새로고침</button></div></div>
 <div class="categories"><span>장면 분류</span><nav id="categories" class="catTabs" aria-label="장면 유형 선택"></nav></div>
-<div class="meta"><span>검색 결과 <strong id="shown">95</strong>장</span><span>클릭 확대 · ← → 이동 · Esc 닫기</span><span id="sync" role="status" aria-live="polite">GitHub 최신 이미지 목록 확인 중…</span></div>
+<div class="meta"><span>검색 결과 <strong id="shown">156</strong>장</span><span>클릭 확대 · ← → 이동 · Esc 닫기</span><span id="sync" role="status" aria-live="polite">GitHub 최신 이미지 목록 확인 중…</span></div>
 <main id="gallery"></main><div class="empty" id="empty" hidden>일치하는 이미지가 없어요. 다른 번호나 장면명을 검색해 주세요.</div>
 <footer>Ringno/A/a15 · 페이지 열 때, 다시 활성화할 때, 10분마다 GitHub 최신 이미지 목록을 확인합니다. 새 이미지가 추가되면 자동 반영됩니다. 매핑표에 없는 추가 이미지도 누락하지 않습니다.</footer>
 </div>
@@ -71,13 +71,13 @@ dialog::backdrop{background:#000e;backdrop-filter:blur(6px)}.viewer{display:flex
 const ROOT="a15",OWNER="Ringno",REPO="A";
 const API="https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/";
 const RAW="https://raw.githubusercontent.com/"+OWNER+"/"+REPO+"/main/";
-const SPEC="001=기쁨|002=부끄러움|003=짜증화남|004=불안|005=고민|006=슬픔|007=의심|008=귀찮음|009=삐짐질투|010=졸림|011=기상|012=침대에서휴대폰|013=소파에서뒹굴기|014=게임하기|015=게임하다짜증|016=게임하다승리|017=담배물고게임|018=소파에서흡연|019=창가에서흡연|020=라이터찾기|021=재떨이앞멍때리기|022=배달앱보기|023=배달기다리기|024=배달음식받기|025=배달음식먹기|026=야식먹기|027=과자먹기|028=탄산마시기|029=맥주마시기|030=tv보기|031=옷빌려입기|032=화장하기|033=셀카찍기|034=온라인쇼핑|035=택배뜯기|036=옷벗기|037=침대에서낮잠|038=소파에서잠듦|039=샤워준비|040=간단요리|041=요리실패|042=설거지하기|043=청소하다귀찮아함|044=침대위응석|045=귀가기다리기|046=품에안기려는표정|047=장난|048=유혹|049=취함|050=메이드|051=바니걸|052=샤워|053=보지벌리기|054=엉덩이내밀기|055=도게자|056=자위|057=정상위|058=정상위절정|059=카우걸|060=카우걸절정|061=후배위|062=후배위절정|063=파일드라이버|064=들박|065=들박절정|066=배면들박|067=배면들박절정|068=입위|069=입위절정|070=측위|071=측위절정|072=좌위|073=좌위절정|074=펠라|075=펠라사정|076=딥스로트|077=딥스로트사정|078=페이스시팅|079=핸드잡|080=핸드잡사정|081=파이즈리|082=파이즈리사정|083=풋잡|084=풋잡사정|085=엉덩이만지기|086=림잡|087=스팽킹|088=스팽킹|089=가슴만지기|090=가슴빨기|091=핑거링|092=관계중전화|093=키스|094=겨드랑이핥기|095=아마존";
+const SPEC="001=기쁨|002=부끄러움|003=짜증화남|004=불안|005=고민|006=슬픔|007=의심|008=귀찮음|009=삐짐질투|010=졸림|011=기상|012=침대에서휴대폰|013=소파에서뒹굴기|014=게임하기|015=게임하다짜증|016=게임하다승리|017=담배물고게임|018=소파에서흡연|019=창가에서흡연|020=라이터찾기|021=재떨이앞멍때리기|022=배달앱보기|023=배달기다리기|024=배달음식받기|025=배달음식먹기|026=야식먹기|027=과자먹기|028=탄산마시기|029=맥주마시기|030=tv보기|031=옷빌려입기|032=화장하기|033=셀카찍기|034=온라인쇼핑|035=택배뜯기|036=옷벗기|037=침대에서낮잠|038=소파에서잠듦|039=샤워준비|040=간단요리|041=요리실패|042=설거지하기|043=청소하다귀찮아함|044=침대위응석|045=귀가기다리기|046=품에안기려는표정|047=장난|048=유혹|049=취함|050=메이드|051=바니걸|052=샤워|053=보지벌리기|054=엉덩이내밀기|055=도게자|056=자위|057=정상위|058=정상위절정|059=카우걸|060=카우걸절정|061=후배위|062=후배위절정|063=파일드라이버|064=들박|065=들박절정|066=배면들박|067=배면들박절정|068=입위|069=입위절정|070=측위|071=측위절정|072=좌위|073=좌위절정|074=펠라|075=펠라사정|076=딥스로트|077=딥스로트사정|078=페이스시팅|079=핸드잡|080=핸드잡사정|081=파이즈리|082=파이즈리사정|083=풋잡|084=풋잡사정|085=박아달라고하기|086=림잡|087=스팽킹|088=스팽킹|089=가슴만지기|090=가슴빨기|091=핑거링|092=관계중전화|093=키스|094=겨드랑이핥기|095=아마존|096=가슴만지기|097=뒤에서목끌어안기|098=껴안기|099=키스|100=엉덩이로자극하기|101=자지만지기|102=가슴보지만지기|103=허벅지애무|104=무릎베개|105=소파에서둘러타기|106=안아올려지기|107=냉장고앞뒤에서껴안기|108=주방에서허리잡기|109=뒤에서가슴만지기|110=청소하다엉덩이만지기|111=셔츠만입고유혹|112=가슴모아유혹|113=손가락빨며유혹|114=누워서유혹|115=허벅지만지기|116=겨드랑이보여주기|117=배만지기|118=뺨아플까|119=가슴밀착|120=어깨물기|121=팬티위로문지르기|122=가지마|123=문앞에서키스|124=같이폰보기|125=셀카찍으며가슴만지기|126=자신가슴에손끌어오기|127=이불속손잡기|128=맥주마시며배만지기|129=입으로얼음|130=초콜릿시험손가락|131=겨드랑이냄새맡기|132=현맛왕|133=발에얼굴대기|134=허벅지에키스|135=거울셀카|136=노브라런제리|137=물흘고젖은모습|138=자지위에앉아비비기|139=마주앉아밀착|140=팬티당겨서자지문지르기|141=게임중엉덩이로자지비비기|142=통화중조용히|143=껴우려고하는딜도|144=이불덮고소폰|145=촬영하며|146=눈가리고|147=턱잡고키스|148=발키시키기|149=유두자극|150=결혼|151=임신기승위|152=임신후배위|153=임신정상위|154=임신|155=임신상태결혼|156=등태기보여주기";
 const EXT=/\.(png|jpg|jpeg|gif|webp|avif)$/i;
 const $=id=>document.getElementById(id);
 const labels=Object.fromEntries(SPEC.split("|").map(s=>s.split(/=(.*)/s).slice(0,2)));
 const pad=n=>String(n).padStart(3,"0");
 function category(item){
- if(item.folder==="윤채린"){const n=Number(item.num);if(n>=1&&n<=10)return "감정";if(n>=11&&n<=52)return "일상·행동";if(n>=53&&n<=95)return "성인 상황";}
+ if(item.folder==="윤채린"){const n=Number(item.num);if(n>=1&&n<=10)return "감정";if(n>=11&&n<=52)return "일상·행동";if(n>=53&&n<=156)return "성인 상황";}
  return "추가 이미지";
 }
 function makeItem(folder,file){
@@ -91,7 +91,7 @@ function makeItem(folder,file){
  return item;
 }
 function fileURL(item){return RAW+[ROOT,...item.folder.split("/"),item.file].map(encodeURIComponent).join("/");}
-function initialSnapshot(){return Array.from({length:95},(_,i)=>makeItem("윤채린",pad(i+1)+".png"));}
+function initialSnapshot(){return Array.from({length:156},(_,i)=>makeItem("윤채린",pad(i+1)+".png"));}
 let data=initialSnapshot(),visible=[],selectedFolder="전체",selectedCategory="전체",query="",index=0,syncing=false;
 const categories=["전체","감정","일상·행동","성인 상황","추가 이미지"];
 function folderNames(){return [...new Set(data.map(x=>x.folder))].sort((a,b)=>a==="윤채린"?-1:b==="윤채린"?1:a.localeCompare(b,"ko"));}
