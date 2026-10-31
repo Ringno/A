@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><title>한서아 | 전체 이미지 갤러리</title>
+<meta name="description" content="한서아 이미지 전체 미리보기 · 장면명/번호 검색 · 자동 갱신">
+<style>
+:root{color-scheme:dark;--bg:#100f17;--panel:#1b1926;--line:#393044;--text:#fff3fa;--muted:#c5b7c8;--pink:#ff9ac7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 0 0,#302137,#100f17 65%);color:var(--text);font-family:system-ui,'Malgun Gothic',sans-serif}
+header{max-width:1240px;margin:auto;padding:38px 20px 19px}h1{font-size:clamp(26px,5vw,42px);margin:0 0 10px}p{color:var(--muted);margin:5px 0}
+a{color:var(--pink)}.bar{max-width:1240px;margin:auto;padding:0 20px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input{flex:1;min-width:190px;background:#252031;color:white;border:1px solid #625169;border-radius:12px;padding:14px;font:inherit}
+button{cursor:pointer;background:#33283a;color:white;border:1px solid #625169;border-radius:10px;padding:10px 14px;font:inherit}button:hover{border-color:var(--pink)}
+.chips{max-width:1240px;padding:0 20px 18px;margin:auto;display:flex;gap:8px;flex-wrap:wrap}.chip.active{background:#6f375c;border-color:var(--pink)}
+main{max-width:1240px;padding:0 20px 60px;margin:auto}.group{margin-top:26px}.group h2{font-size:20px;border-bottom:1px solid var(--line);padding-bottom:12px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;text-align:left;padding:0;min-width:0}.tile:hover{border-color:var(--pink);transform:translateY(-2px)}
+.tile img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#2b2532}.tile .meta{display:block;padding:10px 11px}.tile b{color:var(--pink);font-size:13px}.tile span.name{display:block;overflow-wrap:anywhere;margin-top:4px;font-size:14px}
+.empty{padding:40px 0;color:var(--muted)}
+dialog{padding:0;border:0;background:#09080deF;color:white;max-width:none;max-height:none;width:100vw;height:100dvh;position:fixed;inset:0}dialog::backdrop{background:#000e}
+.viewer{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:15px 55px}.viewer img{display:block;max-width:100%;max-height:calc(100dvh - 155px);object-fit:contain}.vtop{position:absolute;top:15px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;gap:10px}.nav{position:absolute;top:50%;transform:translateY(-50%);font-size:26px;padding:12px}.prev{left:5px}.next{right:5px}.caption{text-align:center;overflow-wrap:anywhere}.muted{color:var(--muted);font-size:13px}
+@media(max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.viewer{padding:55px 35px}.nav{padding:7px;font-size:20px}.tile .meta{padding:8px}header{padding-top:25px}}
+</style></head><body>
+<header><h1>한서아 <span style="color:var(--pink)">이미지 갤러리</span></h1><p>선배님, 어제 어디 갔어요? · 전체 장면 이미지 미리보기</p><p id="summary">이미지 불러오는 중…</p></header>
+<div class="bar"><input id="search" type="search" placeholder="번호·장면명·파일명 검색 (예: 006, 질투)" aria-label="이미지 검색"><button id="reload">새로고침</button><span id="status" class="muted" aria-live="polite"></span></div>
+<div class="chips" id="chips"></div><main id="main"></main>
+<dialog id="lightbox"><div class="vtop"><strong id="viewerTitle">한서아</strong><button id="close" aria-label="닫기">✕ 닫기</button></div><button class="nav prev" id="prev" aria-label="이전 이미지">‹</button><div class="viewer"><img id="large" alt=""><div class="caption" id="caption"></div><span class="muted">← → 키 또는 좌우 스와이프 · Esc 닫기</span></div><button class="nav next" id="next" aria-label="다음 이미지">›</button></dialog>
+<script>
+'use strict';
+const owner='Ringno', repo='A', root='a16', branch='main';
+const labels=["무표정응시","옅은미소","내려다봄","고개갸웃","눈웃음","질투","삐침","입술깨물기","눌림","홍조","울면서웃음","반쯤감은눈","이빨웃음","한숨","등돌림","팬티냄새","옷장뒤지기","침대에눕기","폰뒤지기","키스","억지로몸을끌어올림","잠자는대책없음","찾아옴","무릎에앉기","손목잡기","끌려사진","사위","보지벌리기","안면이내밀기","도게자","자위","정상위","정상위절정","카우걸","카우걸절정","후배위","후배위절정","파일드라이버","들박","들박절정","배면들박","배면들박절정","입위","입위절정","죽위","죽위절정","좌위","좌위절정","꽈라","꽈라사정","딥스로트","딥스로트사정","페이스시팅","핸드잡","핸드잡사정","파이즈리","파이즈리사정","풋잡","풋잡사정","얼면이맛자기","립잡","스팽킹","스팽킹","가슴만지기","가슴빨기","핑거링","핑거링","키스","겨드랑이핥기","아마존"];
+const mapping=Object.fromEntries(labels.map((name,i)=>[String(i+1).padStart(3,'0'),name]));
+const groups=[{id:'all',title:'전체'},{id:'표정·감정',title:'표정·감정'},{id:'일상·행동',title:'일상·행동'},{id:'성인 상황',title:'성인 상황'}];
+const category=n=>n<=15?'표정·감정':n<=30?'일상·행동':'성인 상황';
+const base='https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+branch+'/'+root+'/';
+const api='https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+root;
+const $=s=>document.querySelector(s);
+let items=[],visible=[],active='all',current=0;
+function fallback(){return labels.map((name,i)=>{const id=String(i+1).padStart(3,'0');return {name:id+'.png',path:root+'/한서아/'+id+'.png',num:id,title:name,group:category(i+1),folder:'한서아',url:base+encodeURIComponent('한서아')+'/'+id+'.png'};});}
+async function getJSON(url){let res=await fetch(url,{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});if(!res.ok)throw Error('GitHub API '+res.status);return await res.json();}
+async function load(){
+ $('#status').textContent='최신 목록 확인 중…';
+ try{
+  const dirs=await getJSON(api+'?ref='+branch+'&t='+Date.now());
+  const entries=Array.isArray(dirs)?dirs:[];let out=[];
+  for(const entry of entries){
+   if(entry.type==='dir'){
+    const fs=await getJSON(api+'/'+entry.path.slice(root.length+1).split('/').map(encodeURIComponent).join('/')+'?ref='+branch+'&t='+Date.now());
+    for(const f of fs){if(f.type==='file'&&/\.(png|jpg|jpeg|webp|gif|avif)$/i.test(f.name)){const id=(f.name.match(/^(\d{3})/)||[])[1]||'';const n=Number(id);out.push({name:f.name,path:f.path,num:id,title:mapping[id]||f.name.replace(/\.[^.]+$/,''),group:n?category(n):'기타',folder:entry.name,url:f.download_url||base+f.path.slice(root.length+1).split('/').map(encodeURIComponent).join('/')});}}
+   } else if(entry.type==='file'&&/\.(png|jpg|jpeg|webp|gif|avif)$/i.test(entry.name)){const id=(entry.name.match(/^(\d{3})/)||[])[1]||'';out.push({name:entry.name,path:entry.path,num:id,title:mapping[id]||entry.name,group:'기타',folder:'루트',url:entry.download_url||base+encodeURIComponent(entry.name)});}
+  }
+  if(!out.length)throw Error('이미지 없음');
+  items=out.sort((a,b)=>a.folder.localeCompare(b.folder,'ko')||a.name.localeCompare(b.name,'ko',{numeric:true}));
+  $('#status').textContent='GitHub 최신 목록 반영';
+ }catch(err){if(!items.length)items=fallback();$('#status').textContent='API 연결 지연 · 저장된 70장 기본 목록 표시';console.warn(err);}
+ render();
+}
+function render(){
+ const q=$('#search').value.trim().toLowerCase();
+ visible=items.filter(x=>(active==='all'||x.group===active)&&(x.num+' '+x.title+' '+x.name+' '+x.folder).toLowerCase().includes(q));
+ $('#summary').textContent='전체 '+items.length+'장 · 캐릭터 '+new Set(items.map(x=>x.folder)).size+'개 폴더 · 현재 '+visible.length+'장 표시';
+ const chips=$('#chips');chips.replaceChildren();
+ for(const g of groups){const b=document.createElement('button');b.className='chip'+(active===g.id?' active':'');b.textContent=g.title+' ('+(g.id==='all'?items.length:items.filter(x=>x.group===g.id).length)+')';b.onclick=()=>{active=g.id;render()};chips.append(b);}
+ const main=$('#main');main.replaceChildren();
+ if(!visible.length){const p=document.createElement('p');p.className='empty';p.textContent='검색 결과가 없습니다.';main.append(p);return;}
+ const folders=[...new Set(visible.map(x=>x.folder))];
+ for(const folder of folders){const group=document.createElement('section');group.className='group';const subset=visible.filter(x=>x.folder===folder);const h=document.createElement('h2');h.textContent=folder+' · '+subset.length+'장';group.append(h);const grid=document.createElement('div');grid.className='grid';
+  for(const x of subset){const b=document.createElement('button');b.className='tile';b.type='button';const img=document.createElement('img');img.loading='lazy';img.src=x.url;img.alt=x.num+' '+x.title;const meta=document.createElement('span');meta.className='meta';const num=document.createElement('b');num.textContent=x.num||x.name;const title=document.createElement('span');title.className='name';title.textContent=x.title;meta.append(num,title);b.append(img,meta);b.onclick=()=>openViewer(visible.indexOf(x));grid.append(b);}
+  group.append(grid);main.append(group);
+ }
+}
+function openViewer(i){current=i;show();$('#lightbox').showModal();}
+function show(){if(!visible.length)return;current=(current+visible.length)%visible.length;const x=visible[current];$('#large').src=x.url;$('#large').alt=x.title;$('#viewerTitle').textContent=x.folder+' · '+x.num;$('#caption').textContent=x.num+' = '+x.title+' ('+(current+1)+' / '+visible.length+')';}
+function move(d){current+=d;show();}
+$('#search').addEventListener('input',render);$('#reload').onclick=load;
+$('#close').onclick=()=>$('#lightbox').close();$('#prev').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
+$('#lightbox').addEventListener('click',e=>{if(e.target===$('#lightbox'))$('#lightbox').close();});
+document.addEventListener('keydown',e=>{if(!$('#lightbox').open)return;if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);});
+let startX;$('#large').addEventListener('touchstart',e=>startX=e.touches[0].clientX,{passive:true});$('#large').addEventListener('touchend',e=>{if(startX===undefined)return;const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40)move(dx<0?1:-1);startX=undefined;},{passive:true});
+items=fallback();render();load();document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});setInterval(()=>{if(!document.hidden)load();},300000);
+</script></body></html>
