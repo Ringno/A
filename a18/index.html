@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#15121d">
+<meta name="description" content="Ringno/A a18 모모·리제 이미지 전체 미리보기, 캐릭터별 분류, 번호·장면명 검색 및 확대 보기">
+<title>A18 · 모모 & 리제 이미지 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#121019;--panel:#1f1a29;--panel2:#292235;--border:#4a3a58;--text:#f9f4fb;--muted:#b8abbe;--accent:#ed95c4;--accent2:#a892f5;font-family:system-ui,-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
+header{position:sticky;top:0;z-index:5;border-bottom:1px solid var(--border);background:#17121feb;backdrop-filter:blur(16px)}
+.head-inner{max-width:1480px;margin:auto;padding:18px 20px 15px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.eyebrow{font-weight:700;color:var(--accent);font-size:12px;letter-spacing:.2em}
+h1{font-size:clamp(22px,3vw,34px);line-height:1.15;margin:5px 0 6px;letter-spacing:-.04em}
+.sub{color:var(--muted);margin:0;font-size:13px}.actions{display:flex;gap:8px;align-items:center}
+button,select,input{background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:11px;padding:10px 12px}
+button:hover{border-color:var(--accent)}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.55;cursor:wait}
+.tools{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}.tools input{flex:1;min-width:170px}.tools select{min-width:120px}
+main{max-width:1480px;margin:auto;padding:20px 20px 84px}
+.summary{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px}
+.stats{font-size:14px;color:var(--muted)}.stats strong{font-weight:800;color:var(--text)}
+.refresh-status{font-size:12px;color:var(--muted)}.refresh-status.warn{color:#f5bf83}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}.tabs button[aria-pressed=true]{background:#57344f;border-color:#d885b9;color:white}
+.section{margin:25px 0 13px;padding-bottom:11px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline}
+.section h2{font-size:20px;margin:0}.section small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px}
+.tile{min-width:0;display:block;text-align:left;background:var(--panel);padding:0;overflow:hidden;border-radius:13px;border:1px solid #483c52;transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-2px);border-color:var(--accent)}
+.thumb{width:100%;aspect-ratio:3/4;display:block;object-fit:cover;background:#312637}
+.caption{padding:9px 10px 11px;min-width:0}.num{font-size:12px;color:var(--accent);font-weight:750;letter-spacing:.04em}
+.scene{font-size:14px;font-weight:650;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file{font-size:10px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{text-align:center;padding:70px 15px;color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin-top:28px}
+.viewer{position:fixed;inset:0;z-index:20;background:rgba(7,5,11,.97);display:none;align-items:center;justify-content:center;flex-direction:column;padding:12px}
+.viewer.show{display:flex}.viewer img{display:block;max-width:calc(100vw - 120px);max-height:calc(100dvh - 130px);object-fit:contain;border-radius:3px}
+.viewer .vtitle{margin-top:10px;text-align:center;font-size:15px;font-weight:650}
+.viewer .vfile{margin-top:3px;text-align:center;color:var(--muted);font-size:12px;overflow-wrap:anywhere}
+.vbtn{position:absolute;border-radius:50%;background:#292333dd;font-size:22px;padding:6px;width:44px;height:44px}
+.close{top:14px;right:15px}.prev{top:50%;left:13px}.next{top:50%;right:13px}body.lock{overflow:hidden}
+@media(min-width:1100px){.grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(max-width:600px){.head-inner{padding:14px 12px}.head-inner h1{font-size:23px}.top{align-items:center}.actions button{font-size:12px;padding:9px}.sub{font-size:11px}.tools{margin-top:12px}.tools input{width:100%}.tools select{flex:1}main{padding:12px 11px 70px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.section h2{font-size:17px}.viewer img{max-width:calc(100vw - 75px);max-height:calc(100dvh - 150px)}.vbtn{width:34px;height:42px;font-size:19px;padding:4px}.prev{left:1px}.next{right:1px}.close{right:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tile{transition:none}}
+</style>
+</head>
+<body>
+<header>
+ <div class="head-inner">
+  <div class="top">
+   <div><span class="eyebrow">RINGNO / A18</span><h1>모모 & 리제 <span style="color:var(--accent)">이미지 갤러리</span></h1><p class="sub">전체 이미지 미리보기 · 번호 및 장면명 매핑 · 모바일 지원</p></div>
+   <div class="actions"><button id="reload" type="button" title="GitHub 최신 파일 목록 다시 확인">↻ 새로고침</button></div>
+  </div>
+  <div class="tools">
+   <input type="search" id="search" placeholder="번호 · 장면명 · 파일명 검색 (예: 005, 부끄러움)" aria-label="이미지 검색" autocomplete="off">
+   <select id="order" aria-label="정렬"><option value="asc">번호 오름차순</option><option value="desc">번호 내림차순</option></select>
+  </div>
+ </div>
+</header>
+<main>
+ <div class="summary"><div class="stats" id="stats">목록 준비 중…</div><div class="refresh-status" id="status" aria-live="polite">GitHub에서 최신 파일 확인 중…</div></div>
+ <nav class="tabs" id="tabs" aria-label="캐릭터 선택"></nav>
+ <div id="gallery"></div>
+ <p class="hint">이미지 클릭: 확대 · 좌/우 화살표: 이동 · ESC: 닫기 · 터치 화면에서는 좌우 스와이프 · GitHub 최신 목록 5분마다 자동 확인</p>
+</main>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+ <button type="button" id="close" class="vbtn close" aria-label="닫기">×</button>
+ <button type="button" id="prev" class="vbtn prev" aria-label="이전 이미지">‹</button>
+ <img id="large" alt="">
+ <button type="button" id="next" class="vbtn next" aria-label="다음 이미지">›</button>
+ <div class="vtitle" id="vtitle"></div><div class="vfile" id="vfile"></div>
+</div>
+<script>
+(()=>{'use strict';
+const owner='Ringno',repo='A',branch='main',root='a18';
+const names=["기본","짜증,화남","귀찮음","기쁨","부끄러움","불안","고민","슬픔","의심","미안함","설렘","장난","삐짐,질투","졸림","유혹","식사","잠자기","취함","전화,문자","펠라유도","팬티보여주기","손이끌어가슴","콘돔입에물고","바지벗기기","입으로팬티물기","팬티벗기","옷위자지만지기","쪼그려앉아서v","씻겨주기","발핥기","꼭지당기기","엉덩이내밀기","도게자","자위,보지벌리기","정상위","정상위절정","카우걸","카우걸절정","후배위","후배위절정","파일드라이버","들박","들박절정","배면들박","배면들박절정","입위","입위절정","측위","측위절정","좌위","좌위절정","펠라","펠라사정","딥스로트","딥스로트사정","페이스시팅","리버스페이스시팅","핸드잡","핸드잡사정","파이즈리","파이즈리사정","풋잡","풋잡사정","엉덩이만지기","림잡","림잡사정","림잡파이즈리","스팽킹","스팽킹","가슴만지기","가슴빨기","핑거링","키스","겨드랑이핥기","아마존","커닐링구스","정액입에머금음","자지핥기","69자세","수유대딸","배빵","여자머리채","여자싸대기","머리채잡고후배위","관계중전화","펠라중통화","겨드랑이섹스","유두에페니스"];
+const initialGroups=['모모','리제'];
+const imagePattern=/\.(png|jpe?g|webp|gif|avif)$/i;
+const $=id=>document.getElementById(id);
+const encodePath=p=>p.split('/').map(encodeURIComponent).join('/');
+const imageUrl=p=>'https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+branch+'/'+encodePath(p);
+const numOf=file=>{const m=/^(\d{1,4})(?=[_.-]|$)/.exec(file);return m?Number(m[1]):null};
+const numText=n=>n==null?'—':String(n).padStart(3,'0');
+const labelOf=file=>{const n=numOf(file);if(n!=null && n>=1 && n<=names.length)return names[n-1];return file.replace(/\.[^.]+$/,'').replace(/^\d{1,4}[_-]?/,'')||file};
+const asItem=path=>{const parts=path.split('/');const file=parts.pop();const group=parts.slice(1).join(' / ')||'기타';return {path,file,group,num:numOf(file),label:labelOf(file),url:imageUrl(path)}};
+const snapshot=()=>initialGroups.flatMap(group=>names.map((label,i)=>asItem(root+'/'+group+'/'+numText(i+1)+'_'+label+'.png')));
+let items=snapshot(),selected='전체',visible=[],activeIndex=-1,lastRefresh=0,fetching=false;
+function groupCounts(){const map=new Map();for(const f of items)map.set(f.group,(map.get(f.group)||0)+1);return [...map].sort((a,b)=>{const ai=initialGroups.indexOf(a[0]),bi=initialGroups.indexOf(b[0]);return (ai<0?999:ai)-(bi<0?999)||a[0].localeCompare(b[0],'ko')})}
+function renderTabs(){const nav=$('tabs');nav.replaceChildren();const options=[['전체',items.length],...groupCounts()];if(selected!=='전체'&&!options.some(x=>x[0]===selected))selected='전체';for(const [label,total] of options){const btn=document.createElement('button');btn.type='button';btn.textContent=label+' · '+total+'장';btn.setAttribute('aria-pressed',String(selected===label));btn.addEventListener('click',()=>{selected=label;render()});nav.append(btn)}}
+function render(){renderTabs();const q=$('search').value.trim().toLocaleLowerCase('ko');const reverse=$('order').value==='desc';visible=items.filter(f=>(selected==='전체'||selected===f.group)&&(!q||[f.group,f.label,f.file,numText(f.num),String(f.num==null?'':f.num)].some(v=>v.toLocaleLowerCase('ko').includes(q)))).sort((a,b)=>{
+ const ga=initialGroups.indexOf(a.group),gb=initialGroups.indexOf(b.group);
+ const g=(ga<0?999:ga)-(gb<0?999:gb)||a.group.localeCompare(b.group,'ko');
+ const n=(a.num??99999)-(b.num??99999);
+ return g||(reverse?-n:n)||a.file.localeCompare(b.file,'ko')
+});
+$('stats').textContent='전체 '+items.length.toLocaleString()+'장 · '+groupCounts().length+'개 폴더 · 현재 '+visible.length.toLocaleString()+'장';
+const gallery=$('gallery');gallery.replaceChildren();if(!visible.length){const p=document.createElement('p');p.className='empty';p.textContent='검색 결과가 없습니다.';gallery.append(p);return}
+const groups=new Map();visible.forEach((f,i)=>{if(!groups.has(f.group))groups.set(f.group,[]);groups.get(f.group).push({f,i})});
+for(const [group,entries] of groups){const section=document.createElement('section');const head=document.createElement('div');head.className='section';const h=document.createElement('h2');h.textContent=group;const small=document.createElement('small');small.textContent=entries.length+'장';head.append(h,small);section.append(head);const grid=document.createElement('div');grid.className='grid';
+for(const {f,i} of entries){const tile=document.createElement('button');tile.className='tile';tile.type='button';tile.title=f.group+' / '+f.file+' / '+f.label;const img=document.createElement('img');img.className='thumb';img.src=f.url;img.alt=f.group+' '+numText(f.num)+' '+f.label;img.loading='lazy';img.decoding='async';const cap=document.createElement('div');cap.className='caption';const num=document.createElement('div');num.className='num';num.textContent=numText(f.num);const scene=document.createElement('div');scene.className='scene';scene.textContent=f.label;const file=document.createElement('div');file.className='file';file.textContent=f.file;cap.append(num,scene,file);tile.append(img,cap);tile.addEventListener('click',()=>show(i));grid.append(tile)}
+section.append(grid);gallery.append(section)}
+}
+function show(i){if(!visible.length)return;activeIndex=(i+visible.length)%visible.length;const f=visible[activeIndex];$('large').src=f.url;$('large').alt=f.group+' '+f.label;$('vtitle').textContent=f.group+' · '+numText(f.num)+' · '+f.label;$('vfile').textContent=f.file+'  ('+(activeIndex+1)+' / '+visible.length+')';$('viewer').classList.add('show');document.body.classList.add('lock')}
+function close(){$('viewer').classList.remove('show');document.body.classList.remove('lock');$('large').removeAttribute('src')}
+async function listRemote(){const output=[];const pending=[root];let traversed=0;
+while(pending.length){const path=pending.shift();if(++traversed>150)throw new Error('하위 폴더가 너무 많습니다');const api='https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+encodePath(path)+'?ref='+branch+'&_='+Date.now();const resp=await fetch(api,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});if(!resp.ok)throw new Error('GitHub API '+resp.status);const entries=await resp.json();if(!Array.isArray(entries))throw new Error('디렉터리 목록 확인 실패');for(const entry of entries){if(entry.type==='dir')pending.push(entry.path);else if(entry.type==='file'&&imagePattern.test(entry.name))output.push(asItem(entry.path))}}
+return output}
+async function refresh(){if(fetching)return;fetching=true;$('reload').disabled=true;$('status').classList.remove('warn');$('status').textContent='GitHub 최신 파일 확인 중…';
+try{const incoming=await listRemote();items=incoming;lastRefresh=Date.now();render();$('status').textContent='최신 목록 반영 · '+new Date(lastRefresh).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}
+catch(err){lastRefresh=Date.now();$('status').classList.add('warn');$('status').textContent='GitHub 조회 실패 · 기존 확인 목록 표시 중 (새로고침으로 재시도)';console.warn(err)}
+finally{fetching=false;$('reload').disabled=false}}
+$('search').addEventListener('input',render);$('order').addEventListener('change',render);$('reload').addEventListener('click',refresh);
+$('close').addEventListener('click',close);$('prev').addEventListener('click',()=>show(activeIndex-1));$('next').addEventListener('click',()=>show(activeIndex+1));$('viewer').addEventListener('click',e=>{if(e.target===$('viewer'))close()});
+document.addEventListener('keydown',e=>{if(!$('viewer').classList.contains('show'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(activeIndex-1);else if(e.key==='ArrowRight')show(activeIndex+1)});
+let startX=null;$('viewer').addEventListener('touchstart',e=>{startX=e.changedTouches[0].screenX},{passive:true});$('viewer').addEventListener('touchend',e=>{if(startX===null)return;const difference=e.changedTouches[0].screenX-startX;if(Math.abs(difference)>50)show(activeIndex+(difference<0?1:-1));startX=null},{passive:true});
+setInterval(()=>{if(Date.now()-lastRefresh>=300000)refresh()},300000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastRefresh>=300000)refresh()});
+render();refresh();
+})();
+</script>
+</body></html>
