@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>a19 전체 이미지 갤러리</title>
+<meta name="description" content="Ringno/A a19 전체 이미지 미리보기 갤러리">
+<style>
+:root{--bg:#0c0d10;--panel:#15171c;--panel2:#1b1e24;--line:#2a2e37;--text:#f5f6f8;--muted:#9ea5b1;--accent:#f0f2f6;--radius:16px}
+*{box-sizing:border-box}html{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif}
+body{margin:0;background:linear-gradient(180deg,#111319 0,#0c0d10 320px);min-height:100vh}
+button,input{font:inherit}.wrap{width:min(1500px,100%);margin:auto;padding:28px 22px 70px}
+header{display:flex;gap:18px;justify-content:space-between;align-items:end;flex-wrap:wrap;margin-bottom:20px}
+h1{font-size:clamp(26px,4vw,42px);margin:0 0 6px;letter-spacing:-.04em}.sub{color:var(--muted);font-size:14px}
+.total{font-size:14px;color:var(--muted)}.total strong{font-size:24px;color:var(--text);margin-right:4px}
+.toolbar{position:sticky;top:0;z-index:20;padding:12px 0;background:rgba(12,13,16,.88);backdrop-filter:blur(14px);margin-bottom:16px}
+.searchrow{display:flex;gap:10px}.search{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:13px 15px;border-radius:12px;outline:none}.search:focus{border-color:#697080}
+.refresh{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:0 16px;border-radius:12px;cursor:pointer;white-space:nowrap}
+.filters{display:flex;gap:8px;overflow:auto;padding:10px 1px 2px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:8px 12px;cursor:pointer;white-space:nowrap;font-size:13px}
+.chip.active{background:var(--accent);color:#111;border-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:14px 0 22px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px 13px}.stat b{display:block;font-size:13px;margin-bottom:3px}.stat span{font-size:12px;color:var(--muted)}
+.section{margin:26px 0 34px}.sectionHead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.sectionHead h2{font-size:20px;margin:0}.sectionHead span{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.18s transform,.18s border-color,.18s background}.card:hover{transform:translateY(-2px);border-color:#4b5260;background:var(--panel2)}
+.thumb{aspect-ratio:3/4;background:#090a0c;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.25s transform}.card:hover .thumb img{transform:scale(1.025)}
+.meta{padding:10px 11px 12px}.num{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}.label{font-size:14px;font-weight:700;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.file{font-size:11px;color:#747c89;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty,.loading{padding:60px 10px;text-align:center;color:var(--muted)}
+#lightbox{position:fixed;inset:0;z-index:100;display:none;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:18px}
+#lightbox.open{display:flex}.lbimg{max-width:min(92vw,1200px);max-height:82vh;object-fit:contain;border-radius:10px;box-shadow:0 20px 80px #000}
+.lbtop{position:absolute;left:18px;right:18px;top:16px;display:flex;justify-content:space-between;gap:12px;align-items:start}
+.lbtext{background:rgba(17,19,24,.78);backdrop-filter:blur(8px);border:1px solid #30343e;border-radius:12px;padding:9px 12px;max-width:min(80vw,700px)}
+.lbtitle{font-weight:800}.lbpath{font-size:12px;color:#aab0bb;margin-top:3px;word-break:break-all}
+.iconbtn,.navbtn{border:1px solid #353a44;background:rgba(20,22,27,.82);color:white;cursor:pointer}
+.iconbtn{width:42px;height:42px;border-radius:50%;font-size:22px}.navbtn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:60px;border-radius:13px;font-size:30px}.prev{left:18px}.next{right:18px}
+.counter{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:12px;color:#c5cad2;background:rgba(20,22,27,.82);border:1px solid #353a44;padding:7px 10px;border-radius:999px}
+footer{color:#707784;font-size:12px;text-align:center;margin-top:40px}
+@media(max-width:650px){.wrap{padding:20px 12px 54px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.meta{padding:8px 9px 10px}.label{font-size:13px}.navbtn{top:auto;bottom:14px;width:45px;height:45px;border-radius:50%}.prev{left:18px}.next{right:18px}.counter{bottom:21px}.lbimg{max-width:96vw;max-height:76vh}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><h1>a19 전체 이미지 갤러리</h1><div class="sub">캐릭터·하위 폴더별 미리보기 · 매핑명 검색 · 클릭 확대</div></div>
+  <div class="total"><strong id="totalCount">-</strong> images</div>
+</header>
+
+<div class="toolbar">
+  <div class="searchrow">
+    <input id="search" class="search" type="search" placeholder="번호 · 파일명 · 장면명 검색 (예: 153, 애원, 질투)">
+    <button id="refresh" class="refresh" type="button">새로고침</button>
+  </div>
+  <div id="filters" class="filters"></div>
+</div>
+
+<div id="stats" class="stats"></div>
+<div id="gallery"><div class="loading">GitHub에서 최신 이미지 목록을 불러오는 중…</div></div>
+<footer>Ringno/A · a19 · GitHub 최신 파일 목록 자동 반영</footer>
+</div>
+
+<div id="lightbox" aria-hidden="true">
+  <div class="lbtop">
+    <div class="lbtext"><div id="lbTitle" class="lbtitle"></div><div id="lbPath" class="lbpath"></div></div>
+    <button id="close" class="iconbtn" type="button" aria-label="닫기">×</button>
+  </div>
+  <button id="prev" class="navbtn prev" type="button" aria-label="이전">‹</button>
+  <img id="lbImg" class="lbimg" alt="">
+  <button id="next" class="navbtn next" type="button" aria-label="다음">›</button>
+  <div id="counter" class="counter"></div>
+</div>
+
+<script>
+const OWNER='Ringno',REPO='A',BRANCH='main',ROOT='a19/';
+const IMG_RE=/\.(png|jpe?g|webp|gif)$/i;
+
+const jiyuMap={
+'001':'기본','002':'짜증,화남','003':'귀찮음','004':'기쁨','005':'부끄러움,설렘','006':'불안,미안함','007':'고민','008':'슬픔','009':'의심','010':'장난','011':'삐짐,질투','012':'졸림','013':'유혹','014':'손이끌어가슴','015':'콘돔입에물고','016':'바지벗기기','017':'입으로팬티물기','018':'옷위자지만지기','019':'옷위엉덩이만지기','020':'옷위가슴만지기','021':'턱 잡기','022':'포옹','023':'옷입은상태키스','024':'전화,문자','025':'셀카찍기','026':'사진찍힘','027':'팬티보여주기',
+'090':'임테기보여주기','091':'임신','092':'결혼','093':'임신상태결혼',
+'100':'정상위','101':'정상위절정','102':'카우걸','103':'카우걸절정','104':'후배위','105':'후배위절정','106':'파일드라이버','107':'들박','108':'들박절정','109':'배면들박','110':'배면들박절정','111':'입위','112':'입위절정','113':'측위','114':'측위절정','115':'좌위','116':'좌위절정','117':'펠라','118':'펠라사정','119':'딥스로트','120':'딥스로트사정','121':'페이스시팅','122':'리버스페이스시팅','123':'핸드잡','124':'핸드잡사정','125':'파이즈리','126':'파이즈리사정','127':'풋잡','128':'풋잡사정','129':'엉덩이만지기','130':'림잡','131':'림잡사정','132':'림잡파이즈리','133':'스팽킹','134':'스팽킹','135':'가슴만지기','136':'가슴빨기','137':'핑거링','138':'키스','139':'겨드랑이핥기','140':'아마존','141':'커닐링구스','142':'정액입에머금음','143':'자지핥기','144':'69자세','145':'수유대딸','146':'여자머리채','147':'여자싸대기','148':'머리채잡고후배위','149':'관계중전화','150':'펠라중통화','151':'유두에페니스','152':'겨드랑이섹스','153':'애원','154':'콘돔정액범벅',
+'189':'발핥기','190':'꼭지당기기','191':'엉덩이내밀기','192':'도게자','193':'자위,보지벌리기','194':'팬티벗기','195':'샤워','196':'씻겨주기','197':'임신정상위','198':'임신기승위','199':'임신후배위',
+'214':'목줄','215':'목줄','223':'개목줄','224':'개목줄','225':'검은안대','228':'안대자위','229':'목줄당김','230':'목줄당김'
+};
+const taegyeomMap={'001':'기본','002':'짜증,화남','003':'귀찮음','007':'고민','009':'의심'};
+
+const folderOrder=['권태겸','지유/기본','지유/카페','지유/공원','지유/수영장','지유/해변','지유/바니걸'];
+let all=[], filtered=[], activeFolder='전체', current=-1;
+
+function folderOf(path){
+  const rel=path.slice(ROOT.length);
+  const parts=rel.split('/');
+  return parts[0]==='권태겸'?'권태겸':parts.slice(0,2).join('/');
+}
+function prettyFolder(f){return f==='권태겸'?'권태겸':f.replace('/',' · ')}
+function numberOf(name){return (name.match(/^(\d+)/)||[])[1]||name.replace(/\.[^.]+$/,'')}
+function labelFor(item){
+  const n=numberOf(item.name);
+  return item.folder==='권태겸'?(taegyeomMap[n]||'미매핑'):(jiyuMap[n]||'미매핑');
+}
+function natural(a,b){
+  return a.localeCompare(b,'ko',{numeric:true,sensitivity:'base'});
+}
+function rawUrl(path){
+  return 'https://raw.githubusercontent.com/'+OWNER+'/'+REPO+'/'+BRANCH+'/'+path.split('/').map(encodeURIComponent).join('/');
+}
+async function load(){
+  document.getElementById('gallery').innerHTML='<div class="loading">GitHub에서 최신 이미지 목록을 불러오는 중…</div>';
+  try{
+    const u='https://api.github.com/repos/'+OWNER+'/'+REPO+'/git/trees/'+BRANCH+'?recursive=1&_='+Date.now();
+    const res=await fetch(u,{cache:'no-store'});
+    if(!res.ok)throw new Error('GitHub API '+res.status);
+    const data=await res.json();
+    all=(data.tree||[])
+      .filter(x=>x.type==='blob'&&x.path.startsWith(ROOT)&&IMG_RE.test(x.path))
+      .map(x=>{const name=x.path.split('/').pop(),folder=folderOf(x.path);return{path:x.path,name,folder,num:numberOf(name)}})
+      .sort((a,b)=>(folderOrder.indexOf(a.folder)-folderOrder.indexOf(b.folder))||natural(a.name,b.name));
+    renderFilters();apply();
+  }catch(e){
+    document.getElementById('gallery').innerHTML='<div class="empty">목록을 불러오지 못했습니다.<br>'+String(e.message||e)+'</div>';
+  }
+}
+function counts(){
+  const m={};for(const x of all)m[x.folder]=(m[x.folder]||0)+1;return m;
+}
+function renderFilters(){
+  const c=counts(),folders=folderOrder.filter(f=>c[f]);
+  document.getElementById('totalCount').textContent=all.length.toLocaleString();
+  document.getElementById('stats').innerHTML=folders.map(f=>'<div class="stat"><b>'+prettyFolder(f)+'</b><span>'+c[f].toLocaleString()+'장</span></div>').join('');
+  document.getElementById('filters').innerHTML=['전체',...folders].map(f=>'<button class="chip '+(f===activeFolder?'active':'')+'" data-folder="'+f+'">'+(f==='전체'?'전체':prettyFolder(f))+(f==='전체'?' · '+all.length:' · '+c[f])+'</button>').join('');
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{activeFolder=b.dataset.folder;renderFilters();apply()});
+}
+function apply(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  filtered=all.filter(x=>{
+    if(activeFolder!=='전체'&&x.folder!==activeFolder)return false;
+    if(!q)return true;
+    const label=labelFor(x).toLowerCase();
+    return x.num.toLowerCase().includes(q)||x.name.toLowerCase().includes(q)||label.includes(q)||x.folder.toLowerCase().includes(q)||x.path.toLowerCase().includes(q);
+  });
+  renderGallery();
+}
+function renderGallery(){
+  const host=document.getElementById('gallery');
+  if(!filtered.length){host.innerHTML='<div class="empty">검색 결과가 없습니다.</div>';return}
+  const groups={};for(const x of filtered)(groups[x.folder]||(groups[x.folder]=[])).push(x);
+  host.innerHTML=folderOrder.filter(f=>groups[f]).map(f=>{
+    const cards=groups[f].map(x=>{
+      const i=filtered.indexOf(x),label=labelFor(x);
+      return '<article class="card" data-i="'+i+'"><div class="thumb"><img loading="lazy" decoding="async" src="'+rawUrl(x.path)+'" alt="'+label+'"></div><div class="meta"><div class="num">'+x.num+'</div><div class="label" title="'+label+'">'+label+'</div><div class="file">'+x.name+'</div></div></article>';
+    }).join('');
+    return '<section class="section"><div class="sectionHead"><h2>'+prettyFolder(f)+'</h2><span>'+groups[f].length+'장</span></div><div class="grid">'+cards+'</div></section>';
+  }).join('');
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openLB(Number(c.dataset.i)));
+}
+function openLB(i){
+  if(i<0||i>=filtered.length)return;current=i;const x=filtered[i],label=labelFor(x);
+  document.getElementById('lbImg').src=rawUrl(x.path);
+  document.getElementById('lbImg').alt=label;
+  document.getElementById('lbTitle').textContent=x.num+' · '+label;
+  document.getElementById('lbPath').textContent=x.path;
+  document.getElementById('counter').textContent=(i+1)+' / '+filtered.length;
+  document.getElementById('lightbox').classList.add('open');
+  document.getElementById('lightbox').setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lightbox').setAttribute('aria-hidden','true');document.body.style.overflow=''}
+function move(d){if(!filtered.length)return;openLB((current+d+filtered.length)%filtered.length)}
+document.getElementById('search').addEventListener('input',apply);
+document.getElementById('refresh').onclick=load;
+document.getElementById('close').onclick=closeLB;
+document.getElementById('prev').onclick=()=>move(-1);
+document.getElementById('next').onclick=()=>move(1);
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLB()});
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1)});
+let sx=0;document.getElementById('lightbox').addEventListener('touchstart',e=>sx=e.changedTouches[0].clientX,{passive:true});
+document.getElementById('lightbox').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>55)move(dx>0?-1:1)},{passive:true});
+load();
+</script>
+</body>
+</html>
