@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101218">
+<title>A20 · 윤서아 이미지 갤러리</title>
+<meta name="description" content="Ringno/A A20 윤서아 이미지 전체 미리보기 갤러리">
+<style>
+:root{color-scheme:dark;--bg:#0c0f14;--panel:#141922;--panel2:#1a202b;--line:#293241;--text:#f2f5fa;--muted:#9da8b8;--accent:#b8d3ff;--accent2:#d5e4ff;--radius:17px}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 75% -10%,#26364d 0,transparent 36%),linear-gradient(180deg,#10151e 0,#0c0f14 420px)}
+button,input{font:inherit}
+.wrap{width:min(1540px,100%);margin:auto;padding:30px 24px 72px}
+.hero{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.eyebrow{font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--accent);text-transform:uppercase;margin-bottom:9px}
+h1{font-size:clamp(29px,4vw,46px);line-height:1.05;letter-spacing:-.055em;margin:0}
+.subtitle{margin-top:10px;color:var(--muted);font-size:14px}
+.hero-mark{display:flex;align-items:center;gap:10px;border:1px solid #35445a;background:#151e2b;padding:12px 15px;border-radius:14px;color:#dce9ff;font-size:12px}
+.dot{width:8px;height:8px;border-radius:99px;background:#7fbcff;box-shadow:0 0 14px #7fbcff}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.stat{background:linear-gradient(145deg,#171e29,#121720);border:1px solid var(--line);border-radius:15px;padding:15px 16px}
+.stat-label{font-size:12px;color:var(--muted)}
+.stat-value{font-size:27px;font-weight:800;letter-spacing:-.04em;margin-top:5px;font-variant-numeric:tabular-nums}
+.stat-value small{font-size:12px;color:var(--muted);font-weight:600;margin-left:4px;letter-spacing:0}
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(12,15,20,.91);backdrop-filter:blur(16px);padding:12px 0 13px;margin-bottom:14px;border-bottom:1px solid rgba(65,78,98,.45)}
+.controls{display:flex;gap:10px}
+.search{flex:1;min-width:0;background:#151b25;border:1px solid #303b4c;color:var(--text);padding:13px 15px;border-radius:12px;outline:none}
+.search:focus{border-color:#89b9f8;box-shadow:0 0 0 3px rgba(137,185,248,.12)}
+.refresh{border:1px solid #35445a;background:#1a2534;color:#e2edff;padding:0 17px;border-radius:12px;cursor:pointer;white-space:nowrap}
+.refresh:hover,.tab:hover{border-color:#6d8eb9}
+.tabs{display:flex;gap:8px;margin-top:11px;overflow:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:1px solid var(--line);background:#151b25;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;font-size:13px}
+.tab.active{background:var(--accent2);border-color:var(--accent2);color:#101722;font-weight:800}
+.status{font-size:12px;color:var(--muted);padding:5px 1px 0;min-height:22px}
+.folder-section{margin:28px 0 40px}
+.folder-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:18px;padding:17px 18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(110deg,#192333,#141a24)}
+.folder-title{display:flex;align-items:center;gap:11px}
+.folder-icon{width:35px;height:35px;border-radius:11px;background:#26364a;color:#cfe2ff;display:grid;place-items:center;font-weight:900}
+.folder-head h2{margin:0;font-size:20px;letter-spacing:-.03em}
+.folder-desc{color:var(--muted);font-size:12px;margin-top:4px}
+.folder-count{font-size:13px;color:#dce9ff;font-variant-numeric:tabular-nums}
+.category{margin:22px 0 28px}
+.category-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:11px}
+.category-head h3{font-size:15px;margin:0;font-weight:800}
+.category-head span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
+.tile{display:block;width:100%;padding:0;text-align:left;color:var(--text);background:var(--panel);border:1px solid #273140;border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+.tile:hover{transform:translateY(-3px);border-color:#7899c2;background:#1a2330}
+.thumb{aspect-ratio:3/4;background:#080b10;overflow:hidden;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+.tile:hover .thumb img{transform:scale(1.035)}
+.number{position:absolute;left:9px;top:9px;background:rgba(8,12,18,.82);border:1px solid rgba(255,255,255,.17);border-radius:7px;padding:4px 7px;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;backdrop-filter:blur(8px)}
+.tile-meta{padding:10px 11px 12px}
+.tile-name{font-size:13px;font-weight:750;line-height:1.35;min-height:18px;word-break:keep-all}
+.tile-file{font-size:10px;color:#778499;margin-top:5px}
+.empty,.loading{padding:65px 15px;text-align:center;color:var(--muted);background:#121821;border:1px dashed #364153;border-radius:15px}
+footer{margin-top:45px;padding-top:18px;border-top:1px solid #28313e;color:#778294;font-size:11px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#lightbox{position:fixed;inset:0;z-index:100;display:none;background:rgba(3,5,9,.96);align-items:center;justify-content:center;padding:70px 75px 58px}
+#lightbox.open{display:flex}
+.lbimg{max-width:min(94vw,1250px);max-height:calc(100vh - 145px);object-fit:contain;border-radius:9px;box-shadow:0 20px 90px #000}
+.lbtop{position:absolute;left:18px;right:18px;top:15px;display:flex;justify-content:space-between;align-items:start;gap:12px}
+.lbtext{background:rgba(19,25,35,.88);border:1px solid #354257;border-radius:12px;padding:9px 13px;backdrop-filter:blur(10px)}
+.lbtitle{font-weight:800;font-size:14px}
+.lbpath{font-size:11px;color:#9daabd;margin-top:4px;word-break:break-all}
+.iconbtn,.navbtn{border:1px solid #42516a;background:rgba(20,28,40,.9);color:white;cursor:pointer}
+.iconbtn{width:42px;height:42px;border-radius:50%;font-size:23px}
+.navbtn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:60px;border-radius:13px;font-size:31px}
+.prev{left:16px}.next{right:16px}
+.counter{position:absolute;bottom:17px;left:50%;transform:translateX(-50%);font-size:12px;color:#d3deee;background:#172131;border:1px solid #3b4b62;padding:7px 12px;border-radius:999px}
+@media(max-width:700px){
+ .wrap{padding:22px 12px 56px}
+ .stats{gap:7px}.stat{padding:12px 10px}.stat-value{font-size:22px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .tile-meta{padding:8px 9px 10px}.tile-name{font-size:12px}
+ .folder-head{padding:13px}.folder-head h2{font-size:18px}
+ #lightbox{padding:65px 12px 75px}.lbimg{max-width:98vw;max-height:calc(100vh - 155px)}
+ .navbtn{top:auto;bottom:14px;transform:none;width:43px;height:43px;border-radius:50%}
+ .prev{left:18px}.next{right:18px}.counter{bottom:23px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+ <div>
+  <div class="eyebrow">RINGNO / A20 COLLECTION</div>
+  <h1>윤서아 이미지 갤러리</h1>
+  <div class="subtitle">매핑 이름으로 장면 찾기 · 폴더별 전체 미리보기 · 클릭해서 크게 보기</div>
+ </div>
+ <div class="hero-mark"><span class="dot"></span><span>GitHub 실시간 파일 목록</span></div>
+</header>
+
+<section class="stats" aria-label="이미지 통계">
+ <div class="stat"><div class="stat-label">전체 이미지</div><div class="stat-value" id="totalCount">—<small>장</small></div></div>
+ <div class="stat"><div class="stat-label">기본 폴더</div><div class="stat-value" id="basicCount">—<small>장</small></div></div>
+ <div class="stat"><div class="stat-label">누드 폴더</div><div class="stat-value" id="nudeCount">—<small>장</small></div></div>
+</section>
+
+<div class="toolbar">
+ <div class="controls">
+  <input id="search" class="search" type="search" placeholder="번호, 파일명, 장면명 검색 (예: 005, 부끄러움, 스쿼트)" autocomplete="off">
+  <button id="refresh" class="refresh" type="button">새로고침</button>
+ </div>
+ <div class="tabs" id="tabs">
+  <button class="tab active" data-filter="all">전체</button>
+  <button class="tab" data-filter="기본">기본</button>
+  <button class="tab" data-filter="누드">누드</button>
+ </div>
+ <div class="status" id="status">GitHub에서 이미지 목록을 불러오는 중…</div>
+</div>
+
+<main id="gallery"><div class="loading">이미지 목록을 불러오는 중…</div></main>
+<footer><span>Ringno/A · a20 · 윤서아</span><span id="updated">목록 자동 갱신 · 새로고침 버튼으로 즉시 확인</span></footer>
+</div>
+
+<div id="lightbox" aria-hidden="true">
+ <div class="lbtop">
+  <div class="lbtext"><div class="lbtitle" id="lbTitle"></div><div class="lbpath" id="lbPath"></div></div>
+  <button class="iconbtn" id="close" type="button" aria-label="닫기">×</button>
+ </div>
+ <button class="navbtn prev" id="prev" type="button" aria-label="이전 이미지">‹</button>
+ <img class="lbimg" id="lbImg" alt="">
+ <button class="navbtn next" id="next" type="button" aria-label="다음 이미지">›</button>
+ <div class="counter" id="counter"></div>
+</div>
+
+<script>
+const OWNER='Ringno',REPO='A',BRANCH='main',ROOT='a20/윤서아/';
+const MAP={
+ basic:{
+ '001':'기본','002':'짜증,화남','003':'귀찮음','004':'기쁨','005':'부끄러움,설렘','006':'불안,미안함','007':'고민','008':'슬픔','009':'의심','010':'장난','011':'삐짐,질투','012':'졸림','013':'유혹',
+ '014':'손이끌어가슴','015':'콘돔입에물고','016':'바지벗기기','017':'입으로팬티물기','018':'옷위자지만지기','019':'옷위엉덩이만지기','020':'옷위가슴만지기','021':'턱 잡기','022':'포옹','023':'옷입은상태키스','024':'전화,문자','025':'셀카찍기','026':'사진찍힘','027':'팬티보여주기','028':'콘돔사기','029':'걷다가엉덩이만지기','030':'걷다가가슴만지기','031':'카페','032':'노래방','033':'식사','034':'PC방',
+ '080':'아령들기','081':'스쿼트','082':'데드리프트','083':'플랭크','084':'팔 스트레칭','085':'허리 스트레칭','086':'운동 후 휴식',
+ '090':'임테기보여주기','091':'임신','092':'결혼','093':'임신상태결혼',
+ '100':'정상위','101':'정상위절정','102':'카우걸','103':'카우걸절정','104':'후배위','105':'후배위절정','106':'파일드라이버','107':'들박','108':'들박절정','109':'배면들박','110':'배면들박절정','111':'입위','112':'입위절정','113':'측위','114':'측위절정','115':'좌위','116':'좌위절정','117':'펠라','118':'펠라사정','119':'딥스로트','120':'딥스로트사정','122':'페이스시팅','123':'핸드잡','124':'핸드잡사정','125':'파이즈리','126':'파이즈리사정','128':'풋잡','129':'엉덩이만지기','130':'림잡','131':'림잡사정','132':'림잡파이즈리','133':'스팽킹','134':'스팽킹','135':'가슴만지기','136':'가슴빨기','137':'핑거링','138':'키스','139':'겨드랑이핥기','140':'아마존','141':'커닐링구스','142':'정액입에머금음','143':'자지핥기','144':'69자세','145':'수유대딸','146':'여자머리채','147':'여자싸대기','148':'머리채잡고후배위','149':'관계중전화','150':'펠라중통화','151':'유두에페니스','152':'겨드랑이섹스','153':'애원','154':'콘돔정액범벅',
+ '189':'발핥기','190':'꼭지당기기','191':'엉덩이내밀기','192':'도게자','193':'자위,보지벌리기','194':'팬티벗기',
+ '200':'로터','201':'로터','202':'딜도','203':'딜도','204':'애널플러그','205':'애널플러그','206':'시바리','207':'시바리','208':'호그타이','209':'호그타이','210':'공중매달기','211':'공중매달기','212':'볼개그','213':'볼개그','214':'목줄','215':'목줄','216':'유두클램프','217':'유두클램프','218':'젖분비','219':'젖분비','220':'분수','221':'개목줄','222':'개목줄','223':'검은안대','224':'검은안대','225':'안대자위','226':'안대자위','227':'목줄당김','228':'목줄당김','229':'스프레더바','230':'스프레더바','231':'비트개그','232':'비트개그','233':'밧줄걷기'
+ },
+ nude:{
+ '100':'정상위','101':'정상위절정','102':'카우걸','103':'카우걸절정','104':'후배위','105':'후배위절정','106':'파일드라이버','107':'들박','108':'들박절정','109':'배면들박','110':'배면들박절정','111':'입위','112':'입위절정','113':'측위','114':'측위절정','115':'좌위','116':'좌위절정','117':'펠라','118':'펠라사정','119':'딥스로트','120':'딥스로트사정','122':'페이스시팅','123':'핸드잡','124':'핸드잡사정','125':'파이즈리','126':'파이즈리사정','128':'풋잡','129':'엉덩이만지기','130':'림잡','131':'림잡사정','132':'림잡파이즈리','133':'스팽킹','134':'스팽킹','135':'가슴만지기','136':'가슴빨기','137':'핑거링','138':'키스','139':'겨드랑이핥기','140':'아마존','141':'커닐링구스','142':'정액입에머금음','143':'자지핥기','144':'69자세','145':'수유대딸','146':'여자머리채','147':'여자싸대기','148':'머리채잡고후배위','149':'관계중전화','150':'펠라중통화','151':'유두에페니스','152':'겨드랑이섹스','153':'애원','154':'콘돔정액범벅',
+ '189':'발핥기','190':'꼭지당기기','191':'엉덩이내밀기','192':'도게자','193':'자위,보지벌리기','194':'팬티벗기','195':'샤워','196':'씻겨주기','197':'임신정상위','198':'임신기승위','199':'임신후배위',
+ '200':'로터','201':'로터','202':'딜도','203':'딜도','204':'애널플러그','205':'애널플러그','206':'시바리','207':'시바리','208':'호그타이','209':'호그타이','210':'공중매달기','211':'공중매달기','212':'볼개그','213':'볼개그','214':'목줄','215':'목줄','216':'유두클램프','217':'유두클램프','218':'젖분비','219':'젖분비','220':'분수','221':'개목줄','222':'개목줄','223':'검은안대','224':'검은안대','225':'안대자위','226':'안대자위','227':'목줄당김','228':'목줄당김','229':'스프레더바','230':'스프레더바','231':'비트개그','232':'비트개그','233':'밧줄걷기'
+ }
+};
+
+let allItems=[],visibleItems=[],activeFilter='all',currentIndex=-1,lastTreeSha='';
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(3,'0');
+function category(item){
+ const n=item.number;
+ if(item.folder==='누드'){
+  if(n>=100&&n<=154)return '성인 장면';
+  if(n>=189&&n<=194)return '추가 장면';
+  if(n>=195&&n<=199)return '샤워·임신';
+  return '성인 소품·연출';
+ }
+ if(n<=13)return '표정·감정';
+ if(n<=27)return '행동·관계';
+ if(n<=34)return '일상';
+ if(n>=80&&n<=86)return '운동';
+ if(n>=90&&n<=93)return '생활 이벤트';
+ if(n>=100&&n<=154)return '성인 장면';
+ if(n>=189&&n<=194)return '추가 장면';
+ return '성인 소품·연출';
+}
+function rawUrl(path){
+ return 'https://raw.githubusercontent.com/'+OWNER+'/'+REPO+'/'+BRANCH+'/'+path.split('/').map(encodeURIComponent).join('/');
+}
+function escapeHtml(s){
+ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function makeItem(path){
+ const name=path.split('/').pop();
+ const folder=path.split('/')[2];
+ const number=Number((name.match(/^(\d+)/)||[])[1]);
+ if(!number||!['기본','누드'].includes(folder))return null;
+ const key=pad(number);
+ return {path,name,folder,number,key,label:MAP[folder==='기본'?'basic':'nude'][key]||'미매핑',category:''};
+}
+function setCounts(){
+ $('totalCount').innerHTML=allItems.length+'<small>장</small>';
+ $('basicCount').innerHTML=allItems.filter(x=>x.folder==='기본').length+'<small>장</small>';
+ $('nudeCount').innerHTML=allItems.filter(x=>x.folder==='누드').length+'<small>장</small>';
+ $('tabs').querySelector('[data-filter="기본"]').textContent='기본 '+allItems.filter(x=>x.folder==='기본').length;
+ $('tabs').querySelector('[data-filter="누드"]').textContent='누드 '+allItems.filter(x=>x.folder==='누드').length;
+}
+function applyFilters(){
+ const q=$('search').value.trim().toLocaleLowerCase();
+ visibleItems=allItems.filter(x=>{
+  const folderOk=activeFilter==='all'||x.folder===activeFilter;
+  const hay=[x.key,x.name,x.label,x.folder,x.category,x.path].join(' ').toLocaleLowerCase();
+  return folderOk&&(!q||hay.includes(q));
+ });
+ render();
+}
+function render(){
+ const root=$('gallery');
+ if(!visibleItems.length){
+  root.innerHTML='<div class="empty">검색 결과가 없습니다.</div>';
+  return;
+ }
+ const folders=activeFilter==='all'?['기본','누드']:[activeFilter];
+ let html='';
+ for(const folder of folders){
+  const folderItems=visibleItems.filter(x=>x.folder===folder);
+  if(!folderItems.length)continue;
+  const cats=[...new Set(folderItems.map(x=>x.category))];
+  html+='<section class="folder-section">';
+  html+='<div class="folder-head"><div class="folder-title"><div class="folder-icon">'+(folder==='기본'?'B':'N')+'</div><div><h2>윤서아 / '+folder+'</h2><div class="folder-desc">'+(folder==='기본'?'기본 · 감정 · 일상 · 운동 · 장면별 이미지':'누드 · 장면별 이미지')+'</div></div></div><div class="folder-count">'+folderItems.length+' / '+allItems.filter(x=>x.folder===folder).length+'장 표시</div></div>';
+  for(const cat of cats){
+   const items=folderItems.filter(x=>x.category===cat);
+   html+='<section class="category"><div class="category-head"><h3>'+escapeHtml(cat)+'</h3><span>'+items.length+'장</span></div><div class="grid">';
+   for(const item of items){
+    const index=visibleItems.indexOf(item);
+    html+='<button class="tile" type="button" data-index="'+index+'" aria-label="'+escapeHtml(item.key+' '+item.label)+'">';
+    html+='<div class="thumb"><img loading="lazy" decoding="async" src="'+rawUrl(item.path)+'" alt="'+escapeHtml(item.key+'_'+item.label)+'"><span class="number">'+item.key+'</span></div>';
+    html+='<div class="tile-meta"><div class="tile-name">'+escapeHtml(item.label)+'</div><div class="tile-file">'+escapeHtml(item.name)+'</div></div></button>';
+   }
+   html+='</div></section>';
+  }
+  html+='</section>';
+ }
+ root.innerHTML=html;
+}
+function showLightbox(index){
+ if(!visibleItems.length)return;
+ currentIndex=(index+visibleItems.length)%visibleItems.length;
+ const item=visibleItems[currentIndex];
+ $('lbImg').src=rawUrl(item.path);
+ $('lbImg').alt=item.key+'_'+item.label;
+ $('lbTitle').textContent=item.key+' · '+item.label;
+ $('lbPath').textContent=item.path;
+ $('counter').textContent=(currentIndex+1)+' / '+visibleItems.length;
+ $('lightbox').classList.add('open');
+ $('lightbox').setAttribute('aria-hidden','false');
+}
+function closeLightbox(){
+ $('lightbox').classList.remove('open');
+ $('lightbox').setAttribute('aria-hidden','true');
+ $('lbImg').src='';
+ currentIndex=-1;
+}
+async function loadImages(force){
+ $('status').textContent=force?'최신 파일 목록 확인 중…':'GitHub 파일 목록 불러오는 중…';
+ try{
+  const url='https://api.github.com/repos/'+OWNER+'/'+REPO+'/git/trees/'+BRANCH+'?recursive=1&ts='+Date.now();
+  const response=await fetch(url,{cache:'no-store'});
+  if(!response.ok)throw new Error('GitHub API '+response.status);
+  const data=await response.json();
+  const paths=(data.tree||[]).filter(x=>x.type==='blob'&&x.path.startsWith(ROOT)&&/\.(png|jpe?g|webp|gif)$/i.test(x.path)).map(x=>x.path);
+  const next=paths.map(makeItem).filter(Boolean).sort((a,b)=>{
+   const f=['기본','누드'].indexOf(a.folder)-['기본','누드'].indexOf(b.folder);
+   return f||a.number-b.number;
+  });
+  const changed=data.sha!==lastTreeSha||next.length!==allItems.length;
+  allItems=next;
+  lastTreeSha=data.sha||'';
+  allItems.forEach(x=>x.category=category(x));
+  setCounts();
+  applyFilters();
+  $('status').textContent='총 '+allItems.length+'장 · GitHub 최신 목록 확인 '+new Date().toLocaleTimeString('ko-KR');
+  $('updated').textContent='자동 갱신 중 · 마지막 확인 '+new Date().toLocaleTimeString('ko-KR');
+ }catch(error){
+  $('status').textContent='목록을 불러오지 못했습니다: '+error.message+' · 새로고침을 눌러 다시 시도하세요.';
+  if(!allItems.length)$('gallery').innerHTML='<div class="empty">GitHub 이미지 목록을 불러오지 못했습니다.<br>잠시 후 새로고침을 눌러주세요.</div>';
+ }
+}
+$('search').addEventListener('input',applyFilters);
+$('tabs').addEventListener('click',event=>{
+ const tab=event.target.closest('[data-filter]');
+ if(!tab)return;
+ activeFilter=tab.dataset.filter;
+ $('tabs').querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===tab));
+ applyFilters();
+});
+$('refresh').addEventListener('click',()=>loadImages(true));
+$('gallery').addEventListener('click',event=>{
+ const tile=event.target.closest('[data-index]');
+ if(tile)showLightbox(Number(tile.dataset.index));
+});
+$('close').addEventListener('click',closeLightbox);
+$('prev').addEventListener('click',()=>showLightbox(currentIndex-1));
+$('next').addEventListener('click',()=>showLightbox(currentIndex+1));
+$('lightbox').addEventListener('click',event=>{if(event.target===$('lightbox'))closeLightbox();});
+document.addEventListener('keydown',event=>{
+ if(!$('lightbox').classList.contains('open'))return;
+ if(event.key==='Escape')closeLightbox();
+ if(event.key==='ArrowLeft')showLightbox(currentIndex-1);
+ if(event.key==='ArrowRight')showLightbox(currentIndex+1);
+});
+loadImages(false);
+setInterval(()=>{if(document.visibilityState==='visible')loadImages(false);},120000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadImages(false);});
+</script>
+</body>
+</html>
