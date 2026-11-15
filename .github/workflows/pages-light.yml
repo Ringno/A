@@ -101,7 +101,7 @@ jobs:
                   content = file.read_text(encoding="utf-8")
                   if "</head>" in content.lower():
                       import re
-                      content = re.sub(r"</head>", bridge + "\n</head>", content, count=1, flags=re.I)
+                      content = re.sub(r"</head>", lambda _: bridge + "\n</head>", content, count=1, flags=re.I)
                   else:
                       content = bridge + content
                   target.write_text(content, encoding="utf-8")
