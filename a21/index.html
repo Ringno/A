@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a111b">
+<meta name="description" content="Ringno/A a21 헌터 29인·몬스터·배경 전체 이미지 갤러리 - 매핑 이름 검색과 이미지 확대 지원">
+<title>A21 | 헌터 29인 전체 이미지 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#090f17;--card:#151d28;--line:#2a3644;--txt:#eff5f7;--muted:#9daeb9;--glow:#bce8d1;--accent:#b7ead6}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 72% -10%,#1d3940 0,transparent 37%),linear-gradient(180deg,#121d29,#090f17 420px);color:var(--txt);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;min-height:100vh}body.locked{overflow:hidden}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{width:min(1500px,100%);margin:0 auto;padding:32px 22px 80px}
+.hero{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;padding:10px 0 14px}
+.overline{text-transform:uppercase;letter-spacing:.22em;font-size:11px;font-weight:850;color:var(--accent)}
+h1{font-size:clamp(27px,4.5vw,48px);line-height:1.16;letter-spacing:-.055em;margin:9px 0 6px}
+.subtitle{font-size:13px;color:var(--muted);margin:0}
+.repo{border:1px solid #37534f;border-radius:14px;padding:10px 14px;background:#102421;color:#cff3de;font-size:12px;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}
+.stat{background:linear-gradient(140deg,#1b2a32,#111b27);border:1px solid var(--line);border-radius:16px;padding:15px 16px}
+.stat-label{font-size:12px;color:var(--muted)}.stat-value{font-size:clamp(21px,3vw,29px);font-weight:850;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:3px}
+.toolbar{position:sticky;top:0;z-index:12;background:rgba(9,15,23,.94);backdrop-filter:blur(14px);border-bottom:1px solid #283b43;padding:12px 0 10px;margin:0 0 15px}
+.controls{display:flex;gap:9px;flex-wrap:wrap}
+.search{background:#16232d;color:var(--txt);border:1px solid #344957;border-radius:11px;padding:12px 13px;flex:2 1 260px;min-width:0}
+.folder-select{flex:1 1 168px;min-width:145px;background:#16232d;color:var(--txt);border:1px solid #344957;border-radius:11px;padding:11px}
+.refresh{border:1px solid #467064;background:#1d3733;color:#def7e9;border-radius:11px;padding:11px 15px;white-space:nowrap}
+.refresh:hover{background:#2a4a40}.refresh:disabled{opacity:.5;cursor:progress}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 0 1px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;border:1px solid #30434b;background:#17222d;color:#c1cdd2;padding:7px 14px;border-radius:99px;font-size:12px}
+.tab.active{background:#c9f2df;border-color:#c9f2df;color:#122921;font-weight:800}
+.note{font-size:12px;color:var(--muted);min-height:22px;margin-top:9px}
+.folders{border:1px solid var(--line);background:rgba(21,31,42,.7);border-radius:13px;margin:7px 0 18px}
+.folders summary{cursor:pointer;padding:12px 15px;font-size:13px;color:#daeee7}
+.folderchips{display:flex;gap:7px;flex-wrap:wrap;padding:0 14px 14px}
+.folderchip{font-size:12px;border-radius:9px;background:#172732;color:#b6cbd0;border:1px solid #30434b;padding:7px 10px}
+.folderchip:hover{border-color:#87beac}
+.folder-section{margin:24px 0 38px;content-visibility:auto;contain-intrinsic-size:auto 600px}
+.section-header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(100deg,#1b2f35,#161f2b);border:1px solid #32454c;border-radius:14px;padding:13px 16px;margin-bottom:13px}
+.section-name{font-size:18px;font-weight:850;letter-spacing:-.035em}.section-sub{font-size:12px;color:var(--muted)}.section-count{border:1px solid #416456;background:#203c34;color:#d8f5e7;font-size:12px;border-radius:9px;padding:5px 10px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px}
+.tile{display:block;min-width:0;padding:0;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;color:inherit;transition:border-color .2s,transform .2s}
+.tile:hover{transform:translateY(-2px);border-color:#7cb5a5}
+.thumb{position:relative;width:100%;aspect-ratio:3/4;background:#0b121b;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.img-num{position:absolute;top:7px;left:7px;background:rgba(6,14,19,.78);color:#e6f9f1;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px}
+.tile-details{padding:9px 10px 11px}.scene{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.file{font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.empty{border:1px dashed #3b5059;border-radius:13px;text-align:center;padding:46px 15px;color:var(--muted)}
+.sentinel{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+.footer{border-top:1px solid #2d4147;padding-top:15px;color:var(--muted);font-size:12px;margin-top:40px}
+.lb[hidden]{display:none}.lb{position:fixed;inset:0;z-index:100;background:rgba(2,6,10,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.lb-head{width:100%;display:flex;gap:10px;justify-content:space-between;align-items:center;padding:10px 18px}
+.lb-title{font-weight:800;font-size:14px}.lb-path{font-size:11px;color:#a0b8b9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80vw}.lb-actions{display:flex;gap:8px}
+.lb-button{background:#1b2c34;border:1px solid #45615d;color:#ecfaf1;border-radius:9px;padding:9px 13px;text-decoration:none;white-space:nowrap}
+.lb-body{display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;gap:9px;padding:3px 14px}
+.lb-image-wrap{display:flex;flex:1;min-height:0;height:100%;align-items:center;justify-content:center;touch-action:pan-y}
+.lb-img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;border-radius:4px}
+.lb-arrow{font-size:26px;width:45px;height:65px;border:1px solid #466158;background:#14272c;color:#ecfff4;border-radius:12px;flex-shrink:0}
+.lb-foot{color:#d6eee1;padding:7px 15px 14px;font-size:12px}.muted{color:var(--muted)}
+@media(max-width:640px){.wrap{padding:18px 12px 55px}.hero{padding:3px}.repo{display:none}.stats{gap:6px;margin:17px 0}.stat{padding:10px;border-radius:11px}.stat-label{font-size:10px}.stat-value{font-size:19px}.toolbar{padding:9px 0}.controls{gap:7px}.search{flex-basis:100%;padding:11px}.folder-select{min-width:0;flex:1}.refresh{padding:10px 12px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.section-header{padding:11px 12px}.section-name{font-size:16px}.tile{border-radius:8px}.tile-details{padding:6px 6px 8px}.scene{font-size:11px}.file{font-size:10px}.thumb{aspect-ratio:3/4}.img-num{font-size:10px;top:4px;left:4px;padding:2px 5px}.lb-head{padding:10px 12px}.lb-arrow{width:34px;height:55px;font-size:22px}.lb-body{padding:3px 5px;gap:3px}.lb-button{padding:7px 9px;font-size:12px}.lb-title{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero"><div><div class="overline">RINGNO / A21 · HUNTER GALLERY</div><h1>헌터 29인 이미지 갤러리</h1><p class="subtitle">캐릭터 · 몬스터 · 배경의 모든 이미지와 장면 이름을 한곳에서</p></div><div class="repo">● 공개 GitHub Pages 갤러리</div></header>
+<div class="stats" aria-label="이미지 통계"><div class="stat"><div class="stat-label">전체 이미지</div><div class="stat-value" id="totalCount">—</div></div><div class="stat"><div class="stat-label">캐릭터 이미지</div><div class="stat-value" id="characterCount">—</div></div><div class="stat"><div class="stat-label">몬스터 · 배경</div><div class="stat-value" id="otherCount">—</div></div><div class="stat"><div class="stat-label">전체 폴더</div><div class="stat-value" id="folderCount">—</div></div></div>
+<div class="toolbar"><div class="controls"><input id="search" class="search" type="search" autocomplete="off" placeholder="번호 · 파일명 · 장면명 · 캐릭터 이름 검색 (예: 028, 전투, 서유린)" aria-label="이미지 검색"><select id="folderSelect" class="folder-select" aria-label="폴더 필터"><option value="">모든 폴더</option></select><button type="button" id="refresh" class="refresh">↻ 최신 목록</button></div><div id="kindTabs" class="tabs" role="group" aria-label="이미지 종류"><button class="tab active" data-kind="all">전체</button><button class="tab" data-kind="character">캐릭터</button><button class="tab" data-kind="monster">몬스터</button><button class="tab" data-kind="background">배경</button></div><div class="note" id="status" aria-live="polite">목록 준비 중…</div></div>
+<details class="folders"><summary>폴더별 빠른 선택 · 29명 캐릭터 + 몬스터 + 배경</summary><div id="folderChips" class="folderchips"></div></details>
+<div id="gallery" aria-label="이미지 썸네일 갤러리"></div><div id="sentinel" class="sentinel">스크롤하면 다음 이미지가 계속 표시됩니다.</div>
+<footer class="footer">이미지 원본 출처: Ringno/A · a21 · GitHub 저장소. 페이지를 열 때 및 약 5분마다 최신 파일을 자동 확인합니다. 이미지가 많아 스크롤에 따라 썸네일을 순차적으로 표시합니다.</footer>
+</main>
+<div id="lightbox" class="lb" role="dialog" aria-modal="true" aria-label="이미지 확대 보기" hidden>
+<div class="lb-head"><div style="min-width:0"><div id="lbTitle" class="lb-title"></div><div id="lbPath" class="lb-path"></div></div><div class="lb-actions"><a id="openOriginal" class="lb-button" href="#" target="_blank" rel="noopener">원본 보기</a><button id="close" class="lb-button" type="button">닫기 ✕</button></div></div>
+<div class="lb-body"><button id="prev" class="lb-arrow" type="button" aria-label="이전 이미지">‹</button><div id="lbTouch" class="lb-image-wrap"><img id="lbImg" class="lb-img" alt=""></div><button id="next" class="lb-arrow" type="button" aria-label="다음 이미지">›</button></div><div class="lb-foot"><span id="counter"></span><span class="muted"> · 좌우 화살표 / 스와이프 이동 · ESC 닫기</span></div></div>
+<script>
+'use strict';
+const OWNER='Ringno', REPO='A', BRANCH='main', ROOT='a21';
+const CHARACTERS=["강채원","서유린","차세아","윤하린","백소희","정다은","한지수","오민아","최가영","문예린","임수아","김나연","박서윤","이채린","송유나","배시은","조아라","신혜원","권민지","장유정","남소연","홍세린","유다희","전하은","고유리","진아영","서지안","마유진","노예슬"];
+const IMAGE_NUMBERS=["001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019","020","021","022","023","024","025","026","027","028","029","090","091","092","093","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","122","123","124","125","126","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","189","190","191","192","193","194","195","196","197","198","199"];
+const SCENE_MAP={"100":"정상위","101":"정상위절정","102":"카우걸","103":"카우걸절정","104":"후배위","105":"후배위절정","106":"파일드라이버","107":"들박","108":"들박절정","109":"배면들박","110":"배면들박절정","111":"입위","112":"입위절정","113":"측위","114":"측위절정","115":"좌위","116":"좌위절정","117":"펠라","118":"펠라사정","119":"딥스로트","120":"딥스로트사정","122":"페이스시팅","123":"핸드잡","124":"핸드잡사정","125":"파이즈리","126":"파이즈리사정","128":"풋잡","129":"엉덩이만지기","130":"림잡","131":"림잡사정","132":"림잡파이즈리","133":"스팽킹","134":"스팽킹","135":"가슴만지기","136":"가슴빨기","137":"핑거링","138":"키스","139":"겨드랑이핥기","140":"아마존","141":"커닐링구스","142":"정액입에머금음","143":"자지핥기","144":"69자세","145":"수유대딸","146":"여자머리채","147":"여자싸대기","148":"머리채잡고후배위","149":"관계중전화","150":"펠라중통화","151":"유두에페니스","152":"겨드랑이섹스","153":"애원","154":"콘돔정액범벅","189":"발핥기","190":"꼭지당기기","191":"엉덩이내밀기","192":"도게자","193":"자위·보지벌리기","194":"팬티벗기","195":"샤워","196":"씻겨주기","197":"임신정상위","198":"임신기승위","199":"임신후배위","001":"기본","002":"짜증·화남","003":"귀찮음","004":"기쁨","005":"부끄러움·설렘","006":"불안·미안함","007":"고민·의심","008":"슬픔","009":"장난","010":"삐짐·질투","011":"졸림","012":"유혹","013":"수면","014":"손이끌어가슴","015":"콘돔입에물고","016":"바지벗기기","017":"입으로팬티물기","018":"옷위자지만지기","019":"옷위엉덩이만지기","020":"옷위가슴만지기","021":"턱잡기","022":"포옹","023":"옷입은상태키스","024":"전화·문자","025":"팬티보여주기","026":"콘돔사기","027":"식사","028":"전투","029":"부상","090":"임테기보여주기","091":"임신","092":"결혼","093":"임신상태결혼"};
+const MONSTER_MAP={"001":"빙결늑대","002":"철갑포식자","003":"거울포식자","004":"용광로오우거","005":"수정악마","006":"독성해룡","007":"기계코뿔소","008":"인형거미","009":"암석룡","010":"심해기사"};
+const BACKGROUND_MAP={"001":"길드작전실","002":"헌터협회본부","003":"폐지하철게이트","004":"붕괴된백화점","005":"폐공장 용광로","006":"산악게이트","007":"침수연구소","008":"도심옥상헬리패드","009":"길드훈련장","010":"심야카페"};
+const ORDER=CHARACTERS.concat(['몬스터','배경']);
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(3,'0');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;',"'":'&#39;'}[c]));
+const isImage=name=>/\.(png|jpe?g|webp|gif|avif)$/i.test(name);
+let all=[],visible=[],shown=0,selectedFolder='',kind='all',lastTreeSha='',fetching=false,lastChecked=0,boxIndex=-1;
+let sections=Object.create(null), restoreFocus=null;
+function typeOf(folder){return folder==='몬스터'?'monster':folder==='배경'?'background':'character';}
+function categoryOf(item){
+ if(item.kind==='monster')return '몬스터';
+ if(item.kind==='background')return '배경';
+ const n=Number(item.key);
+ if(n>=1&&n<=13)return '표정 · 감정';
+ if(n>=14&&n<=27)return '행동 · 일상';
+ if(n>=28&&n<=29)return '전투 · 부상';
+ if(n>=90&&n<=93)return '특별 이벤트';
+ if(n>=100&&n<=154)return '상황별 장면';
+ return '추가 장면';
+}
+function makeItem(path){
+ const parts=path.split('/');if(parts.length<2)return null;
+ const folder=parts[0],filename=parts[parts.length-1];
+ if(!isImage(filename))return null;
+ const key=(filename.match(/^(\d{3})(?:[_.-]|$)/)||[])[1]||'';
+ const kind=typeOf(folder);
+ const known=kind==='monster'?MONSTER_MAP:kind==='background'?BACKGROUND_MAP:SCENE_MAP;
+ const label=known[key]||filename.replace(/\.[^.]+$/,'').replace(/^\d{3}[_-]?/,'')||'미등록 장면';
+ const item={path,folder,filename,key,kind,label};
+ item.category=categoryOf(item);
+ return item;
+}
+function urlFor(item){return './'+item.path.split('/').map(encodeURIComponent).join('/');}
+function orderItems(items){return items.sort((a,b)=>{
+ const fa=ORDER.indexOf(a.folder),fb=ORDER.indexOf(b.folder);
+ if(fa!==fb)return (fa<0?999:fa)-(fb<0?999:fb);
+ const na=Number(a.key),nb=Number(b.key);
+ if(na!==nb)return na-nb;
+ return a.filename.localeCompare(b.filename,'ko');
+});}
+function loadFallback(){
+ const paths=CHARACTERS.flatMap(folder=>IMAGE_NUMBERS.map(n=>folder+'/'+n+'.png'));
+ for(let n=1;n<=10;n++){paths.push('몬스터/'+pad(n)+'.png');paths.push('배경/'+pad(n)+'.png');}
+ all=orderItems(paths.map(makeItem).filter(Boolean));stats();buildFolderFilter();apply();
+ $('status').textContent='저장소 확인 목록 '+all.length.toLocaleString('ko-KR')+'장 표시 중 · 최신 정보 확인 중…';
+}
+function stats(){
+ const chars=all.filter(x=>x.kind==='character').length;
+ $('totalCount').textContent=all.length.toLocaleString('ko-KR');
+ $('characterCount').textContent=chars.toLocaleString('ko-KR');
+ $('otherCount').textContent=(all.length-chars).toLocaleString('ko-KR');
+ $('folderCount').textContent=new Set(all.map(x=>x.folder)).size;
+ const counts={all:all.length,character:chars,monster:all.filter(x=>x.kind==='monster').length,background:all.filter(x=>x.kind==='background').length};
+ $('kindTabs').querySelectorAll('[data-kind]').forEach(btn=>{
+  const name={all:'전체',character:'캐릭터',monster:'몬스터',background:'배경'}[btn.dataset.kind];
+  btn.textContent=name+' '+counts[btn.dataset.kind].toLocaleString('ko-KR');
+  btn.classList.toggle('active',btn.dataset.kind===kind);
+ });
+}
+function buildFolderFilter(){
+ const existing=new Set(all.map(x=>x.folder));
+ const ordered=ORDER.filter(x=>existing.has(x)).concat([...existing].filter(x=>!ORDER.includes(x)).sort((a,b)=>a.localeCompare(b,'ko')));
+ if(selectedFolder && !existing.has(selectedFolder))selectedFolder='';
+ const counts=Object.create(null);all.forEach(x=>{counts[x.folder]=(counts[x.folder]||0)+1});
+ $('folderSelect').innerHTML='<option value="">모든 폴더</option>'+ordered.map(f=>'<option value="'+esc(f)+'" '+(selectedFolder===f?'selected':'')+'>'+esc(f)+' ('+counts[f]+')</option>').join('');
+ $('folderChips').innerHTML='<button type="button" class="folderchip" data-folder="">전체 폴더</button>'+ordered.map(f=>'<button type="button" class="folderchip" data-folder="'+esc(f)+'">'+esc(f)+' · '+counts[f]+'</button>').join('');
+}
+function apply(){
+ const q=$('search').value.trim().toLocaleLowerCase('ko');
+ visible=all.filter(item=>(kind==='all'||item.kind===kind)&&(!selectedFolder||item.folder===selectedFolder)&&(!q||[item.key,item.filename,item.label,item.folder,item.category,item.path].join(' ').toLocaleLowerCase('ko').includes(q)));
+ sections=Object.create(null);shown=0;$('gallery').replaceChildren();
+ if(!visible.length){$('gallery').innerHTML='<div class="empty">일치하는 이미지가 없습니다.<br>검색어나 폴더 선택을 바꿔보세요.</div>';$('sentinel').textContent='';return;}
+ renderMore();
+}
+function getSection(item){
+ if(sections[item.folder])return sections[item.folder];
+ const count=visible.filter(x=>x.folder===item.folder).length;
+ const section=document.createElement('section');
+ section.className='folder-section';
+ const head=document.createElement('header');head.className='section-header';
+ const left=document.createElement('div');
+ const h=document.createElement('div');h.className='section-name';h.textContent=item.folder;
+ const sub=document.createElement('div');sub.className='section-sub';sub.textContent=item.kind==='character'?'헌터 · 장면별 이미지':item.kind==='monster'?'던전 몬스터':'장소 · 배경 이미지';
+ left.append(h,sub);
+ const badge=document.createElement('div');badge.className='section-count';badge.textContent=count+'장';
+ head.append(left,badge);const grid=document.createElement('div');grid.className='grid';section.append(head,grid);$('gallery').append(section);
+ sections[item.folder]=grid;return grid;
+}
+function renderMore(){
+ const stop=Math.min(visible.length,shown+90);
+ for(let i=shown;i<stop;i++){
+  const item=visible[i],grid=getSection(item),btn=document.createElement('button');
+  btn.type='button';btn.className='tile';btn.dataset.index=String(i);
+  btn.setAttribute('aria-label',item.folder+' '+item.key+' '+item.label);
+  btn.innerHTML='<div class="thumb"><img loading="lazy" decoding="async" src="'+esc(urlFor(item))+'" alt="'+esc(item.folder+' '+item.key+' '+item.label)+'"><span class="img-num">'+esc(item.key||'IMG')+'</span></div><div class="tile-details"><div class="scene">'+esc(item.label)+'</div><div class="file">'+esc(item.filename)+'</div></div>';
+  grid.append(btn);
+ }
+ shown=stop;
+ $('sentinel').textContent=shown<visible.length?shown.toLocaleString('ko-KR')+' / '+visible.length.toLocaleString('ko-KR')+'장 표시 · 아래로 스크롤하여 계속 보기':visible.length.toLocaleString('ko-KR')+'장 모두 표시';
+}
+function openBox(index){
+ if(!visible.length)return;
+ boxIndex=(index+visible.length)%visible.length;
+ const item=visible[boxIndex];
+ $('lbImg').src=urlFor(item);$('lbImg').alt=item.folder+' '+item.label;
+ $('lbTitle').textContent=item.folder+' · '+(item.key?item.key+' ':'')+item.label;
+ $('lbPath').textContent=ROOT+'/'+item.path;
+ $('openOriginal').href=urlFor(item);
+ $('counter').textContent=(boxIndex+1).toLocaleString('ko-KR')+' / '+visible.length.toLocaleString('ko-KR');
+ if($('lightbox').hidden){restoreFocus=document.activeElement;$('lightbox').hidden=false;document.body.classList.add('locked');$('close').focus();}
+}
+function closeBox(){
+ if($('lightbox').hidden)return;
+ $('lightbox').hidden=true;document.body.classList.remove('locked');$('lbImg').removeAttribute('src');boxIndex=-1;
+ if(restoreFocus&&restoreFocus.focus)restoreFocus.focus();
+}
+async function refreshRemote(){
+ if(fetching)return;
+ fetching=true;$('refresh').disabled=true;
+ try{
+  const root=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/git/trees/'+BRANCH,{cache:'no-store'});
+  if(!root.ok)throw new Error('GitHub API '+root.status);
+  const rootData=await root.json();
+  const entry=(rootData.tree||[]).find(x=>x.path===ROOT&&x.type==='tree');
+  if(!entry)throw new Error('a21 폴더 없음');
+  if(entry.sha!==lastTreeSha){
+   const res=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/git/trees/'+entry.sha+'?recursive=1',{cache:'no-store'});
+   if(!res.ok)throw new Error('GitHub API '+res.status);
+   const data=await res.json();
+   if(data.truncated)throw new Error('목록이 일부만 반환됨');
+   const next=orderItems((data.tree||[]).filter(x=>x.type==='blob').map(x=>makeItem(x.path)).filter(Boolean));
+   if(!next.length)throw new Error('이미지가 없음');
+   const oldPaths=all.map(x=>x.path).join('\n'),newPaths=next.map(x=>x.path).join('\n');
+   lastTreeSha=entry.sha;
+   if(oldPaths!==newPaths){all=next;stats();buildFolderFilter();apply();}
+  }
+  lastChecked=Date.now();
+  $('status').textContent='전체 '+all.length.toLocaleString('ko-KR')+'장 · GitHub 최신 목록 확인 '+new Date().toLocaleTimeString('ko-KR');
+ }catch(err){
+  lastChecked=Date.now();
+  $('status').textContent='이미지 '+all.length.toLocaleString('ko-KR')+'장 표시 중 · 실시간 갱신 일시 불가 ('+err.message+')';
+ }finally{fetching=false;$('refresh').disabled=false;}
+}
+$('search').addEventListener('input',apply);
+$('folderSelect').addEventListener('change',e=>{selectedFolder=e.target.value;apply();});
+$('folderChips').addEventListener('click',e=>{const b=e.target.closest('[data-folder]');if(!b)return;selectedFolder=b.dataset.folder;$('folderSelect').value=selectedFolder;apply();document.querySelector('.toolbar').scrollIntoView({behavior:'smooth'});});
+$('kindTabs').addEventListener('click',e=>{const b=e.target.closest('[data-kind]');if(!b)return;kind=b.dataset.kind;stats();apply();});
+$('refresh').addEventListener('click',refreshRemote);
+$('gallery').addEventListener('click',e=>{const b=e.target.closest('[data-index]');if(b)openBox(Number(b.dataset.index));});
+$('close').addEventListener('click',closeBox);
+$('prev').addEventListener('click',()=>openBox(boxIndex-1));
+$('next').addEventListener('click',()=>openBox(boxIndex+1));
+$('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeBox();});
+document.addEventListener('keydown',e=>{if($('lightbox').hidden)return;if(e.key==='Escape')closeBox();if(e.key==='ArrowLeft')openBox(boxIndex-1);if(e.key==='ArrowRight')openBox(boxIndex+1);});
+let startX=0,startY=0;
+$('lbTouch').addEventListener('touchstart',e=>{if(!e.touches.length)return;startX=e.touches[0].clientX;startY=e.touches[0].clientY;},{passive:true});
+$('lbTouch').addEventListener('touchend',e=>{if(!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5)openBox(boxIndex+(dx<0?1:-1));},{passive:true});
+if('IntersectionObserver' in window){
+ const obs=new IntersectionObserver(entries=>{if(entries.some(x=>x.isIntersecting)&&shown<visible.length)renderMore();},{rootMargin:'600px'});
+ obs.observe($('sentinel'));
+}else{window.addEventListener('scroll',()=>{if(window.scrollY+window.innerHeight>document.documentElement.scrollHeight-1400&&shown<visible.length)renderMore();},{passive:true});}
+loadFallback();
+refreshRemote();
+setInterval(()=>{if(!document.hidden)refreshRemote();},300000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastChecked>60000)refreshRemote();});
+</script>
+</body>
+</html>
