@@ -111,7 +111,7 @@ function makeItem(path){
  item.category=categoryOf(item);
  return item;
 }
-function urlFor(item){return './'+item.path.split('/').map(encodeURIComponent).join('/');}
+function urlFor(item){return 'https://raw.githubusercontent.com/Ringno/A/main/a21/'+item.path.split('/').map(encodeURIComponent).join('/');}
 function orderItems(items){return items.sort((a,b)=>{
  const fa=ORDER.indexOf(a.folder),fb=ORDER.indexOf(b.folder);
  if(fa!==fb)return (fa<0?999:fa)-(fb<0?999:fb);
