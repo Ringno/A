@@ -129,6 +129,12 @@ footer{margin-top:45px;padding-top:18px;border-top:1px solid #28313e;color:#7782
 
 <script>
 const OWNER='Ringno',REPO='A',BRANCH='main',ROOT='a20/윤서아/';
+// 실제 저장소에서 확인한 기본 이미지 목록. GitHub API가 막혀도 바로 표시한다.
+const IMAGE_RANGES={
+ '기본':[[1,34],[80,86],[90,93],[100,120],[122,126],[128,154],[189,194],[200,233]],
+ '누드':[[80,86],[100,120],[122,126],[128,154],[189,233]]
+};
+
 const MAP={
  basic:{
  '001':'기본','002':'짜증,화남','003':'귀찮음','004':'기쁨','005':'부끄러움,설렘','006':'불안,미안함','007':'고민','008':'슬픔','009':'의심','010':'장난','011':'삐짐,질투','012':'졸림','013':'유혹',
@@ -169,7 +175,8 @@ function category(item){
  return '성인 소품·연출';
 }
 function rawUrl(path){
- return 'https://raw.githubusercontent.com/'+OWNER+'/'+REPO+'/'+BRANCH+'/'+path.split('/').map(encodeURIComponent).join('/');
+ // GitHub Pages 자체 도메인에서 이미지를 로드해 모바일·브라우저 호환성을 높인다.
+ return './'+path.split('/').slice(1).map(encodeURIComponent).join('/');
 }
 function escapeHtml(s){
  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -266,7 +273,9 @@ async function loadImages(force){
   $('status').textContent='총 '+allItems.length+'장 · GitHub 최신 목록 확인 '+new Date().toLocaleTimeString('ko-KR');
   $('updated').textContent='자동 갱신 중 · 마지막 확인 '+new Date().toLocaleTimeString('ko-KR');
  }catch(error){
-  $('status').textContent='목록을 불러오지 못했습니다: '+error.message+' · 새로고침을 눌러 다시 시도하세요.';
+  $('status').textContent=allItems.length
+   ? '이미지 '+allItems.length+'장 표시 중 · 최신 목록 확인 실패 ('+error.message+')'
+   : '목록을 불러오지 못했습니다: '+error.message;
   if(!allItems.length)$('gallery').innerHTML='<div class="empty">GitHub 이미지 목록을 불러오지 못했습니다.<br>잠시 후 새로고침을 눌러주세요.</div>';
  }
 }
@@ -293,6 +302,17 @@ document.addEventListener('keydown',event=>{
  if(event.key==='ArrowLeft')showLightbox(currentIndex-1);
  if(event.key==='ArrowRight')showLightbox(currentIndex+1);
 });
+function loadEmbeddedImages(){
+ const paths=Object.entries(IMAGE_RANGES).flatMap(([folder,ranges])=>
+  ranges.flatMap(([first,last])=>
+   Array.from({length:last-first+1},(_,i)=>ROOT+folder+'/'+pad(first+i)+'.png')));
+ allItems=paths.map(makeItem).filter(Boolean);
+ allItems.forEach(item=>item.category=category(item));
+ setCounts();
+ applyFilters();
+ $('status').textContent='저장된 이미지 '+allItems.length+'장 표시 중 · 최신 목록 확인 중…';
+}
+loadEmbeddedImages();
 loadImages(false);
 setInterval(()=>{if(document.visibilityState==='visible')loadImages(false);},120000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')loadImages(false);});
