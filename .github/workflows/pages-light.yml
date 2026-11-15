@@ -1,0 +1,142 @@
+name: Deploy lightweight image galleries
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.htm'
+      - '**/*.js'
+      - '**/*.css'
+      - '**/*.json'
+      - '.github/workflows/pages-light.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-lightweight
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout HTML and scripts only (no image files)
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            *.html
+            *.htm
+            *.js
+            *.css
+            *.json
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - name: Build small static site and preserve existing gallery URLs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+
+          root = Path.cwd()
+          out = root / "_site"
+          out.mkdir(exist_ok=True)
+          exts = {".html", ".htm", ".js", ".css", ".json"}
+
+          # Rendered Pages files are HTML/CSS/JS only. All PNG/JPG/WebP/GIF
+          # originals stay in the repository and are loaded directly from
+          # raw.githubusercontent.com instead of bundling gigabytes into Pages.
+          bridge = """<script id="gallery-raw-bridge">
+          (() => {
+            const origin = 'https://raw.githubusercontent.com/Ringno/A/main/';
+            const isImage = /\\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
+            function patch(img) {
+              if (img.tagName !== 'IMG') return;
+              const value = img.getAttribute('src');
+              if (!value || /^(?:https?:|data:|blob:|\\/\\/)/i.test(value)) return;
+              let url;
+              try { url = new URL(value, location.href); } catch { return; }
+              if (url.origin !== location.origin || !isImage.test(url.pathname)) return;
+              let path = url.pathname.replace(/^\\/A\\//, '');
+              if (path === url.pathname) return;
+              img.setAttribute('src', origin + path + url.search);
+            }
+            function visit(node) {
+              if (!node || node.nodeType !== 1) return;
+              if (node.tagName === 'IMG') patch(node);
+              node.querySelectorAll?.('img').forEach(patch);
+            }
+            const obs = new MutationObserver(records => {
+              for (const rec of records) {
+                if (rec.type === 'attributes') patch(rec.target);
+                else rec.addedNodes.forEach(visit);
+              }
+            });
+            obs.observe(document.documentElement, {
+              attributes: true, attributeFilter: ['src'],
+              childList: true, subtree: true
+            });
+            document.querySelectorAll('img').forEach(patch);
+          })();
+          </script>"""
+
+          copied = 0
+          html_count = 0
+          for file in root.rglob("*"):
+              if not file.is_file() or file.suffix.lower() not in exts:
+                  continue
+              relative = file.relative_to(root)
+              if relative.parts[0] in (".git", ".github", "_site", "node_modules"):
+                  continue
+              target = out / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              if file.suffix.lower() in (".html", ".htm"):
+                  content = file.read_text(encoding="utf-8")
+                  if "</head>" in content.lower():
+                      import re
+                      content = re.sub(r"</head>", lambda _: bridge + "\n</head>", content, count=1, flags=re.I)
+                  else:
+                      content = bridge + content
+                  target.write_text(content, encoding="utf-8")
+                  html_count += 1
+              else:
+                  shutil.copyfile(file, target)
+              copied += 1
+
+          (out / ".nojekyll").write_text("", encoding="utf-8")
+          if not (out / "index.html").exists():
+              (out / "index.html").write_text(
+                  '<!doctype html><html lang="ko"><meta charset="utf-8">'
+                  '<meta http-equiv="refresh" content="0;url=./a21/">'
+                  '<title>이미지 갤러리</title><a href="./a21/">A21 갤러리</a></html>',
+                  encoding="utf-8")
+          assert (out / "a21/index.html").is_file(), "a21/index.html missing"
+          print(f"Published {copied} small files, {html_count} HTML pages.")
+          print(f"Total bytes: {sum(p.stat().st_size for p in out.rglob('*') if p.is_file()):,}")
+          PY
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload HTML-only Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
