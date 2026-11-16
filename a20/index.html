@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101218">
 <title>A20 · 윤서아 이미지 갤러리</title>
-<meta name="description" content="Ringno/A A20 윤서아 이미지 전체 미리보기 갤러리">
+<meta name="description" content="Ringno/A A20 윤서아 기본·누드·육아 전체 이미지 미리보기 갤러리">
 <style>
 :root{color-scheme:dark;--bg:#0c0f14;--panel:#141922;--panel2:#1a202b;--line:#293241;--text:#f2f5fa;--muted:#9da8b8;--accent:#b8d3ff;--accent2:#d5e4ff;--radius:17px}
 *{box-sizing:border-box}
@@ -19,7 +19,7 @@ h1{font-size:clamp(29px,4vw,46px);line-height:1.05;letter-spacing:-.055em;margin
 .subtitle{margin-top:10px;color:var(--muted);font-size:14px}
 .hero-mark{display:flex;align-items:center;gap:10px;border:1px solid #35445a;background:#151e2b;padding:12px 15px;border-radius:14px;color:#dce9ff;font-size:12px}
 .dot{width:8px;height:8px;border-radius:99px;background:#7fbcff;box-shadow:0 0 14px #7fbcff}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}
 .stat{background:linear-gradient(145deg,#171e29,#121720);border:1px solid var(--line);border-radius:15px;padding:15px 16px}
 .stat-label{font-size:12px;color:var(--muted)}
 .stat-value{font-size:27px;font-weight:800;letter-spacing:-.04em;margin-top:5px;font-variant-numeric:tabular-nums}
@@ -72,7 +72,7 @@ footer{margin-top:45px;padding-top:18px;border-top:1px solid #28313e;color:#7782
 .counter{position:absolute;bottom:17px;left:50%;transform:translateX(-50%);font-size:12px;color:#d3deee;background:#172131;border:1px solid #3b4b62;padding:7px 12px;border-radius:999px}
 @media(max-width:700px){
  .wrap{padding:22px 12px 56px}
- .stats{gap:7px}.stat{padding:12px 10px}.stat-value{font-size:22px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.stat{padding:12px 10px}.stat-value{font-size:22px}
  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
  .tile-meta{padding:8px 9px 10px}.tile-name{font-size:12px}
  .folder-head{padding:13px}.folder-head h2{font-size:18px}
@@ -97,6 +97,7 @@ footer{margin-top:45px;padding-top:18px;border-top:1px solid #28313e;color:#7782
  <div class="stat"><div class="stat-label">전체 이미지</div><div class="stat-value" id="totalCount">—<small>장</small></div></div>
  <div class="stat"><div class="stat-label">기본 폴더</div><div class="stat-value" id="basicCount">—<small>장</small></div></div>
  <div class="stat"><div class="stat-label">누드 폴더</div><div class="stat-value" id="nudeCount">—<small>장</small></div></div>
+ <div class="stat"><div class="stat-label">육아 폴더</div><div class="stat-value" id="childcareCount">—<small>장</small></div></div>
 </section>
 
 <div class="toolbar">
@@ -108,6 +109,7 @@ footer{margin-top:45px;padding-top:18px;border-top:1px solid #28313e;color:#7782
   <button class="tab active" data-filter="all">전체</button>
   <button class="tab" data-filter="기본">기본</button>
   <button class="tab" data-filter="누드">누드</button>
+  <button class="tab" data-filter="육아">육아</button>
  </div>
  <div class="status" id="status">GitHub에서 이미지 목록을 불러오는 중…</div>
 </div>
@@ -132,10 +134,14 @@ const OWNER='Ringno',REPO='A',BRANCH='main',ROOT='a20/윤서아/';
 // 실제 저장소에서 확인한 기본 이미지 목록. GitHub API가 막혀도 바로 표시한다.
 const IMAGE_RANGES={
  '기본':[[1,34],[80,86],[90,93],[100,120],[122,126],[128,154],[189,194],[200,233]],
- '누드':[[80,86],[100,120],[122,126],[128,154],[189,233]]
+ '누드':[[80,86],[100,120],[122,126],[128,154],[189,233]],
+ '육아':[[1,9]]
 };
 
 const MAP={
+ childcare:{
+  '001':'모유수유','002':'유모차끌고야외','003':'아기안고산책','004':'분유','005':'아기바라보기','006':'재우기','007':'목욕시키기','008':'이유식','009':'놀아주기'
+ },
  basic:{
  '001':'기본','002':'짜증,화남','003':'귀찮음','004':'기쁨','005':'부끄러움,설렘','006':'불안,미안함','007':'고민','008':'슬픔','009':'의심','010':'장난','011':'삐짐,질투','012':'졸림','013':'유혹',
  '014':'손이끌어가슴','015':'콘돔입에물고','016':'바지벗기기','017':'입으로팬티물기','018':'옷위자지만지기','019':'옷위엉덩이만지기','020':'옷위가슴만지기','021':'턱 잡기','022':'포옹','023':'옷입은상태키스','024':'전화,문자','025':'셀카찍기','026':'사진찍힘','027':'팬티보여주기','028':'콘돔사기','029':'걷다가엉덩이만지기','030':'걷다가가슴만지기','031':'카페','032':'노래방','033':'식사','034':'PC방',
@@ -157,6 +163,7 @@ let allItems=[],visibleItems=[],activeFilter='all',currentIndex=-1,lastTreeSha='
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(3,'0');
 function category(item){
+ if(item.folder==='육아')return '육아 · 아기 돌보기';
  const n=item.number;
  if(item.folder==='누드'){
   if(n>=80&&n<=86)return '운동';
@@ -175,8 +182,8 @@ function category(item){
  return '성인 소품·연출';
 }
 function rawUrl(path){
- // GitHub Pages 자체 도메인에서 이미지를 로드해 모바일·브라우저 호환성을 높인다.
- return './'+path.split('/').slice(1).map(encodeURIComponent).join('/');
+ // Pages 경량 배포에서 누락되는 이미지 파일을 원본 저장소에서 직접 표시한다.
+ return 'https://raw.githubusercontent.com/'+OWNER+'/'+REPO+'/'+BRANCH+'/'+path.split('/').map(encodeURIComponent).join('/');
 }
 function escapeHtml(s){
  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -185,16 +192,19 @@ function makeItem(path){
  const name=path.split('/').pop();
  const folder=path.split('/')[2];
  const number=Number((name.match(/^(\d+)/)||[])[1]);
- if(!number||!['기본','누드'].includes(folder))return null;
+ if(!number||!['기본','누드','육아'].includes(folder))return null;
  const key=pad(number);
- return {path,name,folder,number,key,label:MAP[folder==='기본'?'basic':'nude'][key]||'미매핑',category:''};
+ const mapping=folder==='기본'?MAP.basic:folder==='누드'?MAP.nude:MAP.childcare;
+ return {path,name,folder,number,key,label:mapping[key]||'미매핑',category:''};
 }
 function setCounts(){
  $('totalCount').innerHTML=allItems.length+'<small>장</small>';
  $('basicCount').innerHTML=allItems.filter(x=>x.folder==='기본').length+'<small>장</small>';
  $('nudeCount').innerHTML=allItems.filter(x=>x.folder==='누드').length+'<small>장</small>';
+ $('childcareCount').innerHTML=allItems.filter(x=>x.folder==='육아').length+'<small>장</small>';
  $('tabs').querySelector('[data-filter="기본"]').textContent='기본 '+allItems.filter(x=>x.folder==='기본').length;
  $('tabs').querySelector('[data-filter="누드"]').textContent='누드 '+allItems.filter(x=>x.folder==='누드').length;
+ $('tabs').querySelector('[data-filter="육아"]').textContent='육아 '+allItems.filter(x=>x.folder==='육아').length;
 }
 function applyFilters(){
  const q=$('search').value.trim().toLocaleLowerCase();
@@ -211,14 +221,14 @@ function render(){
   root.innerHTML='<div class="empty">검색 결과가 없습니다.</div>';
   return;
  }
- const folders=activeFilter==='all'?['기본','누드']:[activeFilter];
+ const folders=activeFilter==='all'?['기본','누드','육아']:[activeFilter];
  let html='';
  for(const folder of folders){
   const folderItems=visibleItems.filter(x=>x.folder===folder);
   if(!folderItems.length)continue;
   const cats=[...new Set(folderItems.map(x=>x.category))];
   html+='<section class="folder-section">';
-  html+='<div class="folder-head"><div class="folder-title"><div class="folder-icon">'+(folder==='기본'?'B':'N')+'</div><div><h2>윤서아 / '+folder+'</h2><div class="folder-desc">'+(folder==='기본'?'기본 · 감정 · 일상 · 운동 · 장면별 이미지':'누드 · 장면별 이미지')+'</div></div></div><div class="folder-count">'+folderItems.length+' / '+allItems.filter(x=>x.folder===folder).length+'장 표시</div></div>';
+  html+='<div class="folder-head"><div class="folder-title"><div class="folder-icon">'+(folder==='기본'?'B':folder==='누드'?'N':'C')+'</div><div><h2>윤서아 / '+folder+'</h2><div class="folder-desc">'+(folder==='기본'?'기본 · 감정 · 일상 · 운동 · 장면별 이미지':folder==='누드'?'누드 · 장면별 이미지':'육아 · 수유 · 산책 · 아기 돌보기')+'</div></div></div><div class="folder-count">'+folderItems.length+' / '+allItems.filter(x=>x.folder===folder).length+'장 표시</div></div>';
   for(const cat of cats){
    const items=folderItems.filter(x=>x.category===cat);
    html+='<section class="category"><div class="category-head"><h3>'+escapeHtml(cat)+'</h3><span>'+items.length+'장</span></div><div class="grid">';
@@ -261,7 +271,7 @@ async function loadImages(force){
   const data=await response.json();
   const paths=(data.tree||[]).filter(x=>x.type==='blob'&&x.path.startsWith(ROOT)&&/\.(png|jpe?g|webp|gif)$/i.test(x.path)).map(x=>x.path);
   const next=paths.map(makeItem).filter(Boolean).sort((a,b)=>{
-   const f=['기본','누드'].indexOf(a.folder)-['기본','누드'].indexOf(b.folder);
+   const f=['기본','누드','육아'].indexOf(a.folder)-['기본','누드','육아'].indexOf(b.folder);
    return f||a.number-b.number;
   });
   const changed=data.sha!==lastTreeSha||next.length!==allItems.length;
