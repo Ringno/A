@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b101b">
+<meta name="description" content="한서윤 a23 전체 이미지 미리보기. 기본·누드·메이드복·바니걸·비키니·산타복·속옷 7개 폴더, 장면명 검색, 확대 보기 및 실시간 GitHub 목록 갱신.">
+<title>A23 · 한서윤 전체 이미지 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#0b101b;--panel:#161f30;--panel2:#1c293b;--edge:#2e3d53;--text:#f0f6ff;--muted:#9aabc3;--accent:#87d9ed;--accent2:#b8a4fa}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 18% -4%,#1a3447 0,transparent 39%),radial-gradient(ellipse at 95% 2%,#2b2246 0,transparent 31%),var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;min-height:100vh}body.no-scroll{overflow:hidden}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+a{color:var(--accent)}.shell{width:min(1550px,100%);padding:32px 23px 70px;margin:0 auto}
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:25px;flex-wrap:wrap;padding:10px 0 20px}.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.18em;font-weight:850}.hero h1{font-size:clamp(28px,5vw,52px);letter-spacing:-.06em;line-height:1.16;margin:11px 0 10px}.hero p{color:var(--muted);font-size:13px;margin:0}.hero-badge{border:1px solid #46697d;border-radius:12px;padding:9px 13px;background:rgba(31,60,80,.55);color:#d8f5ff;font-size:12px;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:8px 0 24px}.stat{background:linear-gradient(135deg,#202c41,#141e2e);border:1px solid var(--edge);border-radius:15px;padding:15px 17px}.stat-label{font-size:12px;color:var(--muted)}.stat-val{font-size:clamp(25px,3.2vw,35px);font-weight:850;line-height:1.3;font-variant-numeric:tabular-nums}
+.tools{position:sticky;top:0;z-index:12;background:rgba(11,16,27,.96);backdrop-filter:blur(15px);border-bottom:1px solid #304057;padding:12px 0 13px;margin-bottom:12px}.toolrow{display:flex;gap:8px;flex-wrap:wrap}.search,.select{border:1px solid #3c5169;background:#182639;color:var(--text);border-radius:10px;padding:11px 13px;min-width:0}.search{flex:2 1 270px}.select{flex:1 1 185px}.refresh{background:#264353;border:1px solid #558da2;color:#e6f9ff;border-radius:10px;padding:10px 15px}.refresh:disabled{opacity:.6;cursor:progress}.status{min-height:20px;font-size:12px;color:var(--muted);margin-top:10px}.tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0 11px;scrollbar-width:thin}.tab{flex-shrink:0;border:1px solid #30415a;background:#172336;color:#c3cee0;border-radius:99px;padding:8px 14px;font-size:12px}.tab.active{background:linear-gradient(120deg,#99e4f0,#c3b6ff);color:#112031;border-color:transparent;font-weight:850}
+.folder-list{border:1px solid var(--edge);border-radius:13px;background:rgba(21,31,47,.7);margin-bottom:15px}.folder-list summary{font-size:13px;cursor:pointer;color:#d9eafd;padding:12px 14px}.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 13px 14px}.chip{background:#1b2b3c;color:#d3e0ed;border:1px solid #3d5269;border-radius:8px;font-size:12px;padding:7px 10px}.chip:hover{border-color:#8bd4e5}
+.section{margin:23px 0 34px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #334a61;background:linear-gradient(95deg,#1b3444,#211e38);border-radius:13px;margin:0 0 13px;padding:12px 15px}.section-title strong{font-size:17px;letter-spacing:-.03em}.section-title small{display:block;color:var(--muted);font-size:12px}.count-pill{border:1px solid #507688;color:#daefff;border-radius:8px;padding:4px 10px;font-size:12px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:12px}.tile{display:block;width:100%;padding:0;color:var(--text);text-align:left;border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:var(--panel);transition:transform .18s,border-color .18s}.tile:hover{transform:translateY(-2px);border-color:#85d9eb}.photo{position:relative;width:100%;aspect-ratio:3/4;background:#0c1320}.photo img{width:100%;height:100%;object-fit:contain;display:block}.num{position:absolute;top:7px;left:7px;color:#ecfcff;background:rgba(8,15,25,.83);border:1px solid #314e63;border-radius:5px;font-size:11px;font-weight:850;padding:3px 7px}.tile-info{padding:8px 10px 10px}.scene{font-weight:750;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.filename{font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:3px}.tile.broken .photo:after{content:"이미지를 불러올 수 없음";position:absolute;inset:0;display:grid;place-items:center;color:#bac8d6;font-size:11px;padding:8px;text-align:center;background:#172134}
+.empty{text-align:center;color:var(--muted);border:1px dashed #465a70;padding:45px 12px;border-radius:12px}.footer{border-top:1px solid var(--edge);padding-top:17px;color:var(--muted);font-size:12px;margin-top:35px}
+.lightbox[hidden]{display:none}.lightbox{position:fixed;inset:0;z-index:100;background:rgba(2,6,13,.97);display:flex;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}.lb-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}.lb-title{font-weight:800;font-size:14px}.lb-path{color:#a8b5ca;font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:72vw}.lb-buttons{display:flex;gap:8px}.lb-btn{padding:8px 12px;background:#1d2d41;border:1px solid #49657e;color:#f0fbff;border-radius:9px;text-decoration:none;font-size:12px;white-space:nowrap}.lb-mid{display:flex;flex:1;min-height:0;gap:9px;padding:4px 14px;align-items:center;justify-content:center}.lb-photo{display:flex;align-items:center;justify-content:center;flex:1;min-height:0;height:100%;touch-action:pan-y}.lb-photo img{max-height:100%;max-width:100%;object-fit:contain}.arrow{border:1px solid #4d6f83;background:#172b3e;color:#eafaff;width:46px;height:65px;border-radius:12px;font-size:27px;flex-shrink:0}.lb-bottom{font-size:12px;color:#cbdcf0;text-align:center;padding:9px 10px 17px}
+@media(max-width:690px){.shell{padding:17px 12px 50px}.hero{padding:7px 0 15px}.hero-badge{display:none}.stats{gap:7px;margin-bottom:17px}.stat{padding:10px 11px;border-radius:10px}.stat-label{font-size:10px}.stat-val{font-size:23px}.tools{padding:9px 0}.toolrow{gap:7px}.search{flex-basis:100%;padding:11px}.select{flex:1}.refresh{padding:10px}.tab{padding:7px 11px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.section{margin:18px 0 26px}.section-title{padding:10px 12px}.section-title strong{font-size:15px}.tile{border-radius:8px}.tile-info{padding:6px 6px 8px}.scene{font-size:11px}.filename{font-size:10px}.num{font-size:10px;top:4px;left:4px;padding:2px 5px}.lb-head{padding:9px 10px}.lb-title{font-size:12px}.lb-btn{padding:7px 8px;font-size:11px}.lb-mid{gap:4px;padding:3px 5px}.arrow{width:33px;height:55px;font-size:23px}.lb-bottom{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="hero"><div><div class="eyebrow">RINGNO / A23 · HAN SEOYUN IMAGE ARCHIVE</div><h1>한서윤 · 전체 이미지 갤러리</h1><p>기본 · 누드 · 메이드복 · 바니걸 · 비키니 · 산타복 · 속옷 | 장면명·번호 검색 및 원본 확대</p></div><div class="hero-badge">● GitHub에 등록된 이미지 자동 불러오기</div></header>
+<div class="stats"><div class="stat"><div class="stat-label">전체 이미지</div><div class="stat-val" id="total">—</div></div><div class="stat"><div class="stat-label">캐릭터</div><div class="stat-val" id="characters">—</div></div><div class="stat"><div class="stat-label">하위 폴더</div><div class="stat-val" id="folders">—</div></div></div>
+<section class="tools" aria-label="검색 및 필터"><div class="toolrow"><input type="search" id="search" class="search" placeholder="번호 · 장면명 · 파일명 · 캐릭터 검색 (예: 025, 문자, 031, 셀카, 092, 결혼)" aria-label="이미지 검색" autocomplete="off"><select id="folderFilter" class="select" aria-label="폴더 선택"><option value="">모든 폴더</option></select><button id="reload" class="refresh" type="button">↻ 최신 목록</button></div><div id="tabs" class="tabs" role="group" aria-label="복장별 필터"></div><div id="status" class="status" aria-live="polite">갤러리 준비 중…</div></section>
+<details class="folder-list"><summary>캐릭터 및 하위 폴더별 이미지 수 보기</summary><div id="chips" class="chips"></div></details>
+<div id="gallery" aria-label="전체 이미지 썸네일"></div>
+<footer class="footer">이미지는 Ringno/A GitHub 저장소의 원본을 직접 표시합니다. 페이지 방문 시, 최신 목록 버튼, 5분 간격으로 새 PNG 파일을 확인합니다. 썸네일은 스크롤할 때 순차 로드됩니다.</footer>
+</main>
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="이미지 확대" hidden>
+<div class="lb-head"><div style="min-width:0"><div id="lbTitle" class="lb-title"></div><div id="lbPath" class="lb-path"></div></div><div class="lb-buttons"><a id="original" class="lb-btn" href="#" target="_blank" rel="noopener noreferrer">원본 보기</a><button id="close" class="lb-btn" type="button">닫기 ✕</button></div></div>
+<div class="lb-mid"><button class="arrow" id="previous" type="button" aria-label="이전 이미지">‹</button><div id="touch" class="lb-photo"><img id="bigImage" alt=""></div><button class="arrow" id="following" type="button" aria-label="다음 이미지">›</button></div><div class="lb-bottom"><span id="position"></span> · 좌우 화살표 / 스와이프 / ESC</div></div>
+<script id="bootstrap" type="application/json">{"서윤/기본":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","026.png","027.png","028.png","029.png","030.png","031.png","032.png","036.png","037.png","038.png","039.png","080.png","090.png","091.png","092.png","093.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/누드":["100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","195.png","196.png","197.png","198.png","199.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/메이드복":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","030.png","031.png","032.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/바니걸":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","030.png","031.png","032.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/비키니":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","030.png","031.png","032.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/산타복":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","030.png","031.png","032.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"],"서윤/속옷":["001.png","002.png","003.png","004.png","005.png","006.png","007.png","008.png","009.png","010.png","011.png","012.png","013.png","014.png","015.png","016.png","017.png","018.png","019.png","020.png","021.png","022.png","023.png","024.png","025.png","030.png","031.png","032.png","100.png","101.png","102.png","103.png","104.png","105.png","106.png","107.png","108.png","109.png","110.png","111.png","112.png","113.png","114.png","115.png","116.png","117.png","118.png","119.png","120.png","121.png","122.png","123.png","124.png","125.png","126.png","128.png","129.png","130.png","131.png","132.png","133.png","134.png","135.png","136.png","137.png","138.png","139.png","140.png","141.png","142.png","143.png","144.png","145.png","146.png","147.png","148.png","149.png","150.png","151.png","153.png","154.png","155.png","156.png","157.png","158.png","190.png","191.png","192.png","193.png","194.png","196.png","197.png","198.png","200.png","201.png","202.png","203.png","204.png","205.png","206.png","207.png","208.png","209.png","210.png","211.png","212.png","213.png","214.png","215.png","216.png","217.png","218.png","219.png","220.png","221.png","222.png","223.png","224.png","225.png","226.png","227.png","228.png","229.png","230.png","231.png","232.png"]}</script>
+<script>
+'use strict';
+const LABELS={"100":"정상위","101":"정상위절정","102":"카우걸","103":"카우걸절정","104":"후배위","105":"후배위절정","106":"파일드라이버","107":"들박","108":"들박절정","109":"배면들박","110":"배면들박절정","111":"입위","112":"입위절정","113":"측위","114":"측위절정","115":"좌위","116":"좌위절정","117":"펠라","118":"펠라사정","119":"딥스로트","120":"딥스로트사정","121":"발핥기","122":"페이스시팅","123":"핸드잡","124":"핸드잡사정","125":"파이즈리","126":"파이즈리사정","128":"풋잡","129":"엉덩이만지기","130":"림잡","131":"림잡사정","132":"림잡파이즈리","133":"스팽킹","134":"스팽킹","135":"가슴만지기","136":"가슴빨기","137":"핑거링","138":"키스","139":"겨드랑이핥기","140":"아마존","141":"커닐링구스","142":"정액입에머금음","143":"자지핥기","144":"69자세","145":"수유대딸","146":"여자머리채","147":"여자싸대기","148":"머리채잡고후배위","149":"관계중전화","150":"펠라중통화","151":"유두에페니스","153":"애원","154":"콘돔정액범벅","155":"촬영정상위","156":"촬영사정","157":"촬영기승위","158":"촬영V포즈","190":"꼭지당기기","191":"엉덩이내밀기","192":"도게자","193":"자위·보지벌리기","194":"팬티벗기","196":"임신정상위","197":"임신기승위","198":"임신후배위","200":"로터","201":"로터","202":"딜도","203":"딜도","204":"애널플러그","205":"애널플러그","206":"시바리","207":"시바리","208":"호그타이","209":"호그타이","210":"공중매달기","211":"공중매달기","212":"볼개그","213":"볼개그","214":"목줄","215":"목줄","216":"유두클램프","217":"유두클램프","218":"젖분비","219":"분수","220":"개목줄","221":"개목줄","222":"검은안대","223":"검은안대","224":"안대자위","225":"안대자위","226":"목줄당김","227":"목줄당김","228":"스프레더바","229":"스프레더바","230":"비트개그","231":"비트개그","232":"밧줄걷기","001":"기본","002":"짜증·화남","003":"귀찮음","004":"기쁨","005":"부끄러움·설렘","006":"불안·미안함","007":"고민·의심","008":"슬픔","009":"장난","010":"삐짐·질투","011":"졸림","012":"유혹","013":"수면","014":"손이끌어가슴","015":"콘돔입에물고","016":"바지벗기기","017":"입으로팬티물기","018":"옷위자지만지기","019":"옷위엉덩이만지기","020":"옷위가슴만지기","021":"턱 잡기","022":"포옹","023":"팔짱끼기","024":"옷입은상태키스","025":"전화·문자","026":"팬티보여주기","027":"브래지어보여주기","028":"콘돔사기","029":"식사","030":"술먹고취함","031":"셀카찍기","032":"사진찍힘","036":"영화관","037":"카페","038":"노래방","039":"PC방","080":"실내에서핸드잡","090":"임테기보여주기","091":"임신","092":"결혼","093":"임신상태결혼"};
+const LABELS_BY_FOLDER={"누드":{"195":"샤워","196":"씻겨주기","197":"임신정상위","198":"임신기승위","199":"임신후배위"}};
+const ORDER=["기본","누드","메이드복","바니걸","비키니","산타복","속옷"];
+const API='https://api.github.com/repos/Ringno/A/git/trees/';
+const RAW='https://raw.githubusercontent.com/Ringno/A/main/a23/';
+const $=id=>document.getElementById(id);
+const isPic=p=>/\.(png|jpe?g|webp|gif|avif)$/i.test(p);
+const normalize=s=>String(s).normalize('NFKC').toLocaleLowerCase('ko-KR');
+let items=[],visible=[],folder='',kind='',searchText='',current=-1,working=false,lastSync=0,lastFocus=null,searchTimer=0;
+function fromPath(path){
+ const parts=path.split('/');if(parts.length<3||!isPic(path))return null;
+ const filename=parts.pop(),character=parts.shift(),subfolder=parts.join('/');
+ const id=(filename.match(/^(\d{3})(?:[_.-]|$)/)||[])[1]||'';
+ const label=(LABELS_BY_FOLDER[subfolder]?.[id]||LABELS[id])||'미등록 장면';
+ const key=character+'/'+subfolder;
+ const url=RAW+[character].concat(parts).concat(filename).map(encodeURIComponent).join('/');
+ return {path,filename,character,subfolder,id,label,key,url,haystack:normalize([filename,character,subfolder,id,label,key].join(' '))};
+}
+function order(a,b){
+ const c=a.character.localeCompare(b.character,'ko');if(c)return c;
+ const ai=ORDER.indexOf(a.subfolder),bi=ORDER.indexOf(b.subfolder);
+ if(ai!==bi)return(ai<0?999:ai)-(bi<0?999:bi);
+ const s=a.subfolder.localeCompare(b.subfolder,'ko');return s||a.filename.localeCompare(b.filename,'ko',{numeric:true});
+}
+function setPaths(paths){
+ const dedup=[...new Set(paths)],next=dedup.map(fromPath).filter(Boolean).sort(order);
+ items=next;drawFilters();draw();return next.length;
+}
+function groups(){
+ const count=new Map();for(const it of items)count.set(it.key,(count.get(it.key)||0)+1);
+ return [...count].sort((a,b)=>{const x=items.find(i=>i.key===a[0]),y=items.find(i=>i.key===b[0]);return x&&y?order(x,y):a[0].localeCompare(b[0]);});
+}
+function chooseFolder(k){folder=k;$('folderFilter').value=k;draw();}
+function drawFilters(){
+ const gs=groups();
+ const select=$('folderFilter');select.replaceChildren();
+ const first=document.createElement('option');first.value='';first.textContent='모든 폴더 ('+items.length+')';select.append(first);
+ for(const [key,c] of gs){const o=document.createElement('option');o.value=key;o.textContent=key+' · '+c+'장';select.append(o);}
+ if(folder&&!gs.some(g=>g[0]===folder))folder='';
+ select.value=folder;
+ $('total').textContent=items.length.toLocaleString('ko-KR');
+ $('characters').textContent=new Set(items.map(x=>x.character)).size;
+ $('folders').textContent=gs.length;
+ const tabs=$('tabs');tabs.replaceChildren();
+ const allKind=[''].concat([...new Set(items.map(i=>i.subfolder))].sort((a,b)=>{const ai=ORDER.indexOf(a),bi=ORDER.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b,'ko')}));
+ for(const k of allKind){const bt=document.createElement('button');bt.className='tab'+(kind===k?' active':'');bt.type='button';bt.textContent=(k||'전체')+' '+(k?items.filter(i=>i.subfolder===k).length:items.length);bt.addEventListener('click',()=>{kind=k;drawFilters();draw();});tabs.append(bt);}
+ const chips=$('chips');chips.replaceChildren();
+ for(const [key,count] of gs){const bt=document.createElement('button');bt.type='button';bt.className='chip';bt.textContent=key+' · '+count+'장';bt.addEventListener('click',()=>chooseFolder(key));chips.append(bt);}
+}
+function makeTile(it,index){
+ const bt=document.createElement('button');bt.type='button';bt.className='tile';bt.setAttribute('aria-label',it.character+' '+it.subfolder+' '+it.id+' '+it.label);
+ const picture=document.createElement('div');picture.className='photo';
+ const img=document.createElement('img');img.src=it.url;img.loading='lazy';img.decoding='async';img.alt=it.character+' '+it.label;img.addEventListener('error',()=>bt.classList.add('broken'));
+ const num=document.createElement('span');num.className='num';num.textContent=it.id||'IMG';picture.append(img,num);
+ const info=document.createElement('div');info.className='tile-info';
+ const scene=document.createElement('div');scene.className='scene';scene.textContent=it.label;
+ const filename=document.createElement('div');filename.className='filename';filename.textContent=it.filename;
+ info.append(scene,filename);bt.append(picture,info);
+ bt.addEventListener('click',()=>openBox(index));return bt;
+}
+function draw(){
+ const q=normalize(searchText.trim());
+ visible=items.filter(i=>(!folder||i.key===folder)&&(!kind||i.subfolder===kind)&&(!q||i.haystack.includes(q)));
+ const target=$('gallery');target.replaceChildren();
+ if(!visible.length){const el=document.createElement('div');el.className='empty';el.textContent='검색 결과가 없습니다. 번호 또는 폴더 필터를 변경해 보세요.';target.append(el);}
+ else{
+ const sections=new Map();
+ visible.forEach((it,idx)=>{if(!sections.has(it.key))sections.set(it.key,[]);sections.get(it.key).push({it,idx});});
+ for(const [key,list] of sections){
+ const section=document.createElement('section');section.className='section';
+ const header=document.createElement('div');header.className='section-title';
+ const h=document.createElement('div');const name=document.createElement('strong');name.textContent=key;
+ const desc=document.createElement('small');desc.textContent='장면명·번호 기준 전체 미리보기';
+ h.append(name,desc);const count=document.createElement('span');count.className='count-pill';count.textContent=list.length+'장';
+ header.append(h,count);section.append(header);
+ const grid=document.createElement('div');grid.className='grid';
+ const frag=document.createDocumentFragment();for(const x of list)frag.append(makeTile(x.it,x.idx));
+ grid.append(frag);section.append(grid);target.append(section);
+ }
+ }
+ $('status').textContent='전체 '+items.length+'장 · 검색 결과 '+visible.length+'장 · '+(lastSync?'최신 확인 '+new Date(lastSync).toLocaleTimeString('ko-KR'):'저장된 목록 표시 중');
+ if(current>=0){closeBox();}
+}
+function openBox(idx){
+ if(idx<0||idx>=visible.length)return;
+ lastFocus=document.activeElement;current=idx;$('lightbox').hidden=false;document.body.classList.add('no-scroll');showBox();$('close').focus();
+}
+function showBox(){
+ if(current<0||!visible.length)return;
+ current=(current+visible.length)%visible.length;const it=visible[current];
+ $('lbTitle').textContent=it.character+' / '+it.subfolder+' · '+it.id+' '+it.label;
+ $('lbPath').textContent='a23/'+it.path;
+ $('bigImage').src=it.url;$('bigImage').alt=it.character+' '+it.subfolder+' '+it.label;
+ $('original').href=it.url;$('position').textContent=(current+1)+' / '+visible.length;
+}
+function closeBox(){
+ $('lightbox').hidden=true;document.body.classList.remove('no-scroll');current=-1;
+ if(lastFocus&&lastFocus.isConnected)lastFocus.focus();
+}
+function step(n){if(current>=0){current+=n;showBox();}}
+async function getJSON(url){
+ const response=await fetch(url,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
+ if(!response.ok)throw new Error('GitHub API '+response.status);
+ return response.json();
+}
+async function refresh(silent=false){
+ if(working)return;working=true;$('reload').disabled=true;
+ if(!silent)$('status').textContent='GitHub에서 최신 PNG 목록 확인 중…';
+ try{
+ const tree=await getJSON(API+'main');
+ const dir=tree.tree&&tree.tree.find(x=>x.path==='a23'&&x.type==='tree');
+ if(!dir)throw new Error('a23 폴더를 찾지 못했습니다');
+ const nested=await getJSON(API+encodeURIComponent(dir.sha)+'?recursive=1');
+ if(nested.truncated)throw new Error('파일 목록 일부가 생략되어 업데이트를 보류했습니다');
+ const paths=nested.tree.filter(x=>x.type==='blob'&&isPic(x.path)).map(x=>x.path);
+ if(!paths.length)throw new Error('이미지 파일이 없어 업데이트를 보류했습니다');
+ const old=items.map(x=>x.path).sort().join('\n'),next=[...paths].sort().join('\n');
+ lastSync=Date.now();
+ if(old!==next||!silent){setPaths(paths);}else{$('status').textContent='전체 '+items.length+'장 · 검색 결과 '+visible.length+'장 · 최신 확인 '+new Date(lastSync).toLocaleTimeString('ko-KR');}
+ }catch(error){$('status').textContent='저장된 목록 '+items.length+'장을 표시 중입니다. 최신 목록 확인 실패: '+(error&&error.message||error);}
+ finally{working=false;$('reload').disabled=false;}
+}
+const initial=JSON.parse($('bootstrap').textContent);
+setPaths(Object.entries(initial).flatMap(([key,names])=>names.map(n=>key+'/'+n)));
+$('folderFilter').addEventListener('change',e=>{folder=e.target.value;draw();});
+$('search').addEventListener('input',e=>{searchText=e.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(draw,110);});
+$('reload').addEventListener('click',()=>refresh(false));
+$('close').addEventListener('click',closeBox);
+$('previous').addEventListener('click',()=>step(-1));
+$('following').addEventListener('click',()=>step(1));
+$('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeBox();});
+window.addEventListener('keydown',e=>{if(current<0)return;if(e.key==='Escape')closeBox();else if(e.key==='ArrowLeft')step(-1);else if(e.key==='ArrowRight')step(1);});
+let touchStart=0;$('touch').addEventListener('touchstart',e=>{touchStart=e.changedTouches[0].clientX;},{passive:true});
+$('touch').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-touchStart;if(Math.abs(d)>45)step(d<0?1:-1);},{passive:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastSync>300000)refresh(true);});
+setInterval(()=>{if(!document.hidden)refresh(true);},300000);
+refresh(true);
+</script>
+</body>
+</html>
